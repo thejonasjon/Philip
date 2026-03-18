@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+:root {
+  --animate-aurora: aurora 60s linear infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-gradient-shift: gradient-shift 1.5s ease infinite;
+}
+
+/* aurora animation */
+@keyframes aurora {
+  from {
+    background-position: 50% 50%, 50% 50%;
+  }
+  to {
+    background-position: 350% 50%, 350% 50%;
+  }
+}
+
+/* Aurora and shimmer utility classes */
+.bg-aurora {
+  background-image: radial-gradient(
+      circle at 20% 20%,
+      rgba(124, 58, 237, 0.28),
+      transparent 20%
+    ),
+    linear-gradient(90deg, #06b6d4, #7c3aed, #06b6d4);
+  background-size: 400% 100%, 400% 100%;
+  background-repeat: no-repeat;
+  animation: var(--animate-aurora);
+  -webkit-animation: var(--animate-aurora);
+}
+
+.bg-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.06) 25%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.06) 75%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: var(--animate-shimmer);
+  -webkit-animation: var(--animate-shimmer);
+}
+
+/* shimmer keyframes (used by --animate-shimmer) */
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* gradient-shift keyframes (for hover border gradient) */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Accessible: disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .bg-aurora,
+  .bg-shimmer {
+    animation: none !important;
+    -webkit-animation: none !important;
+  }
+}
