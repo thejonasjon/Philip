@@ -1,6 +1,6 @@
 import React from "react";
 import myPic from "./assets/Philip-pic.jpg";
-import { HoverBorderGradient } from "./components/ui/hover-border-gradient";
+import { HoverBorderGradient } from "./Components/ui/hover-border-gradient";
 
 const Hero = () => {
   const scrollToContact = () => {
