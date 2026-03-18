@@ -1,91 +1,81 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { useState, useRef, useEffect } from "react";
-// import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FetchTestimonies } from "./services/api";
 
 const fallbackTestimonials = [
-  {
-    id: 1,
-    text: "I was very nervous speaking English, but my tutor made me feel so comfortable. She's patient, kind, and always helps me correct my mistakes in a gentle way. My confidence has improved a lot!",
-    name: "Linh N.",
-    position: "Student, Vietnam",
-  },
-  {
-    id: 2,
-    text: "I needed help preparing for job interviews and writing emails in English. My tutor helped me sound professional and clear. Now I feel ready for any meeting or presentation!",
-    name: "Carlos M.",
-    position: "Marketing Analyst, Spain",
-  },
-  {
-    id: 3,
-    text: "Each lesson is interesting and full of energy. She uses games, real-life examples, and current events to help me improve. I actually look forward to our classes!",
-    name: "Aya T.",
-    position: "Student, Japan",
-  },
-  {
-    id: 4,
-    text: "Before I started, I could understand English but struggled to speak. Now, I can hold conversations, express opinions, and even tell jokes in English!",
-    name: "Mohammed A.",
-    position: "Medical Intern, Saudi Arabia",
-  },
-  {
-    id: 5,
-    text: "Every lesson is tailored to my level and goals. My tutor knows exactly how to push me without overwhelming me. It's the best learning experience I've had online.",
-    name: "Sofia G.",
-    position: "Product Designer, Brazil",
-  },
+  // {
+  //   id: "1",
+  //   full_name: "Linh N.",
+  //   email: "linh@example.com",
+  //   profession: "Student",
+  //   country: "Vietnam",
+  //   message: "I was very nervous speaking English, but my tutor made me feel so comfortable. She's patient, kind, and always helps me correct my mistakes in a gentle way. My confidence has improved a lot.",
+  //   status: { name: "approved" },
+  // },
+  // {
+  //   id: "2",
+  //   full_name: "Carlos M.",
+  //   email: "carlos@example.com",
+  //   profession: "Marketing Analyst",
+  //   country: "Spain",
+  //   message: "I needed help preparing for job interviews and writing emails in English. My tutor helped me sound professional and clear. Now I feel ready for any meeting or presentation!",
+  //   status: { name: "approved" },
+  // },
+  // {
+  //   id: "3",
+  //   full_name: "Aya T.",
+  //   email: "aya@example.com",
+  //   profession: "Student",
+  //   country: "Japan",
+  //   message: "Each lesson is interesting and full of energy. She uses games, real-life examples, and current events to help me improve. I actually look forward to our classes!",
+  //   status: { name: "approved" },
+  // },
+  // {
+  //   id: "4",
+  //   full_name: "Mohammed A.",
+  //   email: "mohammed@example.com",
+  //   profession: "Medical Intern",
+  //   country: "Saudi Arabia",
+  //   message: "Before I started, I could understand English but struggled to speak. Now, I can hold conversations, express opinions, and even tell jokes in English!",
+  //   status: { name: "approved" },
+  // },
+  // {
+  //   id: "5",
+  //   full_name: "Sofia G.",
+  //   email: "sofia@example.com",
+  //   profession: "Product Designer",
+  //   country: "Brazil",
+  //   message: "Every lesson is tailored to my level and goals. My tutor knows exactly how to push me without overwhelming me. It's the best learning experience I've had online.",
+  //   status: { name: "approved" },
+  // },
 ];
 
-const API_BASE_URL =
-  import.meta.env.MODE === "development"
-    ? "http://localhost:5000/api"
-    : "https://philip-portfolio-q0iw.onrender.com/api";
-
 const Testimonial = () => {
-  // const [dbTestimonials, setDbTestimonials] = useState([]);
-  const [Testimonials, setTestimonials] = useState([]);
+  const [testimonials, setTestimonials] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const splideRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // axios
-    //   .get(`${API_BASE_URL}/testimonials`)
-    //   .then((res) => setDbTestimonials(res.data || []))
-    //   .catch((err) => console.error("❌ Error fetching testimonials:", err));
     async function loadTestimonials() {
       try {
         const data = await FetchTestimonies();
-          setTestimonials(data);
+        console.log("Fetched Testimonials:", data);
+        setTestimonials(data || []);
       } catch (error) {
         console.error("Failed to fetch testimonials:", error.message);
+        setTestimonials([]); // fallback automatically
       }
     }
 
-    loadTestimonials()
+    loadTestimonials();
   }, []);
 
+  // Use API testimonials if available, else fallback
   const allTestimonials =
-    Testimonials.length > 0
-      ? Testimonials.map((t) => ({
-          id: t.id,
-          text: t.message || t.text,
-          name: t.full_name,
-          position: `${t.profession || "Student"}, ${t.country || ""}`.trim(),
-          image:
-            t.image ||
-            `https://ui-avatars.com/api/?name=${encodeURIComponent(
-              t.full_name
-            )}&background=f97316&color=fff&size=128`,
-        }))
-      : fallbackTestimonials.map((t) => ({
-          ...t,
-          image: `https://ui-avatars.com/api/?name=${encodeURIComponent(
-            t.full_name
-          )}&background=f97316&color=fff&size=128`,
-        }));
+    testimonials.length > 0 ? testimonials : fallbackTestimonials;
 
   const handleMove = (splide, newIndex) => setActiveIndex(newIndex);
 
@@ -137,7 +127,12 @@ const Testimonial = () => {
 
                 <div className="flex items-center mt-auto">
                   <img
-                    src={t.image}
+                    src={
+                      t.image ||
+                      `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                        t.full_name
+                      )}&background=f97316&color=fff&size=128`
+                    }
                     alt={t.full_name}
                     className="w-12 h-12 rounded-full object-cover mr-4 border border-gray-300"
                   />
