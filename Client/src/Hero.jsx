@@ -1,5 +1,5 @@
 import React from "react";
-import myPic from "./assets/Philip-pic.jpg";
+import myPic from "./assets/philip-new.jpg";
 import { HoverBorderGradient } from "./Components/ui/hover-border-gradient";
 
 const Hero = () => {
@@ -25,7 +25,7 @@ const Hero = () => {
             <img
               src={myPic}
               alt="Osose Philips"
-              className="relative w-full h-full object-cover rounded-full border-4 border-orange-400 shadow-lg"
+              className="relative w-full h-full object-cover object-top rounded-full border-4 border-orange-400 shadow-lg"
             />
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import myImage from "./assets/hero-pic.png";
+import myImage from "./assets/philip-new.jpg";
 
 const About = () => {
   return (
@@ -13,7 +13,7 @@ const About = () => {
               <img
                 src={myImage}
                 alt="Osose Philips Ijewere"
-                className="relative w-full h-full object-cover rounded-3xl border-4 border-orange-400 shadow-xl"
+                className="relative w-full h-full object-cover object-top rounded-3xl border-4 border-orange-400 shadow-xl"
               />
             </div>
           </div>
