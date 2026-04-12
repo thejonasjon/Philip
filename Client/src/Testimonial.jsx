@@ -66,16 +66,21 @@ const Testimonial = () => {
         setTestimonials(data || []);
       } catch (error) {
         console.error("Failed to fetch testimonials:", error.message);
-        setTestimonials([]); // fallback automatically
+        setTestimonials([]);
       }
     }
 
     loadTestimonials();
   }, []);
 
+  useEffect(() => {
+    if (splideRef.current && testimonials.length > 0) {
+      splideRef.current.splide.refresh();
+    }
+  }, [testimonials]);
+
   // Use API testimonials if available, else fallback
-  const allTestimonials =
-    testimonials.length > 0 ? testimonials : fallbackTestimonials;
+  const allTestimonials = testimonials;
 
   const handleMove = (splide, newIndex) => setActiveIndex(newIndex);
 
@@ -96,57 +101,60 @@ const Testimonial = () => {
         </div>
 
         {/* --- Testimonial Slider --- */}
-        <Splide
-          ref={splideRef}
-          aria-label="Testimonial Slider"
-          options={{
-            type: "loop",
-            perPage: 3,
-            autoplay: true,
-            interval: 3000,
-            pauseOnHover: true,
-            gap: "1.5rem",
-            speed: 800,
-            easing: "linear",
-            pagination: false,
-            arrows: false,
-            drag: false,
-            breakpoints: { 1024: { perPage: 1 } },
-          }}
-          onMoved={handleMove}
-        >
-          {allTestimonials.map((t) => (
-            <SplideSlide key={t.id}>
-              <div className="bg-white rounded-lg p-6 shadow-lg h-full flex flex-col justify-between hover:scale-[1.02] transition duration-300">
-                <div>
-                  <div className="text-orange-600 text-4xl mb-4">"</div>
-                  <p className="text-gray-600 mb-6 leading-relaxed text-sm sm:text-base">
-                    {t.message}
-                  </p>
-                </div>
-
-                <div className="flex items-center mt-auto">
-                  <img
-                    src={
-                      t.image ||
-                      `https://ui-avatars.com/api/?name=${encodeURIComponent(
-                        t.full_name
-                      )}&background=f97316&color=fff&size=128`
-                    }
-                    alt={t.full_name}
-                    className="w-12 h-12 rounded-full object-cover mr-4 border border-gray-300"
-                  />
+        {allTestimonials.length > 0 && (
+          <Splide
+            key={testimonials.length}
+            ref={splideRef}
+            aria-label="Testimonial Slider"
+            options={{
+              type: "loop",
+              perPage: 3,
+              autoplay: true,
+              interval: 3000,
+              pauseOnHover: true,
+              gap: "1.5rem",
+              speed: 800,
+              easing: "linear",
+              pagination: false,
+              arrows: false,
+              drag: false,
+              breakpoints: { 1024: { perPage: 1 } },
+            }}
+            onMoved={handleMove}
+          >
+            {allTestimonials.map((t) => (
+              <SplideSlide key={t.id}>
+                <div className="bg-white rounded-lg p-6 shadow-lg h-full flex flex-col justify-between hover:scale-[1.02] transition duration-300">
                   <div>
-                    <h4 className="font-bold text-gray-800 text-base">
-                      {t.full_name}
-                    </h4>
-                    <p className="text-gray-500 text-sm">{t.profession}</p>
+                    <div className="text-orange-600 text-4xl mb-4">"</div>
+                    <p className="text-gray-600 mb-6 leading-relaxed text-sm sm:text-base">
+                      {t.message}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center mt-auto">
+                    <img
+                      src={
+                        t.image ||
+                        `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                          t.full_name,
+                        )}&background=f97316&color=fff&size=128`
+                      }
+                      alt={t.full_name}
+                      className="w-12 h-12 rounded-full object-cover mr-4 border border-gray-300"
+                    />
+                    <div>
+                      <h4 className="font-bold text-gray-800 text-base">
+                        {t.full_name}
+                      </h4>
+                      <p className="text-gray-500 text-sm">{t.profession}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </SplideSlide>
-          ))}
-        </Splide>
+              </SplideSlide>
+            ))}
+          </Splide>
+        )}
 
         {/* --- Pagination Dots --- */}
         <div className="flex justify-center mt-8 space-x-2">
