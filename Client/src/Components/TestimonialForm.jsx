@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { CreateTestimonial } from "../services/api";
 
 function TestimonialForm() {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ function TestimonialForm() {
     e.preventDefault();
 
     const imageUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(
-      formData.name
+      formData.name,
     )}&background=f97316&color=fff&size=128`;
 
     const newTestimonial = {
@@ -36,14 +36,16 @@ function TestimonialForm() {
       profession: formData.profession || "Student",
       country: formData.country || "",
       text: formData.text,
-      image: imageUrl,
+      // image: imageUrl,
     };
 
     try {
       setLoading(true);
-      await axios.post(`${API_BASE_URL}/testimonials`, newTestimonial);
 
-      toast.success("✅ Testimonial submitted successfully!");
+      await CreateTestimonial(newTestimonial);
+
+      toast.success("Testimonial submitted successfully!");
+
       setFormData({
         name: "",
         email: "",
@@ -51,10 +53,11 @@ function TestimonialForm() {
         country: "",
         text: "",
       });
+
       setTimeout(() => navigate("/"), 2000);
     } catch (err) {
-      console.error("❌ Error submitting testimonial:", err);
-      toast.error("Failed to submit testimonial. Try again!");
+      console.error(err);
+      toast.error("Failed to submit testimonial!");
     } finally {
       setLoading(false);
     }

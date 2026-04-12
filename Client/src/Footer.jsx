@@ -31,8 +31,8 @@ const Footer = () => {
         </a>
       </div>
       <p className="text-center text-sm text-gray-400">
-        &copy; 2025{" "}
-        <span className="text-orange-500 font-semibold">Osose Philips</span>.
+        &copy; {new Date().getFullYear()}{" "}
+        <span className="text-orange-500 font-semibold">Tutor Philips</span>.
         All rights reserved.
       </p>
     </footer>

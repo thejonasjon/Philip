@@ -67,6 +67,27 @@ export async function AdminUpdateTestimony(id, updates) {
   return data;
 }
 
+export async function AdminDeleteTestimony(id) {
+  const { data, error } = await supabase
+    .from("testimonials")
+    .delete()
+    .eq("id", id)
+    .select(`
+      id,
+      full_name,
+      email,
+      profession,
+      country,
+      message,
+      created_at,
+      status(id, name)
+    `)
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
 export async function adminLogin(email, password) {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
@@ -77,5 +98,38 @@ export async function adminLogin(email, password) {
     console.error("Unable to login", error.message);
     throw error;
   }
+  return data;
+}
+
+export async function CreateTestimonial(testimonial) {
+  const { data: statusData, error: statusError } = await supabase
+    .from("status")
+    .select("id")
+    .eq("name", "draft")
+    .single();
+
+  if (statusError || !statusData?.id) {
+    console.error("Error fetching draft status:", statusError?.message);
+    throw new Error("Draft status not found");
+  }
+
+  const payload = {
+    full_name: testimonial.name,
+    email: testimonial.email,
+    profession: testimonial.profession || "Student",
+    country: testimonial.country || "",
+    message: testimonial.text,
+    status: statusData.id,
+  };
+
+  const { data, error } = await supabase
+    .from("testimonials")
+    .insert([payload])
+
+  if (error) {
+    console.error("Error creating testimonial:", error);
+    throw error;
+  }
+
   return data;
 }

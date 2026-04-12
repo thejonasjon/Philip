@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { AdminFetchTestimonies, AdminUpdateTestimony, FetchStatus, FetchTestimonies } from "./services/api";
+import {
+  AdminDeleteTestimony,
+  AdminFetchTestimonies,
+  AdminUpdateTestimony,
+  FetchStatus,
+  FetchTestimonies,
+} from "./services/api";
 import { supabase } from "./supabaseClient";
 
 export default function AdminDashboard() {
@@ -7,17 +13,20 @@ export default function AdminDashboard() {
   const [statuses, setStatuses] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedToDelete, setSelectedToDelete] = useState(null);
+
   useEffect(() => {
-    async function loadStatus(){
-        try {
-            const data = await FetchStatus();
-            setStatuses(data);
-        } catch (error) {
-            console.error("Failed to fetch status", error.message)
-        }
-    };
+    async function loadStatus() {
+      try {
+        const data = await FetchStatus();
+        setStatuses(data);
+      } catch (error) {
+        console.error("Failed to fetch status", error.message);
+      }
+    }
     loadStatus();
-  }, [])
+  }, []);
 
   useEffect(() => {
     async function loadTestimonials() {
@@ -35,15 +44,17 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     const checkAuth = async () => {
-        const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
 
-        if (!user) {
+      if (!user) {
         navigate("/login");
-        }
+      }
     };
 
     checkAuth();
- }, []);
+  }, []);
 
   const [showModal, setShowModal] = useState(false);
   const [selectedTestimony, setSelectedTestimony] = useState(null);
@@ -51,24 +62,33 @@ export default function AdminDashboard() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
+  const openDeleteModal = (testimony) => {
+    setSelectedToDelete(testimony);
+    setShowDeleteModal(true);
+  };
 
-const handleQuickStatusChange = async (testimony, statusName) => {
-  try {
-    const statusObj = statuses.find((s) => s.name === statusName);
+  const closeDeleteModal = () => {
+    setSelectedToDelete(null);
+    setShowDeleteModal(false);
+  };
 
-    if (!statusObj) return;
+  const handleQuickStatusChange = async (testimony, statusName) => {
+    try {
+      const statusObj = statuses.find((s) => s.name === statusName);
 
-    const updated = await AdminUpdateTestimony(testimony.id, {
-      status: statusObj.id,
-    });
+      if (!statusObj) return;
 
-    setTestimonies((prev) =>
-      prev.map((t) => (t.id === updated.id ? updated : t))
-    );
-  } catch (err) {
-    console.error("Status update failed", err.message);
-  }
-};
+      const updated = await AdminUpdateTestimony(testimony.id, {
+        status: statusObj.id,
+      });
+
+      setTestimonies((prev) =>
+        prev.map((t) => (t.id === updated.id ? updated : t)),
+      );
+    } catch (err) {
+      console.error("Status update failed", err.message);
+    }
+  };
 
   const openEditModal = (testimony) => {
     setSelectedTestimony({ ...testimony });
@@ -80,38 +100,71 @@ const handleQuickStatusChange = async (testimony, statusName) => {
     setSelectedTestimony(null);
   };
 
-const handleSaveEdit = async (updatedTestimony) => {
-  const { data: session } = await supabase.auth.getSession();
-  if (!session) {
-    alert("You must be logged in to update this record.");
-    navigate("/login")
-    return;
-  }
+  const handleSaveEdit = async (updatedTestimony) => {
+    const { data: session } = await supabase.auth.getSession();
+    if (!session) {
+      alert("You must be logged in to update this record.");
+      navigate("/login");
+      return;
+    }
 
-  try {
-    const updated = await AdminUpdateTestimony(updatedTestimony.id, {
-      full_name: updatedTestimony.full_name,
-      email: updatedTestimony.email,
-      profession: updatedTestimony.profession,
-      country: updatedTestimony.country,
-      message: updatedTestimony.message,
-      status: updatedTestimony.status,
-    });
+    try {
+      const updated = await AdminUpdateTestimony(updatedTestimony.id, {
+        full_name: updatedTestimony.full_name,
+        email: updatedTestimony.email,
+        profession: updatedTestimony.profession,
+        country: updatedTestimony.country,
+        message: updatedTestimony.message,
+        status: updatedTestimony.status,
+      });
 
-    setTestimonies((prev) =>
-      prev.map((t) => (t.id === updated.id ? updated : t))
+      setTestimonies((prev) =>
+        prev.map((t) => (t.id === updated.id ? updated : t)),
+      );
+      closeModal();
+    } catch (error) {
+      console.error("Update failed:", error.message);
+    }
+  };
+
+  const handleDelete = async (testimony) => {
+    const confirmDelete = window.confirm(
+      `Are you sure you want to delete "${testimony.full_name}"?`,
     );
-    closeModal();
-  } catch (error) {
-    console.error("Update failed:", error.message);
-  }
-};
 
+    if (!confirmDelete) return;
+
+    try {
+      await AdminDeleteTestimony(testimony.id);
+
+      setTestimonies((prev) => prev.filter((t) => t.id !== testimony.id));
+    } catch (error) {
+      console.error("Delete failed:", error.message);
+      alert("Failed to delete testimony");
+    }
+  };
+
+  const confirmDelete = async () => {
+    if (!selectedToDelete) return;
+
+    try {
+      await AdminDeleteTestimony(selectedToDelete.id);
+
+      setTestimonies((prev) =>
+        prev.filter((t) => t.id !== selectedToDelete.id),
+      );
+
+      closeDeleteModal();
+    } catch (error) {
+      console.error("Delete failed:", error.message);
+      alert("Failed to delete testimony");
+    }
+  };
 
   const filteredTestimonies =
     filter === "all"
       ? testimonies
-      : testimonies.filter((t) => t.status === filter);
+      : testimonies.filter((t) => t.status?.name === filter);
 
   // Pagination logic
   const totalPages = Math.ceil(filteredTestimonies.length / itemsPerPage);
@@ -141,7 +194,6 @@ const handleSaveEdit = async (updatedTestimony) => {
   return (
     <div className="min-h-screen bg-gray-50 p-6 mt-20">
       <div className="max-w-7xl mx-auto">
-
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">
             Testimonies Management
@@ -156,7 +208,9 @@ const handleSaveEdit = async (updatedTestimony) => {
             const count =
               status === "all"
                 ? testimonies.length
-                : testimonies.filter((t) => t.status === status).length;
+                : testimonies.filter(
+                    (t) => t.status?.name?.toLowerCase() === status,
+                  ).length;
 
             return (
               <button
@@ -250,14 +304,15 @@ const handleSaveEdit = async (updatedTestimony) => {
                         >
                           {testimony.status?.name &&
                             testimony.status.name.charAt(0).toUpperCase() +
-                                testimony.status.name.slice(1)}
+                              testimony.status.name.slice(1)}
                         </span>
                       </td>
                       <td className="px-6 py-4 text-sm">
                         <div className="flex gap-2">
+                          {/* EDIT BUTTON */}
                           <button
                             onClick={() => openEditModal(testimony)}
-                            className="flex justify-center items-center gap-2 px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition-colors cursor-pointer"
+                            className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition-colors cursor-pointer"
                             title="Edit testimony"
                           >
                             <svg
@@ -267,8 +322,28 @@ const handleSaveEdit = async (updatedTestimony) => {
                             >
                               <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                             </svg>
-
                             Edit
+                          </button>
+
+                          {/* DELETE BUTTON */}
+                          <button
+                            onClick={() => openDeleteModal(testimony)}
+                            className="flex items-center gap-2 px-4 py-2 text-red-700 bg-red-100 hover:bg-red-200 rounded-lg font-medium transition-colors cursor-pointer"
+                            title="Delete testimony"
+                          >
+                            <svg
+                              className="w-5 h-5 text-red-600"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M6 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm4 0a1 1 0 112 0v6a1 1 0 11-2 0V8z"
+                                clipRule="evenodd"
+                              />
+                              <path d="M4 5a1 1 0 011-1h3V3a1 1 0 112 0v1h3a1 1 0 011 1v1H4V5zM5 7h10l-1 10a2 2 0 01-2 2H8a2 2 0 01-2-2L5 7z" />
+                            </svg>
+                            Delete
                           </button>
                         </div>
                       </td>
@@ -334,7 +409,7 @@ const handleSaveEdit = async (updatedTestimony) => {
             </div>
           )}
         </div>
-    </div>
+      </div>
 
       {showModal && selectedTestimony && (
         <EditModal
@@ -343,6 +418,56 @@ const handleSaveEdit = async (updatedTestimony) => {
           onSave={handleSaveEdit}
           onClose={closeModal}
         />
+      )}
+
+      {showDeleteModal && selectedToDelete && (
+        <div
+          className="fixed inset-0 bg-[#1f1e1ece] flex items-center justify-center z-50 p-4"
+          onClick={closeDeleteModal}
+        >
+          <div
+            className="bg-white rounded-lg shadow-lg max-w-md w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="flex justify-between items-center p-5 border-gray-300 border-b">
+              <h2 className="text-lg font-semibold text-gray-900">
+                Confirm Delete
+              </h2>
+              <button
+                onClick={closeDeleteModal}
+                className="text-gray-400 hover:text-gray-600 cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Body */}
+            <div className="p-6 text-gray-700">
+              Are you sure you want to delete testimony by{" "}
+              <span className="font-semibold">
+                {selectedToDelete.full_name}
+              </span>
+              ?
+            </div>
+
+            {/* Footer */}
+            <div className="flex justify-end gap-3 p-5 border-gray-300 border-t">
+              <button
+                onClick={closeDeleteModal}
+                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmDelete}
+                className="px-4 py-2 bg-red-600 text-white hover:bg-red-700 rounded-lg cursor-pointer"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
@@ -362,7 +487,7 @@ const EditModal = ({ testimony, statuses, onSave, onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSave(formData);
-};
+  };
 
   return (
     <div
@@ -472,16 +597,16 @@ const EditModal = ({ testimony, statuses, onSave, onClose }) => {
               Status
             </label>
             <select
-            name="status"
-            value={formData.status}
-            onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg"
             >
-            {statuses.map((s) => (
+              {statuses.map((s) => (
                 <option key={s.id} value={s.id}>
-                {s.name.charAt(0).toUpperCase() + s.name.slice(1)}
+                  {s.name.charAt(0).toUpperCase() + s.name.slice(1)}
                 </option>
-            ))}
+              ))}
             </select>
           </div>
 

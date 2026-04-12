@@ -12,7 +12,7 @@ const About = () => {
               <div className="absolute inset-0 bg-gradient-to-tr from-orange-500 to-orange-300 rounded-3xl blur-2xl opacity-25"></div>
               <img
                 src={myImage}
-                alt="Osose Philips Ijewere"
+                alt="Tutor Philips"
                 className="relative w-full h-full object-cover object-top rounded-3xl border-4 border-orange-400 shadow-xl"
               />
             </div>

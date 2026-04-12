@@ -24,7 +24,7 @@ const Hero = () => {
             <div className="absolute inset-0 bg-gradient-to-tr from-orange-500 to-orange-300 rounded-full blur-2xl opacity-30"></div>
             <img
               src={myPic}
-              alt="Osose Philips"
+              alt="Tutor Philips"
               className="relative w-full h-full object-cover object-top rounded-full border-4 border-orange-400 shadow-lg"
             />
           </div>

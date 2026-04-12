@@ -22,20 +22,20 @@ function TestimonialsList({ testimonials = [] }) {
           </p>
 
           {/* User info - Name, Country, Profession */}
-          <div className="flex items-start border-t pt-4 mt-auto gap-3">
+          <div className="flex items-start border-gray-300 border-t pt-4 mt-auto gap-3">
             <img
               src={
                 t.image ||
                 `https://ui-avatars.com/api/?name=${encodeURIComponent(
-                  t.name
+                  t.full_name
                 )}&background=f97316&color=fff&size=128`
               }
-              alt={t.name}
+              alt={t.full_name}
               className="w-12 h-12 rounded-full object-cover border-2 border-orange-400 flex-shrink-0"
             />
             <div>
               <p className="font-semibold text-gray-800 text-lg mb-1">
-                {t.name}
+                {t.full_name}
               </p>
               {t.country && (
                 <p className="text-sm text-gray-600 mb-1">📍 {t.country}</p>

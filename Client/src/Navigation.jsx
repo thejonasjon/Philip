@@ -58,7 +58,7 @@ const Navigation = () => {
 
   return showNavbar ? (
     <nav className="bg-gray-900 px-6 py-4 shadow-lg fixed top-0 left-0 right-0 z-50 flex justify-between items-center">
-      <div className="text-white font-bold text-xl">Philips.</div>
+      <div className="text-white font-bold text-xl">Tutor Philips</div>
 
       {/* Desktop Navigation */}
       <div className="hidden md:flex space-x-8 items-center">
