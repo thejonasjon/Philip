@@ -8,23 +8,33 @@ const Navigation = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const showLogout = location.pathname === "/dashboard"; // Only show logout on dashboard
-  const showNavbar = location.pathname !== "/login"; // Hide navbar on login
+  const showLogout = location.pathname === "/dashboard";
+  const showNavbar = location.pathname !== "/login";
 
   const navItems = React.useMemo(
     () => [
-      { id: "home", label: "Home", href: "#home" },
-      { id: "about", label: "About Me", href: "#about" },
-      { id: "testimonials", label: "Testimonials", href: "#testimonials" },
-      { id: "contact", label: "Contact Me", href: "#contact" },
+      { id: "home", label: "Home" },
+      { id: "about", label: "About Me" },
+      { id: "testimonials", label: "Testimonials" },
+      { id: "contact", label: "Contact Me" },
     ],
-    []
+    [],
   );
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+  // ✅ FIXED: Handles both navigation + scroll
   const scrollToSection = (sectionId, event) => {
     event.preventDefault();
+
+    // If not on homepage → navigate first
+    if (location.pathname !== "/") {
+      navigate(`/#${sectionId}`);
+      setIsMenuOpen(false);
+      return;
+    }
+
+    // If already on homepage → scroll
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -33,7 +43,24 @@ const Navigation = () => {
     }
   };
 
+  // ✅ Handle scroll after navigation using hash
   useEffect(() => {
+    if (location.hash) {
+      const sectionId = location.hash.replace("#", "");
+      const element = document.getElementById(sectionId);
+
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
+      }
+    }
+  }, [location]);
+
+  // ✅ Active section on scroll (homepage only)
+  useEffect(() => {
+    if (location.pathname !== "/") return;
+
     const handleScroll = () => {
       const sections = navItems.map((item) => document.getElementById(item.id));
       const scrollPosition = window.scrollY + 100;
@@ -49,7 +76,7 @@ const Navigation = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [navItems]);
+  }, [navItems, location.pathname]);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -65,7 +92,7 @@ const Navigation = () => {
         {navItems.map((item) => (
           <a
             key={item.id}
-            href={item.href}
+            href={`/#${item.id}`} // ✅ fallback support
             onClick={(e) => scrollToSection(item.id, e)}
             className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 group ${
               activeSection === item.id
@@ -95,11 +122,26 @@ const Navigation = () => {
 
       {/* Mobile Menu Button */}
       <button className="md:hidden text-white" onClick={toggleMenu}>
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
           {isMenuOpen ? (
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
           ) : (
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
           )}
         </svg>
       </button>
@@ -111,14 +153,18 @@ const Navigation = () => {
             {navItems.map((item) => (
               <a
                 key={`mobile-${item.id}`}
-                href={item.href}
+                href={`/#${item.id}`}
                 onClick={(e) => scrollToSection(item.id, e)}
                 className={`block py-3 px-4 rounded-lg font-medium transition-all duration-300 ${
-                  activeSection === item.id ? "text-white bg-orange-500" : "text-white hover:bg-gray-700"
+                  activeSection === item.id
+                    ? "text-white bg-orange-500"
+                    : "text-white hover:bg-gray-700"
                 }`}
               >
                 {item.label}
-                {activeSection === item.id && <div className="w-8 h-0.5 bg-white mx-auto mt-1"></div>}
+                {activeSection === item.id && (
+                  <div className="w-8 h-0.5 bg-white mx-auto mt-1"></div>
+                )}
               </a>
             ))}
 

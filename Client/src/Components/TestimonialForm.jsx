@@ -70,13 +70,13 @@ function TestimonialForm() {
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Name */}
+        {/* Full Name */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">Name</label>
+          <label className="block text-gray-700 font-medium mb-2">Full Name</label>
           <input
             type="text"
             name="name"
-            placeholder="Enter your name"
+            placeholder="Enter your first and last name"
             value={formData.name}
             onChange={handleChange}
             required
@@ -101,7 +101,7 @@ function TestimonialForm() {
         {/* Profession */}
         <div>
           <label className="block text-gray-700 font-medium mb-2">
-            Profession (optional)
+            Profession
           </label>
           <input
             type="text"
@@ -109,6 +109,7 @@ function TestimonialForm() {
             placeholder="Your profession or field"
             value={formData.profession}
             onChange={handleChange}
+            required
             className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-500"
           />
         </div>
@@ -116,7 +117,7 @@ function TestimonialForm() {
         {/* Country */}
         <div>
           <label className="block text-gray-700 font-medium mb-2">
-            Country (optional)
+            Country
           </label>
           <input
             type="text"
@@ -124,6 +125,7 @@ function TestimonialForm() {
             placeholder="Enter your country"
             value={formData.country}
             onChange={handleChange}
+            required
             className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-500"
           />
         </div>
