@@ -9,9 +9,9 @@ import AdminDashboard from "./features/Admin/dashboard";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Home from "./pages/home";
 import NewTestimonials from "./pages/testimonials";
-import Footer from "./Components/Footer";
-import Navbar from "./Components/navbar";
 import LoginPage from "./features/Admin/loginPage";
+import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
 
 
 function AppContent() {
