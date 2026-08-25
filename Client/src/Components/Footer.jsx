@@ -1,7 +1,7 @@
 import { ArrowUpRight03FreeIcons } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Link } from "react-router-dom";
-import tutorPhilps from "../assets/tutorPhilps.png"
+import tutorPhilps from "../assets/tutorPhilps.png";
 import LanguageSelector from "./ui/LanguageSelector";
 import useSectionNavigation from "../hooks/useSectionNavigation";
 
@@ -9,12 +9,13 @@ export default function Footer() {
   const navigateToSection = useSectionNavigation();
 
   const socialLinks = [
-    { name: "X", link: "#" },
-    { name: "LinkedIn", link: "#" },
-    { name: "Whatsapp", link: "#" },
-    { name: "Instagram", link: "#" },
-    { name: "Email", link: "#" },
-    { name: "Leave a Review", link: "#" },
+    { name: "X", link: "https://x.com/osephilips", external: true },
+    { name: "TikTok", link: "https://www.tiktok.com/@philips5587", external: true },
+    {name: "LinkedIn",link: "https://www.linkedin.com/in/osose-ijewere-tefl", external: true},
+    { name: "Whatsapp", link: "https://wa.me/447473344313", external: true },
+    { name: "Instagram", link: "https://www.instagram.com/ose_philips", external: true },
+    { name: "Email", link: "mailto:tutorphilipstefl@gmail.com", external: false },
+    { name: "Leave a Review", link: "/testimonials", external: false },
   ];
 
   // These match the same "to" format Navbar uses, so useSectionNavigation
@@ -30,73 +31,67 @@ export default function Footer() {
   return (
     <footer>
       <div className="w-11/12 mx-auto pb-20">
-  <div className="grid grid-cols-1 gap-10 md:grid-cols-4 md:items-start md:gap-7">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4 md:items-start md:gap-7">
+          {/* Tutor Phillips */}
+          <div className="order-1 w-full flex flex-col gap-6 md:order-1">
+            <h3 className="text-2xl text-[#222222E5] font-semibold leading-4">
+              Tutor Phillps
+            </h3>
 
-    {/* Tutor Phillips */}
-    <div className="order-1 w-full flex flex-col gap-6 md:order-1">
-      <h3 className="text-2xl text-[#222222E5] font-semibold leading-4">
-        Tutor Phillps
-      </h3>
+            <div className="max-w-full md:max-w-3/6 text-lg text-[#22222299] font-light leading-8">
+              I am an experienced online ESL tutor with TEFL and TEO
+              qualifications. With over 7 years of teaching experience.
+            </div>
+          </div>
 
-      <div className="max-w-full md:max-w-3/6 text-lg text-[#22222299] font-light leading-8">
-        I am an experienced online ESL tutor with TEFL and TEO
-        qualifications. With over 7 years of teaching experience.
-      </div>
-    </div>
+          {/* Country / Language */}
+          <div className="order-2 md:order-4">
+            <LanguageSelector
+              onChange={(language) => {
+                console.log("Selected language:", language.code);
+              }}
+            />
+          </div>
 
-    {/* Country / Language */}
-    <div className="order-2 md:order-4">
-      <LanguageSelector
-    onChange={(language) => {
-      console.log("Selected language:", language.code);
-    }}
-  />
-    </div>
+          {/* Say Hello */}
+          <div className="order-3 w-full flex flex-col gap-6 md:order-2">
+            <h3 className="text-2xl text-[#22222226] font-bold">Say hello!</h3>
 
-    {/* Say Hello */}
-    <div className="order-3 w-full flex flex-col gap-6 md:order-2">
-      <h3 className="text-2xl text-[#22222226] font-bold">
-        Say hello!
-      </h3>
+            <div className="w-full flex flex-col gap-3">
+              {socialLinks.map((socialLink, i) => (
+                <FooterLink
+                  key={i}
+                  to={socialLink.link}
+                  text={socialLink.name}
+                  external={socialLink.external}
+                />
+              ))}
+            </div>
+          </div>
 
-      <div className="w-full flex flex-col gap-3">
-        {socialLinks.map((socialLink, i) => (
-          <FooterLink
-            key={i}
-            to={socialLink.link}
-            text={socialLink.name}
-            external
-          />
-        ))}
-      </div>
-    </div>
+          {/* Explore */}
+          <div className="order-4 w-full flex flex-col gap-6 md:order-3">
+            <h3 className="text-2xl text-[#22222226] font-bold">Explore</h3>
 
-    {/* Explore */}
-    <div className="order-4 w-full flex flex-col gap-6 md:order-3">
-      <h3 className="text-2xl text-[#22222226] font-bold">
-        Explore
-      </h3>
-
-      <div className="w-full flex flex-col gap-3">
-        {exploreLinks.map((exploreLink, i) => (
-          <FooterLink
-            key={i}
-            to={exploreLink.link}
-            text={exploreLink.name}
-            onClick={(e) => {
-              e.preventDefault();
-              navigateToSection(exploreLink.link);
-            }}
-          />
-        ))}
-      </div>
-    </div>
-
-  </div>
-</div>
-        <div className="w-full">
-            <img src={tutorPhilps} className="w-full object-center" />
+            <div className="w-full flex flex-col gap-3">
+              {exploreLinks.map((exploreLink, i) => (
+                <FooterLink
+                  key={i}
+                  to={exploreLink.link}
+                  text={exploreLink.name}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigateToSection(exploreLink.link);
+                  }}
+                />
+              ))}
+            </div>
+          </div>
         </div>
+      </div>
+      <div className="w-full">
+        <img src={tutorPhilps} className="w-full object-center" />
+      </div>
     </footer>
   );
 }

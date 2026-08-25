@@ -6,6 +6,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { Certificate01Icon, Menu02Icon } from "@hugeicons/core-free-icons";
 import LanguageSelector from "./ui/LanguageSelector";
 import useSectionNavigation from "../hooks/useSectionNavigation";
+import { BOOKING_URL } from "../constants/links";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -22,6 +23,10 @@ export default function Navbar() {
     setMenuOpen(false);
     navigateToSection(to);
   };
+
+  const handleScheduleClick = () => {
+      window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
+};
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 w-full bg-[#f7f4f0] shadow-[0px_2px_8px_0px_#00000014]">
@@ -65,6 +70,7 @@ export default function Navbar() {
           </Button>
 
           <Button
+            onClick={handleScheduleClick}
             className="hover:bg-[#034ab3]"
             variant="primary"
             size="lg"

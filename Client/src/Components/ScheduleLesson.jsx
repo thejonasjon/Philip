@@ -3,10 +3,15 @@ import Scheldule from "../assets/scheldule.png"
 import { Certificate01Icon, SpeechFreeIcons } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import bg from "../assets/overlay.png"
+import { BOOKING_URL } from "../constants/links";
 
 
 
 export default function ScheduleLesson() {
+
+    const handleScheduleClick = () => {
+          window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
+    };
   return (
     <section className="w-full ">
       <div className="relative overflow-hidden w-full min-h-auto md:min-h-118.75 bg-[linear-gradient(65deg,#1C1C7E_5%,#8B8FA8_35%,#DA554880_50%,#DA5548CC_80%)] px-6 md:px-8 py-16 md:py-0">
@@ -19,7 +24,9 @@ export default function ScheduleLesson() {
             </h3>
 
             <div className="flex flex-col md:flex-row gap-4">
-            <Button className="w-full md:w-auto bg-[#F98272] text-base text-[#F7F4EF] font-medium">
+            <Button
+            onClick={handleScheduleClick}
+            className="w-full md:w-auto bg-[#F98272] text-base text-[#F7F4EF] font-medium">
                 Schedule a Trial Lesson
             </Button>
             <Button

@@ -31,7 +31,7 @@ export default function MessageSection() {
         <div className="w-fit flex flex-col justify-start items-start gap-3">
           <div className="flex justify-center items-center gap-2 text-sm md:text-[18px] text-[#22222299] font-light leading-8">
             <HugeiconsIcon icon={MailOpenIcon} />
-            admin@tutorphilips.com
+            tutorphilipstefl@gmail.com
           </div>
 
           <div className="flex justify-center items-center gap-2 text-sm md:text-[18px] text-[#22222299] font-light leading-8">

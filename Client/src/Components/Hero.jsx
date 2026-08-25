@@ -6,24 +6,22 @@ import { Certificate01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import heroPattern from "../assets/overlay.png"
 import headShot from "../assets/headshot.jpg"
+import { BOOKING_URL } from "../constants/links";
 
 export default function Hero() {
   const profiles = [1, 2, 3, 4];
 
   const reveal = {
-    hidden: {
-      opacity: 0,
-      y: 30,
-    },
+    hidden: { opacity: 0, y: 30 },
     visible: (delay = 0) => ({
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.9,
-        delay,
-        ease: [0.22, 1, 0.36, 1],
-      },
+      transition: { duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] },
     }),
+  };
+
+  const handleScheduleClick = () => {
+    window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -34,11 +32,8 @@ export default function Hero() {
           "linear-gradient(78.97deg, rgba(28,28,126,0.8) 9.02%, rgba(139,143,168,0.8) 43.05%, rgba(218,85,72,0.4) 63.19%, rgba(218,85,72,0.64) 102.35%)",
       }}
     >
-      {/* =========================================================
-          LIQUID GLASS BACKGROUND
-      ========================================================== */}
+      {/* ... liquid glass background, unchanged ... */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {/* Blue liquid */}
         <motion.div
           className="absolute -left-[15%] -top-[20%] h-[520px] w-[520px] rounded-full bg-[#1C1C7E]/40 blur-[100px]"
           animate={{
@@ -53,14 +48,8 @@ export default function Hero() {
               "42% 58% 63% 37% / 45% 38% 62% 55%",
             ],
           }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
         />
-
-        {/* Red liquid */}
         <motion.div
           className="absolute -right-[15%] top-[5%] h-[480px] w-[480px] rounded-full bg-[#DA5548]/30 blur-[100px]"
           animate={{
@@ -75,14 +64,8 @@ export default function Hero() {
               "58% 42% 35% 65% / 52% 63% 37% 48%",
             ],
           }}
-          transition={{
-            duration: 22,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
         />
-
-        {/* Grey / purple liquid */}
         <motion.div
           className="absolute left-[25%] -bottom-[25%] h-[450px] w-[450px] rounded-full bg-[#8B8FA8]/30 blur-[110px]"
           animate={{
@@ -97,14 +80,8 @@ export default function Hero() {
               "63% 37% 48% 52% / 40% 58% 42% 60%",
             ],
           }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         />
-
-        {/* Soft glass highlight */}
         <motion.div
           className="absolute left-[40%] top-[15%] h-[300px] w-[300px] rounded-full bg-white/[0.07] blur-[80px]"
           animate={{
@@ -113,14 +90,8 @@ export default function Hero() {
             scale: [0.8, 1.2, 0.9, 1.15, 0.8],
             opacity: [0.3, 0.6, 0.35, 0.7, 0.3],
           }}
-          transition={{
-            duration: 17,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          transition={{ duration: 17, repeat: Infinity, ease: "easeInOut" }}
         />
-
-        {/* Very subtle glass layer */}
         <div className="absolute inset-0 bg-white/[0.025] backdrop-blur-[1px]" />
       </div>
 
@@ -128,12 +99,8 @@ export default function Hero() {
         <img src={heroPattern} className="w-full h-full object-cover opacity-25"/>
       </div>
 
-      {/* =========================================================
-          HERO CONTENT
-      ========================================================== */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 py-16 md:py-0">
-        {/* H1 */}
-       <motion.h1
+        <motion.h1
           variants={reveal}
           initial="hidden"
           animate="visible"
@@ -142,10 +109,7 @@ export default function Hero() {
         >
           The English {" "}
             <span className="relative inline-block h-13 w-22 md:h-23.5 md:w-40 align-middle">
-            {/* Background shape */}
             <span className="absolute inset-0 h-13 w-22 md:h-23.5 md:w-40 rounded-lg md:rounded-xl bg-[#F98272] opacity-50 rotate-8" />
-
-            {/* Image */}
             <span className="absolute inset-0 h-13 w-22 md:h-23.5 md:w-40 overflow-hidden rounded-lg md:rounded-xl -rotate-12">
               <img
                 src={headShot}
@@ -157,7 +121,6 @@ export default function Hero() {
           {" "}Tutor that Builds Your Confidence!
         </motion.h1>
 
-        {/* Paragraph */}
         <motion.p
           variants={reveal}
           initial="hidden"
@@ -169,7 +132,6 @@ export default function Hero() {
           engaging, personalized lessons.
         </motion.p>
 
-        {/* Buttons */}
         <motion.div
           variants={reveal}
           initial="hidden"
@@ -178,6 +140,7 @@ export default function Hero() {
           className="mt-8 flex items-center justify-center gap-4"
         >
           <Button
+            onClick={handleScheduleClick}
             className="shadow-2xl hover:bg-[#034ab3]"
             variant="primary"
             size="lg"
@@ -191,11 +154,9 @@ export default function Hero() {
             size="lg"
           >
             <HugeiconsIcon icon={Certificate01Icon} className="text-2xl text-[#0156D2] transition-transform duration-300 ease-in-out group-hover:scale-110" />
-
           </Button>
         </motion.div>
 
-        {/* Reviews */}
         <motion.div
           variants={reveal}
           initial="hidden"
@@ -222,21 +183,12 @@ export default function Hero() {
             <div className="flex items-center gap-1.5">
               <div className="flex items-center gap-0.5">
                 {[...Array(5)].map((_, index) => (
-                  <Star
-                    key={index}
-                    size={16}
-                    fill="#FDB022"
-                    color="#FDB022"
-                  />
+                  <Star key={index} size={16} fill="#FDB022" color="#FDB022" />
                 ))}
               </div>
-
               <span className="text-[11px] font-medium">4.5/5</span>
             </div>
-
-            <p className="mt-1 text-[10px]">
-              Over 500+ Satisfied Students
-            </p>
+            <p className="mt-1 text-[10px]">Over 500+ Satisfied Students</p>
           </div>
         </motion.div>
       </div>
