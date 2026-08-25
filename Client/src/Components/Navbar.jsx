@@ -126,8 +126,18 @@ export default function Navbar() {
               Schedule a Trial Lesson
             </Button>
 
-            <div className="flex items-center gap-3">
-              <Button
+            <Button
+                className="group w-full flex items-center justify-center gap-2 bg-white px-4 shadow-2xl hover:bg-gray-100"
+                variant="outline"
+                size="lg">
+                    <span className="text-base text-[#0156D2] font-medium">
+                        Verify Certification
+                    </span>
+                <HugeiconsIcon icon={Certificate01Icon} className="text-2xl text-[#0156D2] transition-transform duration-300 ease-in-out group-hover:scale-110" />
+            </Button>
+
+            <div className="flex justify-center items-center gap-3">
+              {/* <Button
                 className="group flex-1 hover:bg-[#f0f0f0]"
                 variant="outline"
                 size="lg"
@@ -136,7 +146,8 @@ export default function Navbar() {
                   icon={Certificate01Icon}
                   className="text-2xl text-[#0245a8] transition-transform duration-300 ease-in-out group-hover:scale-110"
                 />
-              </Button>
+              </Button> */}
+
 
               <LanguageSelector
               onChange={(language) => {

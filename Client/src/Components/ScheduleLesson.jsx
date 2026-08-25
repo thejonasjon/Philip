@@ -26,11 +26,11 @@ export default function ScheduleLesson() {
             <div className="flex flex-col md:flex-row gap-4">
             <Button
             onClick={handleScheduleClick}
-            className="w-full md:w-auto bg-[#F98272] text-base text-[#F7F4EF] font-medium">
+            className="w-full md:w-auto bg-[#F98272] text-base text-[#F7F4EF] py-3 font-medium hover:bg-[#f47766]">
                 Schedule a Trial Lesson
             </Button>
             <Button
-                className="group w-full md:w-auto flex items-center justify-center gap-2 bg-white px-4 shadow-2xl hover:bg-[#f0f0f0]"
+                className="group w-full md:w-auto flex items-center justify-center gap-2 bg-white px-4 shadow-xl hover:bg-[#f0f0f0]"
                 variant="outline"
                 size="lg"
             >

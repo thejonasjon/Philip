@@ -5,9 +5,11 @@ import samuraiPoster from "../assets/samurai-poster.png";
 
 export default function VideoSection() {
   const videoRef = useRef(null);
+  const containerRef = useRef(null);
   const wasPlayingBeforeHiddenRef = useRef(true);
+  const isInViewRef = useRef(false);
 
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
@@ -32,17 +34,38 @@ export default function VideoSection() {
     };
   }, []);
 
-  // Respect users who prefer reduced motion - don't force autoplay on them
+  // Scroll-triggered play/pause
   useEffect(() => {
+    const video = videoRef.current;
+    const container = containerRef.current;
+    if (!video || !container) return;
+
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    if (prefersReducedMotion && videoRef.current) {
-      videoRef.current.pause();
-    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isInViewRef.current = entry.isIntersecting;
+
+        if (prefersReducedMotion) return;
+
+        if (entry.isIntersecting) {
+          video.play().catch(() => {
+            // Autoplay might be blocked - state stays accurate via listeners above.
+          });
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.5 } // fires once 50% of the video is visible
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
   }, []);
 
+  // Tab visibility: pause when tab is hidden, resume only if in view when tab returns
   useEffect(() => {
     function handleVisibilityChange() {
       const video = videoRef.current;
@@ -51,11 +74,8 @@ export default function VideoSection() {
       if (document.hidden) {
         wasPlayingBeforeHiddenRef.current = !video.paused;
         video.pause();
-      } else if (wasPlayingBeforeHiddenRef.current) {
-        video.play().catch(() => {
-          // Autoplay might be blocked on return - state stays accurate
-          // either way since it's driven by the play/pause listeners above.
-        });
+      } else if (wasPlayingBeforeHiddenRef.current && isInViewRef.current) {
+        video.play().catch(() => {});
       }
     }
 
@@ -83,25 +103,20 @@ export default function VideoSection() {
   };
 
   return (
-    <section className="w-full mx-auto mt-6 md:mt-10">
+    <section ref={containerRef} className="w-full mx-auto mt-6 md:mt-10">
       <div className="relative w-full h-[80vh] aspect-video overflow-hidden rounded-xl md:rounded-none bg-black">
         <video
           ref={videoRef}
           src={samuraiVideo}
           poster={samuraiPoster}
-          autoPlay
-        //   muted
           loop
           playsInline
           className="absolute inset-0 h-full w-full object-cover"
         />
 
-        {/* Overlay - deepens shadows, keeps the controls legible */}
         <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/55 via-black/5 to-black/25" />
 
-        {/* Controls */}
         <div className="absolute z-50 bottom-5 left-5 md:bottom-8 md:left-8 flex items-center gap-3">
-          {/* Play / Pause */}
           <button
             type="button"
             onClick={togglePlay}
@@ -120,7 +135,6 @@ export default function VideoSection() {
             )}
           </button>
 
-          {/* Mute / Unmute */}
           <button
             type="button"
             onClick={toggleMute}
