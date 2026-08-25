@@ -83,6 +83,45 @@ export default function AboutMeSection() {
     return () => container.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 35,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const leftCardVariants = {
+    hidden: {
+      opacity: 0,
+      x: -45,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const staggerContainer = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  };
+
   return (
     <SectionLayout id="aboutMe">
       {/* Mobile - Flags bar */}
@@ -126,7 +165,16 @@ export default function AboutMeSection() {
           className="flex gap-3 md:gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {/* Slide 1 - Certified */}
-          <div className="w-[88%] shrink-0 snap-center">
+          <motion.div
+            className="w-[88%] shrink-0 snap-center"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.6,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
             <div className="relative flex min-h-100 flex-col justify-end overflow-hidden rounded-xl md:rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-6">
               <div className="absolute inset-0 z-0 w-full h-full">
                 <img src={About1} className="w-full h-full object-cover" />
@@ -137,10 +185,19 @@ export default function AboutMeSection() {
                 Vouched for by <span className="font-semibold">students.</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Slide 2 - Students taught */}
-          <div className="w-[88%] shrink-0 snap-center">
+          <motion.div
+            className="w-[88%] shrink-0 snap-center"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.6,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
             <div className="relative overflow-hidden flex flex-col justify-between min-h-100 rounded-xl md:rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-6">
               <div className="absolute w-full h-full inset-0 z-0">
                 <img
@@ -162,10 +219,19 @@ export default function AboutMeSection() {
                 environment.
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Slide 3 - Experience + Beginners */}
-          <div className="w-[88%] shrink-0 snap-center flex flex-col gap-3">
+          <motion.div
+            className="w-[88%] shrink-0 snap-center flex flex-col gap-3"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.6,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
             <div className="relative overflow-hidden min-h-30 flex flex-col justify-center text-2xl font-semibold leading-tight text-[#222222] rounded-xl md:rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-6">
               7+ Years
               <span className="block text-base font-light text-[#222222B2]">
@@ -183,7 +249,7 @@ export default function AboutMeSection() {
                 From complete beginners to almost fluent.
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Dot indicators */}
@@ -205,12 +271,30 @@ export default function AboutMeSection() {
       </div>
 
       {/* Desktop - Original grid layout */}
-      <div className="hidden md:grid w-full grid-cols-1 gap-3 md:grid-cols-[1fr_2fr] md:grid-rows-[5fr_1fr]">
+      {/* Desktop - Animated grid */}
+      <motion.div
+        className="hidden md:grid w-full grid-cols-1 gap-3 md:grid-cols-[1fr_2fr] md:grid-rows-[5fr_1fr]"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         {/* Left - Full Height */}
-        <div className="row-span-3 relative flex min-h-195 flex-col justify-end rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-10">
+        <motion.div
+          variants={leftCardVariants}
+          whileHover={{
+            y: -5,
+            transition: {
+              duration: 0.25,
+              ease: "easeOut",
+            },
+          }}
+          className="row-span-3 relative flex min-h-195 flex-col justify-end rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-10 overflow-hidden"
+        >
           <div className="absolute w-full h-full inset-0 z-0">
             <img src={About1} className="mx-auto object-cover" />
           </div>
+
           <div className="max-w-80 relative z-10 text-[32px] font-normal leading-11.5 text-[#787878]">
             Certified by{" "}
             <span className="font-semibold text-[#222222]">
@@ -219,12 +303,25 @@ export default function AboutMeSection() {
             Vouched for by{" "}
             <span className="font-semibold text-[#222222]">students.</span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right - Top Row */}
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <motion.div
+          variants={staggerContainer}
+          className="grid grid-cols-1 gap-3 sm:grid-cols-2"
+        >
           {/* Students */}
-          <div className="relative overflow-hidden flex flex-col justify-between rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-10">
+          <motion.div
+            variants={cardVariants}
+            whileHover={{
+              y: -5,
+              transition: {
+                duration: 0.25,
+                ease: "easeOut",
+              },
+            }}
+            className="relative overflow-hidden flex flex-col justify-between rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-10"
+          >
             <div className="absolute w-full h-full inset-0 z-0">
               <img
                 src={About2}
@@ -245,89 +342,121 @@ export default function AboutMeSection() {
               confidence and fluency, and have fun in a pressure-free
               environment.
             </div>
-          </div>
+          </motion.div>
 
           {/* Experience */}
-          <div className="flex flex-col w-full  justify-between gap-3">
-            <div className="relative overflow-hidden min-h-49 flex flex-col justify-center text-[38px] font-semibold leading-tight text-[#222222] rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-10">
+          <motion.div
+            variants={staggerContainer}
+            className="flex flex-col w-full justify-between gap-3"
+          >
+            <motion.div
+              variants={cardVariants}
+              whileHover={{
+                y: -5,
+                transition: {
+                  duration: 0.25,
+                  ease: "easeOut",
+                },
+              }}
+              className="relative overflow-hidden min-h-49 flex flex-col justify-center text-[38px] font-semibold leading-tight text-[#222222] rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-10"
+            >
               7+ Years
               <span className="block text-2xl font-light text-[#222222B2]">
                 of English teaching experience
               </span>
-              <div className="absolute -left-80 top-5 w-full h-full bg-[#2B59FF]/20 blur-3xl z-10" />
-              <div className="absolute bottom-12 -right-75 w-full h-full bg-[#F98272]/20 blur-3xl z-10" />
-            </div>
+              <motion.div
+                animate={{
+                  x: [-10, 10, -10],
+                  y: [-5, 5, -5],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute -left-80 top-5 w-full h-full bg-[#2B59FF]/20 blur-3xl z-10"
+              />
+              <motion.div
+                animate={{
+                  x: [10, -10, 10],
+                  y: [5, -5, 5],
+                }}
+                transition={{
+                  duration: 7,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute bottom-12 -right-75 w-full h-full bg-[#F98272]/20 blur-3xl z-10"
+              />
+            </motion.div>
 
-            <div className="relative flex flex-col justify-end w-full h-full rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-10">
+            {/* Beginners */}
+            <motion.div
+              variants={cardVariants}
+              whileHover={{
+                y: -5,
+                transition: {
+                  duration: 0.25,
+                  ease: "easeOut",
+                },
+              }}
+              className="relative flex flex-col justify-end w-full h-full rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-10 overflow-hidden"
+            >
               <div className="absolute w-full h-full inset-0 z-0">
                 <img src={About2} className="w-full h-full object-cover" />
               </div>
+
               <div className="relative z-10 max-w-60 text-[40px] font-medium text-[#22222299]">
                 From complete beginners to almost fluent.
               </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+
+        {/* Countries */}
+        <motion.div
+          variants={cardVariants}
+          whileHover={{
+            y: -3,
+            transition: {
+              duration: 0.25,
+              ease: "easeOut",
+            },
+          }}
+          className="min-w-0 rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-10"
+        >
+          <div className="flex min-w-0 items-center gap-4">
+            <div className="shrink-0 whitespace-nowrap text-2xl font-normal leading-7.5 text-[#22222299]">
+              Lectured students in;
+            </div>
+
+            <div className="min-w-0 relative flex-1 overflow-hidden">
+              <motion.div
+                className="flex w-max items-center gap-3"
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{
+                  duration: flags.length * 2,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              >
+                {[...flags, ...flags].map((flag, index) => (
+                  <div
+                    key={index}
+                    className="w-12 shrink-0 overflow-hidden rounded-md"
+                  >
+                    <img
+                      src={flag}
+                      alt={`Flag ${(index % flags.length) + 1}`}
+                      className="block w-full object-cover"
+                    />
+                  </div>
+                ))}
+              </motion.div>
             </div>
           </div>
-        </div>
-
-        {/* Bottom Right */}
-<div className="min-w-0 rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-10">
-  <div className="flex min-w-0 items-center gap-4">
-    {/* Label */}
-    <div className="shrink-0 whitespace-nowrap text-2xl font-normal leading-7.5 text-[#22222299]">
-      Lectured students in;
-    </div>
-
-    {/* Flags */}
-    <div className="min-w-0 relative flex-1 overflow-hidden">
-      <motion.div
-        className="flex w-max items-center gap-3"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{
-          duration: flags.length * 2,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      >
-        {[...flags, ...flags].map((flag, index) => (
-          <div
-            key={index}
-            className="w-12 shrink-0 overflow-hidden rounded-md"
-          >
-            <img
-              src={flag}
-              alt={`Flag ${(index % flags.length) + 1}`}
-              className="block w-full object-cover"
-            />
-          </div>
-        ))}
+        </motion.div>
       </motion.div>
-    </div>
-  </div>
-</div>
-      </div>
     </SectionLayout>
   );
 }
-
-{/* <motion.div
-                    className="flex w-max items-center gap-2"
-                    animate={{ x: ["0%", "-50%"] }}
-                    transition={{
-                        duration: flags.length * 2,
-                        repeat: Infinity,
-                        ease: "linear",
-                    }}
-                    >
-                    {[...flags, ...flags].map((flag, index) => (
-                        <div
-                        key={index}
-                        className="w-8 shrink-0 overflow-hidden rounded-md"
-                        >
-                        <img
-                            src={flag}
-                            alt={`Flag ${(index % flags.length) + 1}`}
-                            className="block h-full w-full object-cover"
-                        />
-                        </div>
-                    ))}
-                    </motion.div> */}

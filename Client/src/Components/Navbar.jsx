@@ -29,7 +29,7 @@ export default function Navbar() {
 };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 w-full bg-[#f7f4f0] shadow-[0px_2px_8px_0px_#00000014]">
+    <div className="fixed top-0 left-0 right-0 z-100 w-full bg-[#f7f4f0] shadow-[0px_2px_8px_0px_#00000014]">
       <div className="flex w-full items-center justify-between px-6 md:px-8 py-4">
 
         {/* Logo */}
@@ -89,7 +89,7 @@ export default function Navbar() {
         <button
           onClick={() => setMenuOpen((open) => !open)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
-          className="flex md:hidden items-center justify-center text-[#222222E5]"
+          className="flex md:hidden items-center justify-center text-[#222222E5] cursor-pointer"
         >
           {menuOpen ? <X size={26} /> : <HugeiconsIcon icon={Menu02Icon} size={26} className="text-[#6b6b6b]" />}
         </button>

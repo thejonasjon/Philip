@@ -44,12 +44,14 @@ export default function ScheduleLesson() {
 
             {/* Mobile-only illustration with phonetic chips */}
             <div className="relative md:hidden h-72 mt-2">
-                <img
+                <div className="w-full absolute top-115 bottom-0 -right-32">
+                    <img
                     src={Scheldule}
-                    className="absolute bottom-0 right-0 w-44 h-auto object-cover object-top"
+                    className="scale-350 object-cover object-top"
                 />
+                </div>
 
-                <div className="absolute top-8 left-6 w-fit bg-white flex justify-center items-center gap-1.5 shadow-md shadow-[#8c8a8a] rounded-lg pl-1.5 pr-3 py-1 rotate-6">
+                <div className="absolute top-4 left-20 w-fit bg-white flex justify-center items-center gap-1.5 shadow-md shadow-[#8c8a8a] rounded-lg pl-1.5 pr-3 py-1 rotate-6">
                     <div className="bg-white rounded-lg shadow-sm shadow-[#a3a1a1] p-1">
                         <div className="bg-gray-400 p-1 rounded-lg">
                             <HugeiconsIcon icon={SpeechFreeIcons} className="text-xs" />
@@ -71,7 +73,7 @@ export default function ScheduleLesson() {
                     </div>
                 </div>
 
-                <div className="absolute top-44 left-12 w-fit bg-white flex justify-center items-center gap-1.5 shadow-md shadow-[#8c8a8a] rounded-lg pl-1.5 pr-3 py-1 rotate-8">
+                <div className="absolute top-55 left-12 w-fit bg-white flex justify-center items-center gap-1.5 shadow-md shadow-[#8c8a8a] rounded-lg pl-1.5 pr-3 py-1 rotate-8">
                     <div className="bg-white rounded-lg shadow-sm shadow-[#a3a1a1] p-1">
                         <div className="bg-[#f8e3ee] p-1 rounded-lg">
                             <HugeiconsIcon icon={SpeechFreeIcons} className="text-xs" />

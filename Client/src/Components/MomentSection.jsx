@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Heading from "./ui/Heading";
 import Button from "./ui/Button";
 import MomentOne from "../assets/moment-1.png";
@@ -5,9 +6,27 @@ import MomentTwo from "../assets/moment-2.png";
 import MomentThree from "../assets/moment-3.png";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
-import bg from "../assets/overlay.png"
-import texture from "../assets/texture.png"
+import bg from "../assets/overlay.png";
+import texture from "../assets/texture.png";
 import SectionLayout from "../layouts/SectionLayout";
+
+const container = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const card = {
+  hidden: { opacity: 0, y: 28 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
 
 export default function MomentSection() {
   return (
@@ -21,26 +40,38 @@ export default function MomentSection() {
       </div>
 
       {/* Mobile - Stacked cards */}
-      <div className="flex flex-col gap-4 md:hidden">
+      <motion.div
+        className="flex flex-col gap-4 md:hidden"
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+      >
         {/* Card 1 */}
-        <div className="flex flex-col overflow-hidden rounded-3xl border-[0.2px] border-[#22222220] bg-[#f8f8f8] p-4">
-          <div className="rounded-2xl overflow-hidden">
+        <motion.div
+          variants={card}
+          className="flex flex-col overflow-hidden rounded-xl border-[0.2px] border-[#22222220] bg-[#f8f8f8] p-4"
+        >
+          <div className="h-80 w-full rounded-xl overflow-hidden">
             <img
               src={MomentOne}
               alt="Student testimonial"
-              className="w-full h-64 object-cover object-[30%_20%]"
+              className="h-full w-full object-cover rounded-xl scale-400 object-[20%_10%] mt-60"
             />
           </div>
 
-          <div className="pt-6 px-2 pb-2 text-xl leading-tight text-[#a2a2a2]">
+          <div className="pt-6 px-2 pb-2 text-3xl leading-tight text-[#a2a2a2]">
             <span className="font-semibold text-[#222222]">Some students just send</span> a
             thank-you email.
           </div>
-        </div>
+        </motion.div>
 
         {/* Card 2 - Mine booked flights */}
-        <div className="relative flex justify-center items-center overflow-hidden rounded-3xl bg-[#F98272] p-10 min-h-45 text-white">
-          <div className="text-center text-3xl text-[#FEFEFE] font-bold leading-[1.1]">
+        <motion.div
+          variants={card}
+          className="relative flex justify-center items-center overflow-hidden rounded-xl bg-[#F98272] p-10 min-h-65 text-white"
+        >
+          <div className="max-w-40 text-center text-3xl text-[#FEFEFE] font-bold leading-[1.1]">
             Mine booked flights
           </div>
           <div className="absolute inset-0 w-full h-full bg-blend-multiply">
@@ -49,24 +80,27 @@ export default function MomentSection() {
           <div className="absolute inset-0 w-full h-full bg-blend-multiply">
             <img src={texture} className="w-full h-full object-cover" />
           </div>
-        </div>
+        </motion.div>
 
         {/* Card 2b - image */}
-        <div className="rounded-3xl overflow-hidden">
+        <motion.div variants={card} className="rounded-xl overflow-hidden">
           <img
             src={MomentTwo}
             alt="Student testimonial"
-            className="w-full h-64 object-cover"
+            className="w-full h-64 object-cover rounded-xl rotate-90 scale-140"
           />
-        </div>
+        </motion.div>
 
         {/* Card 3 */}
-        <div className="relative overflow-hidden rounded-3xl border-[0.2px] border-[#22222220] bg-[linear-gradient(to_right,#bbc4e8,#eee1de)] p-6 min-h-90">
-          <div className="absolute -right-20 -bottom-16">
+        <motion.div
+          variants={card}
+          className="relative overflow-hidden rounded-xl border-[0.2px] border-[#22222220] bg-[linear-gradient(to_right,#bbc4e8,#eee1de)] p-6 min-h-90"
+        >
+          <div className="absolute -right-38 top-10">
             <img
               src={MomentThree}
               alt="Student testimonial"
-              className="w-40 object-cover"
+              className="object-cover scale-70"
             />
             <div className="w-full h-full absolute top-0 bg-[#978e8e] opacity-100 mix-blend-color blur-2xl" />
           </div>
@@ -80,13 +114,22 @@ export default function MomentSection() {
             </span>{" "}
             tutor I am, that's your answer right there!
           </p>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Desktop - Original grid layout (unchanged) */}
-      <div className="hidden md:grid w-full grid-cols-1 gap-6 md:grid-cols-[1fr_2fr] md:grid-rows-2">
+      <motion.div
+        className="hidden md:grid w-full grid-cols-1 gap-6 md:grid-cols-[1fr_2fr] md:grid-rows-2"
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+      >
         {/* Card 1 - Left / Full Height */}
-        <div className="row-span-2 flex flex-col justify-between overflow-hidden rounded-3xl border-[0.2px] border-[#22222220] bg-[#f8f8f8] px-4 pt-4">
+        <motion.div
+          variants={card}
+          className="row-span-2 flex flex-col justify-between overflow-hidden rounded-3xl border-[0.2px] border-[#22222220] bg-[#f8f8f8] px-4 pt-4"
+        >
           <div className="flex flex-1 items-center justify-center rounded-2xl overflow-hidden p-4">
             <img
               src={MomentOne}
@@ -105,20 +148,20 @@ export default function MomentSection() {
               <HugeiconsIcon icon={ArrowUpRight01Icon} size={20} />
             </Button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Card 2 - Top Middle */}
-        <div className="flex gap-6 w-full h-full overflow-hidden">
+        <motion.div variants={card} className="flex gap-6 w-full h-full overflow-hidden">
           <div className="relative w-full flex justify-center items-center rounded-3xl bg-[#F98272] p-8 text-[28px] leading-tight text-white">
             <div className="max-w-50 text-center text-[40px] text-[#FEFEFE] font-bold leading-[1.1]">
               Mine booked flights
             </div>
-                <div className="absolute inset-0 w-full h-full bg-blend-multiply">
-                    <img src={bg} className="w-full h-full object-cover opacity-50" />
-                </div>
-                <div className="absolute inset-0 w-full h-full bg-blend-multiply">
-                    <img src={texture} className="w-full h-full object-cover" />
-                </div>
+            <div className="absolute inset-0 w-full h-full bg-blend-multiply">
+              <img src={bg} className="w-full h-full object-cover opacity-50" />
+            </div>
+            <div className="absolute inset-0 w-full h-full bg-blend-multiply">
+              <img src={texture} className="w-full h-full object-cover" />
+            </div>
           </div>
 
           <div className="w-full h-full rounded-3xl overflow-hidden">
@@ -128,11 +171,13 @@ export default function MomentSection() {
               className="h-full w-4000 object-cover rounded-3xl rotate-90 scale-140"
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* Card 3 - Top Right */}
-        <div className="relative flex w-full items-end overflow-hidden rounded-3xl border-[0.2px] border-[#22222220] bg-[linear-gradient(to_right,#bbc4e8,#eee1de)] p-8">
-          {/* <div className="w-full h-full bg-[#F8F8F8]/10 absolute inset-0 z-100" /> */}
+        <motion.div
+          variants={card}
+          className="relative flex w-full items-end overflow-hidden rounded-3xl border-[0.2px] border-[#22222220] bg-[linear-gradient(to_right,#bbc4e8,#eee1de)] p-8"
+        >
           <div className="absolute -left-55 -bottom-100">
             <img
               src={MomentThree}
@@ -141,8 +186,8 @@ export default function MomentSection() {
             />
             <div className="w-full h-full absolute top-0 bg-[#978e8e] opacity-100 mix-blend-color blur-2xl" />
           </div>
-           <div className="absolute -left-120 -bottom-20 w-full h-full bg-[#2B59FF]/20 blur-[80px] z-10" />
-            <div className="absolute w-55.5 right-20 h-46.5 bg-[#F98272] blur-[180px] z-10"  />
+          <div className="absolute -left-120 -bottom-20 w-full h-full bg-[#2B59FF]/20 blur-[80px] z-10" />
+          <div className="absolute w-55.5 right-20 h-46.5 bg-[#F98272] blur-[180px] z-10" />
           <div className="flex items-end z-10">
             <div className="w-1/2"></div>
 
@@ -155,8 +200,8 @@ export default function MomentSection() {
               answer right there!
             </p>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </SectionLayout>
   );
 }
