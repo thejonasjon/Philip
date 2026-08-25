@@ -1,96 +1,26 @@
 import { useState } from "react";
 import { X } from "lucide-react";
-import { useLocation, useNavigate } from "react-router-dom";
 import NavLink from "./ui/NavLink";
 import Button from "./ui/Button";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Certificate01Icon, Menu02Icon } from "@hugeicons/core-free-icons";
 import LanguageSelector from "./ui/LanguageSelector";
+import useSectionNavigation from "../hooks/useSectionNavigation";
 
 export default function Navbar() {
-  const navigate = useNavigate();
-  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigateToSection = useSectionNavigation();
 
   const navLinks = [
-    {
-      id: "home",
-      label: "Home",
-      to: "/",
-    },
-    {
-      id: "about",
-      label: "About Me",
-      to: "/#aboutMe",
-    },
-    {
-      id: "tutorials",
-      label: "Tutorials",
-      to: "/#tutorial",
-    },
-    {
-      id: "testimonials",
-      label: "Testimonials",
-      to: "/testimonials",
-    },
+    { id: "home", label: "Home", to: "/" },
+    { id: "about", label: "About Me", to: "/#aboutMe" },
+    { id: "tutorials", label: "Tutorials", to: "/#tutorial" },
+    { id: "testimonials", label: "Testimonials", to: "/testimonials" },
   ];
 
   const handleNavigation = (to) => {
     setMenuOpen(false);
-
-    // Testimonials is a separate page
-    if (to === "/testimonials") {
-      navigate("/testimonials");
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-      return;
-    }
-
-    // Home
-    if (to === "/") {
-      if (location.pathname === "/") {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      } else {
-        navigate("/");
-      }
-
-      return;
-    }
-
-    // About / Tutorial
-    const hash = to.split("#")[1];
-
-    if (location.pathname === "/") {
-      const section = document.getElementById(hash);
-
-      if (section) {
-        section.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-
-      return;
-    }
-
-    // If we're on another page, go home first
-    navigate("/");
-
-    setTimeout(() => {
-      const section = document.getElementById(hash);
-
-      if (section) {
-        section.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    }, 100);
+    navigateToSection(to);
   };
 
   return (

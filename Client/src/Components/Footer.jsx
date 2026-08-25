@@ -1,61 +1,32 @@
 import { ArrowUpRight03FreeIcons } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Link } from "react-router-dom";
-import Button from "./ui/Button";
-import { ChevronRight } from "lucide-react";
 import tutorPhilps from "../assets/tutorPhilps.png"
 import LanguageSelector from "./ui/LanguageSelector";
+import useSectionNavigation from "../hooks/useSectionNavigation";
 
 export default function Footer() {
+  const navigateToSection = useSectionNavigation();
+
   const socialLinks = [
-    {
-      name: "X",
-      link: "#",
-    },
-    {
-      name: "LinkedIn",
-      link: "#",
-    },
-    {
-      name: "Whatsapp",
-      link: "#",
-    },
-    {
-      name: "Instagram",
-      link: "#",
-    },
-    {
-      name: "Email",
-      link: "#",
-    },
-    {
-      name: "Leave a Review",
-      link: "#",
-    },
+    { name: "X", link: "#" },
+    { name: "LinkedIn", link: "#" },
+    { name: "Whatsapp", link: "#" },
+    { name: "Instagram", link: "#" },
+    { name: "Email", link: "#" },
+    { name: "Leave a Review", link: "#" },
   ];
 
+  // These match the same "to" format Navbar uses, so useSectionNavigation
+  // handles them identically (scroll on current page, or navigate then scroll)
   const exploreLinks = [
-    {
-      name: "Home",
-      link: "#",
-    },
-    {
-      name: "About Me",
-      link: "#",
-    },
-    {
-      name: "Tutorial",
-      link: "#",
-    },
-    {
-      name: "Testimonials",
-      link: "#",
-    },
-    {
-      name: "Verify Certification",
-      link: "#",
-    },
+    { name: "Home", link: "/" },
+    { name: "About Me", link: "/#aboutMe" },
+    { name: "Tutorial", link: "/#tutorial" },
+    { name: "Testimonials", link: "/testimonials" },
+    { name: "Verify Certification", link: "#" },
   ];
+
   return (
     <footer>
       <div className="w-11/12 mx-auto pb-20">
@@ -94,6 +65,7 @@ export default function Footer() {
             key={i}
             to={socialLink.link}
             text={socialLink.name}
+            external
           />
         ))}
       </div>
@@ -111,6 +83,10 @@ export default function Footer() {
             key={i}
             to={exploreLink.link}
             text={exploreLink.name}
+            onClick={(e) => {
+              e.preventDefault();
+              navigateToSection(exploreLink.link);
+            }}
           />
         ))}
       </div>
@@ -125,12 +101,13 @@ export default function Footer() {
   );
 }
 
-function FooterLink({ to, text }) {
+function FooterLink({ to, text, onClick, external = false }) {
   return (
     <Link
       to={to}
-      target="_blank"
-      rel="noopener noreferrer"
+      onClick={onClick}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
       className="flex items-center gap-1 text-sm font-light leading-6 text-[#22222299] hover:text-[#0245a8] underline transition-transform duration-300 ease-in-out origin-left hover:scale-105"
     >
       {text}
