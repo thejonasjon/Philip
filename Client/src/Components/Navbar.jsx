@@ -118,6 +118,7 @@ export default function Navbar() {
 
           <div className="flex flex-col gap-3">
             <Button
+             onClick={handleScheduleClick}
               className="w-full hover:bg-[#034ab3]"
               variant="primary"
               size="lg"
