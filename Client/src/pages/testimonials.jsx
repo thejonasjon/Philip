@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Navbar from "../Components/navbar";
 import Heading from "../Components/ui/Heading";
 import Button from "../Components/ui/Button";
 import SectionLayout from "../layouts/SectionLayout";
@@ -36,12 +35,7 @@ export default function NewTestimonials() {
 
   return (
     <div className="mt-12">
-      <Navbar />
-
       <TestimonialHero />
-
-      {/* <ReviewModal /> */}
-      {/* <ThankYou /> */}
 
       <SectionLayout>
         {/* Header */}
@@ -49,8 +43,9 @@ export default function NewTestimonials() {
           <Heading heading="My students say;" subHeading="Testimonials" />
 
           <Button
-          onClick={() => setShowReviewModal(true)}
-          className="w-full md:w-auto rounded-lg bg-[#0245a8] px-8 py-3 text-base font-normal text-[#F7F4EF]">
+            onClick={() => setShowReviewModal(true)}
+            className="w-full md:w-auto rounded-lg bg-[#0245a8] px-8 py-3 text-base font-normal text-[#F7F4EF]"
+          >
             Send a Review
           </Button>
         </div>
@@ -124,21 +119,16 @@ export default function NewTestimonials() {
         )}
 
         {showReviewModal && (
-  <ReviewModal
-    onClose={() => setShowReviewModal(false)}
-    onSuccess={() => {
-      setShowReviewModal(false);
-      setShowThankYou(true);
-    }}
-  />
-)}
+          <ReviewModal
+            onClose={() => setShowReviewModal(false)}
+            onSuccess={() => {
+              setShowReviewModal(false);
+              setShowThankYou(true);
+            }}
+          />
+        )}
 
-{showThankYou && (
-  <ThankYou
-    onClose={() => setShowThankYou(false)}
-  />
-)}
-
+        {showThankYou && <ThankYou onClose={() => setShowThankYou(false)} />}
       </SectionLayout>
     </div>
   );
