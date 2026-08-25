@@ -1,0 +1,214 @@
+import { useState } from "react";
+import { ChevronRight, Menu, X } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
+import NavLink from "./ui/NavLink";
+import Button from "./ui/Button";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Certificate01Icon, Menu02Icon } from "@hugeicons/core-free-icons";
+import LanguageSelector from "./ui/LanguageSelector";
+
+export default function Navbar() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    {
+      id: "home",
+      label: "Home",
+      to: "/",
+    },
+    {
+      id: "about",
+      label: "About Me",
+      to: "/#aboutMe",
+    },
+    {
+      id: "tutorials",
+      label: "Tutorials",
+      to: "/#tutorial",
+    },
+    {
+      id: "testimonials",
+      label: "Testimonials",
+      to: "/testimonials",
+    },
+  ];
+
+  const handleNavigation = (to) => {
+    setMenuOpen(false);
+
+    // Testimonials is a separate page
+    if (to === "/testimonials") {
+      navigate("/testimonials");
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      return;
+    }
+
+    // Home
+    if (to === "/") {
+      if (location.pathname === "/") {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      } else {
+        navigate("/");
+      }
+
+      return;
+    }
+
+    // About / Tutorial
+    const hash = to.split("#")[1];
+
+    if (location.pathname === "/") {
+      const section = document.getElementById(hash);
+
+      if (section) {
+        section.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+
+      return;
+    }
+
+    // If we're on another page, go home first
+    navigate("/");
+
+    setTimeout(() => {
+      const section = document.getElementById(hash);
+
+      if (section) {
+        section.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 100);
+  };
+
+  return (
+    <div className="fixed top-0 left-0 right-0 z-50 w-full bg-[#f7f4f0] shadow-[0px_2px_8px_0px_#00000014]">
+      <div className="flex w-full items-center justify-between px-6 md:px-8 py-4">
+
+        {/* Logo */}
+        <div
+          onClick={() => handleNavigation("/")}
+          className="cursor-pointer text-lg font-semibold text-[#222222E5]"
+        >
+          Tutor Philips
+        </div>
+
+        {/* Navigation */}
+        <nav className="hidden items-center space-x-8 md:flex">
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.id}
+              to={link.to}
+              linkText={link.label}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavigation(link.to);
+              }}
+            />
+          ))}
+        </nav>
+
+        {/* Right buttons - desktop */}
+        <div className="hidden md:flex items-center justify-center gap-3">
+
+          <Button
+            className="group hover:bg-[#f0f0f0]"
+            variant="outline"
+            size="lg"
+          >
+            <HugeiconsIcon
+              icon={Certificate01Icon}
+              className="text-2xl text-[#0245a8] transition-transform duration-300 ease-in-out group-hover:scale-110"
+            />
+          </Button>
+
+          <Button
+            className="hover:bg-[#034ab3]"
+            variant="primary"
+            size="lg"
+          >
+            Schedule a Trial Lesson
+          </Button>
+
+          <LanguageSelector
+              onChange={(language) => {
+                console.log("Selected language:", language.code);
+              }} />
+
+        </div>
+
+        {/* Menu toggle - mobile */}
+        <button
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          className="flex md:hidden items-center justify-center text-[#222222E5]"
+        >
+          {menuOpen ? <X size={26} /> : <HugeiconsIcon icon={Menu02Icon} size={26} className="text-[#6b6b6b]" />}
+        </button>
+      </div>
+
+      {/* Mobile menu panel */}
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          menuOpen ? "max-h-125 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="flex flex-col gap-5 px-6 pb-6 pt-2">
+          <nav className="flex flex-col gap-4">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.id}
+                to={link.to}
+                linkText={link.label}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigation(link.to);
+                }}
+              />
+            ))}
+          </nav>
+
+          <div className="flex flex-col gap-3">
+            <Button
+              className="w-full hover:bg-[#034ab3]"
+              variant="primary"
+              size="lg"
+            >
+              Schedule a Trial Lesson
+            </Button>
+
+            <div className="flex items-center gap-3">
+              <Button
+                className="group flex-1 hover:bg-[#f0f0f0]"
+                variant="outline"
+                size="lg"
+              >
+                <HugeiconsIcon
+                  icon={Certificate01Icon}
+                  className="text-2xl text-[#0245a8] transition-transform duration-300 ease-in-out group-hover:scale-110"
+                />
+              </Button>
+
+              <LanguageSelector
+              onChange={(language) => {
+                console.log("Selected language:", language.code);
+              }} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

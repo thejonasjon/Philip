@@ -4,7 +4,7 @@ import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer className="bg-slate-900 text-white py-6">
-      <div className="flex justify-center space-x-6 mb-4">
+      {/* <div className="flex justify-center space-x-6 mb-4">
         <a
           href="https://www.facebook.com/osose.ijewere"
           className="hover:text-orange-500 transition-colors duration-300"
@@ -34,7 +34,7 @@ const Footer = () => {
         &copy; {new Date().getFullYear()}{" "}
         <span className="text-orange-500 font-semibold">Tutor Philips</span>.
         All rights reserved.
-      </p>
+      </p> */}
     </footer>
   );
 };
