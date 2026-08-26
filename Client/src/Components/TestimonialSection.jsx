@@ -108,7 +108,7 @@ export default function TestimonialSection() {
       <div className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-10">
         <Heading heading="My students say;" subHeading="Testimonials" />
 
-        <Link
+          <Link
           to="/testimonials"
           className="hidden md:block max-w-2xl text-base font-normal text-[#0145A8] underline"
         >
@@ -144,15 +144,6 @@ export default function TestimonialSection() {
         </div>
       )}
 
-      {/* Mobile View All */}
-      {!loading && testimonials.length > 0 && (
-        <Link
-          to="/testimonials"
-          className="block md:hidden text-center text-sm font-normal text-[#0145A8] underline"
-        >
-          View all Reviews
-        </Link>
-      )}
 
       {/* Indicators */}
       {!loading && testimonials.length > 0 && (
@@ -175,12 +166,22 @@ export default function TestimonialSection() {
         </div>
       )}
 
-      <div className="w-full flex justify-center items-center flex-wrap md:flex-nowrap gap-4 mt-20">
+      <div className="w-full flex flex-col md:flex-row justify-center items-center gap-4 mt:10 md:mt-20">
+        {/* Mobile View All */}
+      {!loading && testimonials.length > 0 && (
+         <Link
+          to="/testimonials"
+          className="block md:hidden text-center text-sm font-normal text-[#0145A8] underline"
+        >
+          View all reviews
+        </Link>
+      )}
+
         <Link
           to="/testimonials"
           className="sm:w-auto min-w-55 h-12 px-8 inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-[#0245a8] border-[0.5px] border-[#0245a8] font-medium rounded-lg transform transition-all duration-300 ease-in-out hover:scale-101 cursor-pointer"
         >
-          View More Reviews
+          Leave a review
         </Link>
 
         <Button

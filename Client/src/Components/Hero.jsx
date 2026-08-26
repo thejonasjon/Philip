@@ -167,7 +167,7 @@ export default function Hero() {
             Schedule a Trial Lesson
           </Button>
 
-          <Button
+          {/* <Button
             className="hidden md:inline-flex group bg-white px-4 shadow-2xl hover:bg-[#f0f0f0]"
             variant="outline"
             size="lg"
@@ -176,7 +176,7 @@ export default function Hero() {
               icon={Certificate01Icon}
               className="text-2xl text-[#0245a8] transition-transform duration-300 ease-in-out group-hover:scale-110"
             />
-          </Button>
+          </Button> */}
         </motion.div>
 
         <motion.div

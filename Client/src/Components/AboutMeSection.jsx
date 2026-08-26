@@ -175,11 +175,16 @@ export default function AboutMeSection() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            <div className="relative flex min-h-100 flex-col justify-end overflow-hidden rounded-xl md:rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-6">
-              <div className="absolute inset-0 z-0 w-full h-full">
-                <img src={About1} className="w-full h-full object-cover" />
+            <div className="flex min-h-100 flex-col overflow-hidden rounded-xl md:rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8]">
+              <div className="w-full h-64">
+                <img
+                  src={About1}
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <div className="relative z-10 text-xl font-normal leading-8 text-white">
+
+              <div className="p-6 text-xl font-normal leading-8 text-[#222222]">
                 Certified by{" "}
                 <span className="font-semibold">CELTA · TEFL · TESOL</span>{" "}
                 Vouched for by <span className="font-semibold">students.</span>

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import TestimonialsList from "./Components/TestimonialsList";
-import TestimonialForm from "./Components/TestimonialForm";
+import TestimonialsList from "./TestimonialsList";
+import TestimonialForm from "./TestimonialForm";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { FetchTestimonies } from "./services/api";
+import { FetchTestimonies } from "../services/api";
 
 export default function TestimonialPage() {
   const [testimonials, setTestimonials] = useState([]);

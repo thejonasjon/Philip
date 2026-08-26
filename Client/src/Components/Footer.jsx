@@ -25,7 +25,7 @@ export default function Footer() {
     { name: "About Me", link: "/#aboutMe" },
     { name: "Tutorial", link: "/#tutorial" },
     { name: "Testimonials", link: "/testimonials" },
-    { name: "Verify Certification", link: "#" },
+    // { name: "Verify Certification", link: "#" },
   ];
 
   return (
