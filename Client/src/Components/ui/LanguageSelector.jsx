@@ -4,13 +4,13 @@ import { ChevronDown, Check } from "lucide-react";
 
 export const LANGUAGES = [
   { code: "en", name: "English", flag: "🇬🇧" },
-  { code: "es", name: "Español", flag: "🇪🇸" },
-  { code: "fr", name: "Français", flag: "🇫🇷" },
-  { code: "pt", name: "Português", flag: "🇵🇹" },
-  { code: "de", name: "Deutsch", flag: "🇩🇪" },
-  { code: "it", name: "Italiano", flag: "🇮🇹" },
-  { code: "zh", name: "中文", flag: "🇨🇳" },
-  { code: "ar", name: "العربية", flag: "🇸🇦" },
+  // { code: "es", name: "Español", flag: "🇪🇸" },
+  // { code: "fr", name: "Français", flag: "🇫🇷" },
+  // { code: "pt", name: "Português", flag: "🇵🇹" },
+  // { code: "de", name: "Deutsch", flag: "🇩🇪" },
+  // { code: "it", name: "Italiano", flag: "🇮🇹" },
+  // { code: "zh", name: "中文", flag: "🇨🇳" },
+  // { code: "ar", name: "العربية", flag: "🇸🇦" },
 ];
 
 const STORAGE_KEY = "tp-language";

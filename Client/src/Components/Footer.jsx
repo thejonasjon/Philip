@@ -14,8 +14,8 @@ export default function Footer() {
     {name: "LinkedIn",link: "https://www.linkedin.com/in/osose-ijewere-tefl", external: true},
     { name: "Whatsapp", link: "https://wa.me/447473344313", external: true },
     { name: "Instagram", link: "https://www.instagram.com/ose_philips", external: true },
-    { name: "Email", link: "mailto:tutorphilipstefl@gmail.com", external: false },
-    { name: "Leave a Review", link: "/testimonials", external: false },
+    { name: "Email", link: "/#contact" },
+    { name: "Leave a Review", link: "/testimonials" },
   ];
 
   // These match the same "to" format Navbar uses, so useSectionNavigation
@@ -64,6 +64,12 @@ export default function Footer() {
                   to={socialLink.link}
                   text={socialLink.name}
                   external={socialLink.external}
+                  onClick={socialLink.name === "Email" ?
+                    (e) => {
+                    e.preventDefault();
+                    navigateToSection(socialLink.link);} :
+                    ""
+                  }
                 />
               ))}
             </div>

@@ -1,16 +1,17 @@
 import { motion } from "framer-motion";
 import Button from "./ui/Button";
-import ImagePlaceHolder from "../assets/philip-new.jpg";
+import ImagePlaceHolder1 from "../assets/Avatar1.png";
+import ImagePlaceHolder2 from "../assets/Avatar2.png";
+import ImagePlaceHolder3 from "../assets/Avatar3.png";
+import ImagePlaceHolder4 from "../assets/Avatar4.png";
 import { Star } from "lucide-react";
 import { Certificate01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import heroPattern from "../assets/overlay.png"
-import headShot from "../assets/headshot.jpg"
+import heroPattern from "../assets/overlay.png";
+import headShot from "../assets/headshot.jpg";
 import { BOOKING_URL } from "../constants/links";
 
 export default function Hero() {
-  const profiles = [1, 2, 3, 4];
-
   const reveal = {
     hidden: { opacity: 0, y: 30 },
     visible: (delay = 0) => ({
@@ -24,6 +25,21 @@ export default function Hero() {
     window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
   };
 
+  const profileRatings = [
+    {
+      imageName: ImagePlaceHolder1,
+    },
+    {
+      imageName: ImagePlaceHolder2,
+    },
+    {
+      imageName: ImagePlaceHolder3,
+    },
+    {
+      imageName: ImagePlaceHolder4,
+    },
+  ];
+
   return (
     <div
       className="relative w-11/12 mx-auto h-auto md:h-[83.333vh] overflow-hidden rounded-xl md:rounded-3xl text-center text-white mt-20 md:mt-30"
@@ -35,7 +51,7 @@ export default function Hero() {
       {/* ... liquid glass background, unchanged ... */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute -left-[15%] -top-[20%] h-[520px] w-[520px] rounded-full bg-[#1C1C7E]/40 blur-[100px]"
+          className="absolute -left-[15%] -top-[20%] h-230 w-230 rounded-full bg-[#1C1C7E]/40 blur-[100px]"
           animate={{
             x: [0, 120, 280, 160, 0],
             y: [0, 100, 240, 330, 0],
@@ -92,11 +108,14 @@ export default function Hero() {
           }}
           transition={{ duration: 17, repeat: Infinity, ease: "easeInOut" }}
         />
-        <div className="absolute inset-0 bg-white/[0.025] backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-white/2.5 backdrop-blur-[1px]" />
       </div>
 
       <div className="w-full h-full absolute inset-0">
-        <img src={heroPattern} className="w-full h-full object-cover opacity-25"/>
+        <img
+          src={heroPattern}
+          className="w-full h-full object-cover opacity-25"
+        />
       </div>
 
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 py-16 md:py-0">
@@ -107,8 +126,8 @@ export default function Hero() {
           custom={0.2}
           className="max-w-xs md:max-w-4xl text-[32px] md:text-[56px] font-medium leading-[1.15] md:leading-[1.1] text-[#F7F4EF]"
         >
-          The English {" "}
-            <span className="relative inline-block h-13 w-22 md:h-23.5 md:w-40 align-middle">
+          The English{" "}
+          <span className="relative inline-block h-13 w-22 md:h-23.5 md:w-40 align-middle">
             <span className="absolute inset-0 h-13 w-22 md:h-23.5 md:w-40 rounded-lg md:rounded-xl bg-[#F98272] opacity-50 rotate-8" />
             <span className="absolute inset-0 h-13 w-22 md:h-23.5 md:w-40 overflow-hidden rounded-lg md:rounded-xl -rotate-12">
               <img
@@ -117,8 +136,8 @@ export default function Hero() {
                 className="h-full w-full scale-[2.2] object-cover object-[50%_-13%]"
               />
             </span>
-          </span>
-          {" "}Tutor that Builds Your Confidence!
+          </span>{" "}
+          Tutor that Builds Your Confidence!
         </motion.h1>
 
         <motion.p
@@ -141,7 +160,7 @@ export default function Hero() {
         >
           <Button
             onClick={handleScheduleClick}
-            className="shadow-2xl hover:bg-[#034ab3]"
+            className="shadow-2xl bg-[#0245a8] hover:bg-[#0156d2]"
             variant="primary"
             size="lg"
           >
@@ -153,7 +172,10 @@ export default function Hero() {
             variant="outline"
             size="lg"
           >
-            <HugeiconsIcon icon={Certificate01Icon} className="text-2xl text-[#0156D2] transition-transform duration-300 ease-in-out group-hover:scale-110" />
+            <HugeiconsIcon
+              icon={Certificate01Icon}
+              className="text-2xl text-[#0245a8] transition-transform duration-300 ease-in-out group-hover:scale-110"
+            />
           </Button>
         </motion.div>
 
@@ -165,14 +187,14 @@ export default function Hero() {
           className="hidden md:flex mt-8 items-center justify-center gap-4"
         >
           <div className="flex items-center">
-            {profiles.map((profile) => (
+            {profileRatings.map((profile, i) => (
               <div
-                key={profile}
+                key={i}
                 className="-ml-2 h-10 w-10 overflow-hidden rounded-full border-2 border-white bg-white shadow-md first:ml-0"
               >
                 <img
-                  src={ImagePlaceHolder}
-                  alt="Satisfied student"
+                  src={profile.imageName}
+                  alt={`Satisfied-student-${i}`}
                   className="h-full w-full rounded-full object-cover"
                 />
               </div>
@@ -183,11 +205,38 @@ export default function Hero() {
             <div className="flex items-center gap-1.5">
               <div className="flex items-center gap-0.5">
                 {[...Array(5)].map((_, index) => (
-                  <Star key={index} size={16} fill="#FDB022" color="#FDB022" />
+                  <div key={index} className="relative w-4 h-4">
+                    {/* White/empty star */}
+                    <Star
+                      size={16}
+                      fill="white"
+                      color="white"
+                      className="absolute inset-0"
+                    />
+
+                    {/* Full stars */}
+                    {index < 4 && (
+                      <Star
+                        size={16}
+                        fill="#FDB022"
+                        color="#FDB022"
+                        className="absolute inset-0"
+                      />
+                    )}
+
+                    {/* Half-filled last star */}
+                    {index === 4 && (
+                      <div className="absolute inset-0 overflow-hidden w-1/2">
+                        <Star size={16} fill="#FDB022" color="#FDB022" />
+                      </div>
+                    )}
+                  </div>
                 ))}
               </div>
+
               <span className="text-[11px] font-medium">4.5/5</span>
             </div>
+
             <p className="mt-1 text-[10px]">Over 500+ Satisfied Students</p>
           </div>
         </motion.div>

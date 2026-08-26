@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 
 export default function MessageSection() {
   return (
-    <SectionLayout>
+    <SectionLayout id="contact">
       <div className="space-y-8">
         <div className="flex flex-col md:flex-row items-start justify-between gap-6 md:gap-10">
           <div className="w-full md:max-w-120">

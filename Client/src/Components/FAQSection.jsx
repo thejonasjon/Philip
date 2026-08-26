@@ -11,24 +11,39 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState(null);
 
   const FAQ = [
-    {
-      question:
-        "Do I need to already speak some English, or can I start from zero?",
-      answer:
-        "You can start from absolute zero. Honestly, some of my favourite students walked in knowing three words and left correcting my English.",
-    },
-    {
-      question:
-        "Can I learn at my own pace, or is there a fixed program?",
-      answer:
-        "You can start from absolute zero. Honestly, some of my favourite students walked in knowing three words and left correcting my English.",
-    },
-    {
-      question: "What age groups or levels do you teach?",
-      answer:
-        "You can start from absolute zero. Honestly, some of my favourite students walked in knowing three words and left correcting my English.",
-    },
-  ];
+  {
+    question:
+      "Do I need to already speak some English, or can I start from zero?",
+    answer:
+      "We welcome learners at every stage, whether you are starting completely from zero or looking to advance your fluency. Our lessons cover everything from beginner foundations to advanced English, ensuring you receive targeted support tailored precisely to your current proficiency level. This is beneficial because it eliminates intimidation for absolute beginners while providing rigorous, high-level challenges for advanced speakers wanting to polish their skills.",
+  },
+
+  {
+    question:
+      "Can I learn at my own pace, or is there a fixed program?",
+    answer:
+      "We believe in a fully flexible learning experience where you can learn at your own pace with no rigid or fixed program holding you back. We structure your lessons around your personal schedule and learning speed. This is beneficial because it removes the pressure of rushed course structures, allowing you to thoroughly master concepts, build genuine confidence, and achieve lasting conversational fluency without burnout.",
+  },
+
+  {
+    question: "What kind of materials will be used?",
+    answer:
+      "We design completely custom materials built around your unique preferences and objectives. Every student is interviewed and given a detailed questionnaire, which we use to craft bespoke resources tailored specifically to your exact needs, current level, and personal interests. This is beneficial because it ensures every single minute of your lesson time is relevant, engaging, and directly aligned with your real-world communication goals.",
+  },
+
+  {
+    question: "What do I need to start learning?",
+    answer:
+      "We keep the barrier to entry minimal. All you need is a reliable internet connection and the determination to become a better speaker. This is beneficial because it allows you to start your language-learning journey immediately from the comfort of your home, focusing entirely on your growth without worrying about complicated software or expensive physical textbooks.",
+  },
+
+  {
+    question:
+      "How will these lessons actually help me speak with confidence in real life?",
+    answer:
+      "We focus intensely on practical, conversational communication rather than just memorizing grammar rules out of a textbook. We design every session around real-world scenarios you care about; whether that's advancing your career, traveling, or socializing effortlessly. This is beneficial because it bridges the gap between classroom theory and daily application, ensuring you can open your mouth and speak English naturally and confidently outside of class from day one.",
+  },
+];
 
   const handleToggle = (index) => {
     setOpenIndex((currentIndex) =>

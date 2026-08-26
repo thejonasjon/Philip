@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { Play, Pause, Volume2, VolumeX } from "lucide-react";
 import samuraiVideo from "../assets/samurai-video.mp4";
-import samuraiPoster from "../assets/samurai-poster.png";
+import posterimage from "../assets/headshot.jpg";
 
 export default function VideoSection() {
   const videoRef = useRef(null);
@@ -104,17 +104,26 @@ export default function VideoSection() {
 
   return (
     <section ref={containerRef} className="w-full mx-auto mt-6 md:mt-10">
-      <div className="relative w-full h-[80vh] aspect-video overflow-hidden rounded-xl md:rounded-none bg-black">
-        <video
-          ref={videoRef}
-          src={samuraiVideo}
-          poster={samuraiPoster}
-          loop
-          playsInline
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+      <div className="relative w-full h-[85vh] aspect-video overflow-hidden rounded-xl md:rounded-none bg-black">
+       <div className="relative h-full w-full overflow-hidden">
+          {/* Poster */}
+          <img
+            src={posterimage}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover object-[20%_10%]"
+          />
 
-        <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/55 via-black/5 to-black/25" />
+          {/* Video */}
+          <video
+            ref={videoRef}
+            src={samuraiVideo}
+            loop
+            playsInline
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </div>
+
+        <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/45 via-black/5 to-black/20" />
 
         <div className="absolute z-50 bottom-5 left-5 md:bottom-8 md:left-8 flex items-center gap-3">
           <button

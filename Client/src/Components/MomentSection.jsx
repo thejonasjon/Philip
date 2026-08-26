@@ -9,6 +9,7 @@ import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 import bg from "../assets/overlay.png";
 import texture from "../assets/texture.png";
 import SectionLayout from "../layouts/SectionLayout";
+import useSectionNavigation from "../hooks/useSectionNavigation";
 
 const container = {
   hidden: {},
@@ -29,6 +30,8 @@ const card = {
 };
 
 export default function MomentSection() {
+    const navigateToSection = useSectionNavigation();
+
   return (
     <SectionLayout>
       {/* Section heading */}
@@ -56,7 +59,7 @@ export default function MomentSection() {
             <img
               src={MomentOne}
               alt="Student testimonial"
-              className="h-full w-full object-cover rounded-xl scale-400 object-[20%_10%] mt-60"
+              className="h-full w-full object-cover rounded-xl scale-200 object-[20%_10%] mt-25"
             />
           </div>
 
@@ -119,7 +122,7 @@ export default function MomentSection() {
 
       {/* Desktop - Original grid layout (unchanged) */}
       <motion.div
-        className="hidden md:grid w-full grid-cols-1 gap-6 md:grid-cols-[1fr_2fr] md:grid-rows-2"
+        className="hidden md:grid w-full grid-cols-1 gap-4 md:grid-cols-[1fr_2fr] md:grid-rows-2"
         variants={container}
         initial="hidden"
         whileInView="visible"
@@ -134,7 +137,7 @@ export default function MomentSection() {
             <img
               src={MomentOne}
               alt="Student testimonial"
-              className="h-full w-full object-cover rounded-2xl scale-320 object-[30%_10%] -mb-120"
+              className="h-full w-full object-cover rounded-2xl scale-200 object-[30%_10%] -mb-80"
             />
           </div>
 
@@ -144,14 +147,20 @@ export default function MomentSection() {
               thank-you email.
             </div>
 
-            <Button className="size-12 shrink-0 rounded-full bg-[#0145A7] p-0">
+            <Button
+              className="size-12 shrink-0 rounded-full bg-[#0145A7] p-0"
+              onClick={(e) => {
+                    e.preventDefault();
+                    navigateToSection("/#contact");
+              }}
+              >
               <HugeiconsIcon icon={ArrowUpRight01Icon} size={20} />
             </Button>
           </div>
         </motion.div>
 
         {/* Card 2 - Top Middle */}
-        <motion.div variants={card} className="flex gap-6 w-full h-full overflow-hidden">
+        <motion.div variants={card} className="flex gap-4 w-full h-full overflow-hidden">
           <div className="relative w-full flex justify-center items-center rounded-3xl bg-[#F98272] p-8 text-[28px] leading-tight text-white">
             <div className="max-w-50 text-center text-[40px] text-[#FEFEFE] font-bold leading-[1.1]">
               Mine booked flights

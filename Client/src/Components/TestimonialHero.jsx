@@ -1,9 +1,26 @@
 import { motion } from "framer-motion";
 import ImagePlaceHolder from "../assets/philip-new.jpg";
 import { Star } from "lucide-react";
+import ImagePlaceHolder1 from "../assets/Avatar1.png";
+import ImagePlaceHolder2 from "../assets/Avatar2.png";
+import ImagePlaceHolder3 from "../assets/Avatar3.png";
+import ImagePlaceHolder4 from "../assets/Avatar4.png";
 
 export default function TestimonialHero() {
-  const profiles = [1, 2, 3, 4];
+  const profileRatings = [
+    {
+      imageName: ImagePlaceHolder1,
+    },
+    {
+      imageName: ImagePlaceHolder2,
+    },
+    {
+      imageName: ImagePlaceHolder3,
+    },
+    {
+      imageName: ImagePlaceHolder4,
+    },
+  ];
 
   const reveal = {
     hidden: {
@@ -119,28 +136,27 @@ export default function TestimonialHero() {
         <div className="absolute inset-0 bg-white/2.5 backdrop-blur-[1px]" />
       </div>
 
-
       {/* =========================================================
           HERO CONTENT
       ========================================================== */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 py-12 md:py-0">
         {/* H1 */}
-                 <div className="flex items-center">
-            {profiles.map((profile) => (
-              <div
-                key={profile}
-                className="-ml-2 h-9 w-9 overflow-hidden rounded-full border-2 border-white bg-white shadow-md first:ml-0"
-              >
-                <img
-                  src={ImagePlaceHolder}
-                  alt="Satisfied student"
-                  className="h-full w-full rounded-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
+        <div className="flex items-center">
+          {profileRatings.map((profile, i) => (
+            <div
+              key={i}
+              className="-ml-2 h-9 w-9 overflow-hidden rounded-full border-2 border-white bg-white shadow-md first:ml-0"
+            >
+              <img
+                src={profile.imageName}
+                alt={`Satisfied-student-${i}`}
+                className="h-full w-full rounded-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
 
-       <motion.h1
+        <motion.h1
           variants={reveal}
           initial="hidden"
           animate="visible"
@@ -162,21 +178,37 @@ export default function TestimonialHero() {
             <div className="flex items-center gap-1.5">
               <div className="flex items-center gap-0.5">
                 {[...Array(5)].map((_, index) => (
-                  <Star
-                    key={index}
-                    size={16}
-                    fill="#FDB022"
-                    color="#FDB022"
-                  />
+                  <div key={index} className="relative w-4 h-4">
+                    {/* Empty/white star */}
+                    <Star
+                      size={16}
+                      fill="white"
+                      color="white"
+                      className="absolute inset-0"
+                    />
+
+                    {/* Filled portion */}
+                    {index < 4 && (
+                      <Star
+                        size={16}
+                        fill="#FDB022"
+                        color="#FDB022"
+                        className="absolute inset-0"
+                      />
+                    )}
+
+                    {/* 50% filled last star */}
+                    {index === 4 && (
+                      <div className="absolute inset-0 overflow-hidden w-1/2">
+                        <Star size={16} fill="#FDB022" color="#FDB022" />
+                      </div>
+                    )}
+                  </div>
                 ))}
               </div>
 
               <span className="text-[11px] font-medium">4.5/5</span>
             </div>
-
-            <p className="mt-1 text-[10px]">
-              Over 500+ Satisfied Students
-            </p>
           </div>
         </motion.div>
       </div>

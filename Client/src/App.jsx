@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route, useLocation} from "react-router
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import TestimonialForm from "./Components/TestimonialForm";
-import TestimonialPage from "./TestimonialPage";
+// import TestimonialForm from "./Components/TestimonialForm";
+// import TestimonialPage from "./TestimonialPage";
 import AdminDashboard from "./features/Admin/dashboard";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Home from "./pages/home";
@@ -26,13 +26,13 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home />} />
 
-        <Route path="/submit-testimonial" element={<TestimonialForm />}/>
+        {/* <Route path="/submit-testimonial" element={<TestimonialForm />}/> */}
 
         <Route path="/login" element={<LoginPage />}/>
 
         <Route path="/dashboard" element={ <ProtectedRoute> <AdminDashboard /></ProtectedRoute>}/>
 
-        <Route path="/old/testimonials" element={<TestimonialPage />}/>
+        {/* <Route path="/old/testimonials" element={<TestimonialPage />}/> */}
 
         <Route path="/testimonials" element={<NewTestimonials />}/>
 

@@ -128,6 +128,15 @@ export default function NewTestimonials() {
           />
         )}
 
+        <div className="w-full flex justify-center">
+          <Button
+            onClick={() => setShowReviewModal(true)}
+            className="w-full md:w-auto rounded-lg bg-[#0245a8] px-12 py-3 text-base font-normal text-[#F7F4EF]"
+          >
+            Send a Review
+          </Button>
+        </div>
+
         {showThankYou && <ThankYou onClose={() => setShowThankYou(false)} />}
       </SectionLayout>
     </div>

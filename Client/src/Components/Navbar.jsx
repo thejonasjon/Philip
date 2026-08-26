@@ -71,7 +71,7 @@ export default function Navbar() {
 
           <Button
             onClick={handleScheduleClick}
-            className="hover:bg-[#034ab3]"
+            className="bg-[#0245a8] hover:bg-[#0156d2]"
             variant="primary"
             size="lg"
           >
@@ -119,7 +119,7 @@ export default function Navbar() {
           <div className="flex flex-col gap-3">
             <Button
              onClick={handleScheduleClick}
-              className="w-full hover:bg-[#034ab3]"
+              className="w-full bg-[#0245a8] hover:bg-[#0156d2]"
               variant="primary"
               size="lg"
             >
@@ -130,10 +130,10 @@ export default function Navbar() {
                 className="group w-full flex items-center justify-center gap-2 bg-white px-4 shadow-2xl hover:bg-gray-100"
                 variant="outline"
                 size="lg">
-                    <span className="text-base text-[#0156D2] font-medium">
+                    <span className="text-base text-[#0245a8] font-medium">
                         Verify Certification
                     </span>
-                <HugeiconsIcon icon={Certificate01Icon} className="text-2xl text-[#0156D2] transition-transform duration-300 ease-in-out group-hover:scale-110" />
+                <HugeiconsIcon icon={Certificate01Icon} className="text-2xl text-[#0245a8] transition-transform duration-300 ease-in-out group-hover:scale-110" />
             </Button>
 
             <div className="flex justify-center items-center gap-3">
