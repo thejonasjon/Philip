@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Heading from "./ui/Heading";
 import SectionLayout from "../layouts/SectionLayout";
 import { FetchTestimonies } from "../services/api";
+import { BOOKING_URL } from "../constants/links";
 
 export default function TestimonialSection() {
   const scrollRef = useRef(null);
@@ -11,6 +12,10 @@ export default function TestimonialSection() {
   const [testimonials, setTestimonials] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+
+  const handleScheduleClick = () => {
+    window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
+  };
 
   // Fetch testimonials
   useEffect(() => {
@@ -65,9 +70,7 @@ export default function TestimonialSection() {
       let closestDistance = Infinity;
 
       cards.forEach((card, index) => {
-        const distance = Math.abs(
-          card.offsetLeft - container.scrollLeft
-        );
+        const distance = Math.abs(card.offsetLeft - container.scrollLeft);
 
         if (distance < closestDistance) {
           closestDistance = distance;
@@ -91,9 +94,7 @@ export default function TestimonialSection() {
 
     const interval = setInterval(() => {
       const nextIndex =
-        activeIndex >= testimonials.length - 1
-          ? 0
-          : activeIndex + 1;
+        activeIndex >= testimonials.length - 1 ? 0 : activeIndex + 1;
 
       scrollToTestimonial(nextIndex);
     }, 4000);
@@ -105,10 +106,7 @@ export default function TestimonialSection() {
     <SectionLayout>
       {/* Header */}
       <div className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-10">
-        <Heading
-          heading="My students say;"
-          subHeading="Testimonials"
-        />
+        <Heading heading="My students say;" subHeading="Testimonials" />
 
         <Link
           to="/testimonials"
@@ -132,10 +130,7 @@ export default function TestimonialSection() {
           className="flex gap-4 md:gap-10 overflow-x-auto scroll-smooth py-6 md:py-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {testimonials.map((testimonial) => (
-            <div
-              key={testimonial.id}
-              className="w-[85%] shrink-0 md:w-125"
-            >
+            <div key={testimonial.id} className="w-[85%] shrink-0 md:w-125">
               <TestimonialCard testimonial={testimonial} />
             </div>
           ))}
@@ -172,33 +167,46 @@ export default function TestimonialSection() {
                 className={`
                   h-3 shrink-0 rounded-full p-0
                   transition-all duration-300 ease-in-out
-                  ${
-                    isActive
-                      ? "w-10 bg-[#0156D2]"
-                      : "w-3 bg-[#C8C8C8]"
-                  }
+                  ${isActive ? "w-10 bg-[#0156D2]" : "w-3 bg-[#C8C8C8]"}
                 `}
               />
             );
           })}
         </div>
       )}
+
+      <div className="w-full flex justify-center items-center flex-wrap md:flex-nowrap gap-4 mt-20">
+        <Link
+          to="/testimonials"
+          className="sm:w-auto min-w-55 h-12 px-8 inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-[#0245a8] border-[0.5px] border-[#0245a8] font-medium rounded-lg transform transition-all duration-300 ease-in-out hover:scale-101 cursor-pointer"
+        >
+          View More Reviews
+        </Link>
+
+        <Button
+          onClick={handleScheduleClick}
+          className="sm:w-auto min-w-55 h-12 px-8 bg-[#0245a8] hover:bg-[#0156d2]"
+          variant="primary"
+          size="lg"
+        >
+          Schedule a Trial Lesson
+        </Button>
+      </div>
     </SectionLayout>
   );
 }
-
 
 // ===============================
 // Testimonial Card
 // ===============================
 
 function TestimonialCard({ testimonial }) {
-    const truncateText = (text, maxLength = 220) => {
-        if (!text) return "";
-        if (text.length <= maxLength) return text;
+  const truncateText = (text, maxLength = 220) => {
+    if (!text) return "";
+    if (text.length <= maxLength) return text;
 
-        return `${text.slice(0, maxLength).trim()}...`;
-    };
+    return `${text.slice(0, maxLength).trim()}...`;
+  };
 
   return (
     <div
@@ -232,9 +240,7 @@ function TestimonialCard({ testimonial }) {
           ) : (
             <div className="w-full h-full rounded-full bg-[#0245a8] flex items-center justify-center">
               <span className="text-base md:text-xl font-semibold text-white">
-                {testimonial.full_name
-                  ?.charAt(0)
-                  .toUpperCase()}
+                {testimonial.full_name?.charAt(0).toUpperCase()}
               </span>
             </div>
           )}

@@ -9,6 +9,8 @@ import {
   SpeechFreeIcons,
 } from "@hugeicons/core-free-icons";
 import SectionLayout from "../layouts/SectionLayout";
+import { BOOKING_URL } from "../constants/links";
+import Button from "./ui/Button";
 
 export default function TutorialSection() {
   const tutorialData = [
@@ -44,6 +46,10 @@ export default function TutorialSection() {
     },
   ];
 
+  const handleScheduleClick = () => {
+    window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <SectionLayout id="tutorial">
       {/* Section heading */}
@@ -57,33 +63,35 @@ export default function TutorialSection() {
         }}
         className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-10"
       >
-        <Heading
-          heading="Tutorial Focus"
-          subHeading="Choose Your Focus"
-        />
+        <Heading heading="Tutorial Focus" subHeading="Choose Your Focus" />
 
         <p className="max-w-full md:max-w-2xl text-base md:text-xl font-light text-[#22222299]">
-          There's no fixed curriculum waiting for you to catch up to it.
-          Every program starts where you are and moves at the pace you set;
-          shaped around your goals, your level, and the life you're already
-          living.
+          There's no fixed curriculum waiting for you to catch up to it. Every
+          program starts where you are and moves at the pace you set; shaped
+          around your goals, your level, and the life you're already living.
         </p>
       </motion.div>
 
       {/* Tutorial cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-3 md:gap-4 mt-10 md:mt-20">
         {tutorialData.map((tutorial, i) => (
-          <TutorialCard
-            key={i}
-            tutorial={tutorial}
-            index={i}
-          />
+          <TutorialCard key={i} tutorial={tutorial} index={i} />
         ))}
+      </div>
+
+      <div className="w-full flex justify-center items-center flex-wrap md:flex-nowrap gap-4 mt-15 md:mt-20">
+        <Button
+          onClick={handleScheduleClick}
+          className="sm:w-auto min-w-55 h-12 px-8 bg-[#0245a8] hover:bg-[#0156d2]"
+          variant="primary"
+          size="lg"
+        >
+          Schedule a Trial Lesson
+        </Button>
       </div>
     </SectionLayout>
   );
 }
-
 
 // ======================================
 // Tutorial Card
@@ -125,11 +133,7 @@ function TutorialCard({ tutorial, index }) {
         flex flex-col justify-between
         p-8 md:p-12
         cursor-pointer
-        ${
-          isBlue
-            ? "bg-[#0156D2] text-white"
-            : "bg-[#F6F3EE] text-[#222222]"
-        }
+        ${isBlue ? "bg-[#0156D2] text-white" : "bg-[#F6F3EE] text-[#222222]"}
       `}
     >
       {/* Icon */}
@@ -148,9 +152,7 @@ function TutorialCard({ tutorial, index }) {
 
       {/* Content */}
       <div>
-        <h4 className="text-xl md:text-2xl font-medium">
-          {tutorial.heading}
-        </h4>
+        <h4 className="text-xl md:text-2xl font-medium">{tutorial.heading}</h4>
 
         <p className="text-base md:text-lg font-light mt-3 md:mt-4">
           {tutorial.paragraph}
