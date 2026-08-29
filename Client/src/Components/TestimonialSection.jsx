@@ -181,14 +181,14 @@ export default function TestimonialSection() {
 
         <Link
           to="/testimonials"
-          className="sm:w-auto min-w-55 h-12 px-8 inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-[#0245a8] border-[0.5px] border-[#0245a8] font-medium rounded-lg transform transition-all duration-300 ease-in-out hover:scale-101 cursor-pointer"
+          className="sm:w-auto min-w-55 h-12 px-8 inline-flex items-center justify-center gap-2 bg-[#0245a8] hover:bg-[#0156d2] text-white border-[0.5px] border-[#0245a8] font-medium rounded-lg transform transition-all duration-300 ease-in-out hover:scale-101 cursor-pointer"
         >
           {t("global.buttonText.0")}
         </Link>
 
         <Button
           onClick={handleScheduleClick}
-          className="sm:w-auto min-w-55 h-12 px-8 bg-[#0245a8] hover:bg-[#0156d2]"
+          className="sm:w-auto min-w-55 h-12 px-8 bg-[#0245a8] hover:bg-[#0156d2] hidden"
           variant="primary"
           size="lg"
         >
