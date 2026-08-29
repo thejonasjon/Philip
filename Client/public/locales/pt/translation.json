@@ -1,0 +1,260 @@
+{
+  "global": {
+  "buttonText": ["Deixar uma avaliação", "Ver todas as avaliações"]
+},
+  "nav": {
+    "home": "Início",
+    "about": "Sobre mim",
+    "tutorial": "Tutoriais",
+    "testimonial": "Testemunhos",
+    "scheduleTrial": "Marcar uma aula experimental"
+  },
+
+  "hero": {
+    "heading": "O professor de inglês",
+    "headingC": "que aumenta a sua confiança!",
+    "paragraph": "Ajudo-o a melhorar a fluência, a pronúncia e a confiança através de aulas envolventes e personalizadas.",
+    "ratingText": "Mais de 500 alunos satisfeitos"
+  },
+
+  "aboutMe": {
+    "certified": {
+      "by": "Certificado por",
+      "cert": "CELTA · TEFL · TESOL",
+      "vouched": "Recomendado por",
+      "student": "alunos."
+    },
+
+    "taught": {
+      "students": "Alunos ensinados",
+      "stats": "2000+",
+      "paragraph": "As aulas personalizadas permitem que os alunos aprendam ao seu próprio ritmo, desenvolvam confiança e fluência e se divirtam num ambiente sem pressão."
+    },
+
+    "years": {
+      "year": "Mais de 7 anos",
+      "paragraph": "de experiência no ensino de inglês"
+    },
+
+    "fluent": "Desde principiantes absolutos até quase fluentes.",
+
+    "lectured": "Dei aulas a alunos em:"
+  },
+
+  "tutorial": {
+    "heading": "Foco das aulas",
+
+    "subHeading": "Escolha o seu foco",
+
+    "paragraph": "Não existe um programa fixo à sua espera para o acompanhar. Cada programa começa onde está e avança ao ritmo que define, adaptado aos seus objetivos, ao seu nível e à vida que já vive.",
+
+    "cards": [
+      {
+        "heading": "Inglês Conversacional",
+        "paragraph": "Conversas reais desde o primeiro dia. Fluência, vocabulário e naturalidade para o dia a dia."
+      },
+
+      {
+        "heading": "Inglês Empresarial",
+        "paragraph": "Reuniões, apresentações, e-mails e negociações. Inglês profissional com o ouvido de um falante nativo."
+      },
+
+      {
+        "heading": "Preparação para Entrevistas",
+        "paragraph": "Entrevistas simuladas, respostas confiantes e o vocabulário específico da sua área."
+      },
+
+      {
+        "heading": "Preparação para Exames",
+        "paragraph": "Preparação direcionada para IELTS, Cambridge, TOEFL e outros exames de inglês reconhecidos."
+      },
+
+      {
+        "heading": "Pronúncia e Fluência",
+        "paragraph": "Suavize o seu sotaque, domine os sons corretos do inglês e fale com ritmo e clareza."
+      }
+    ]
+  },
+
+  "moments": {
+    "heading": "Alguns dos meus momentos favoritos com os alunos",
+
+    "mine": "Os meus reservaram voos",
+
+    "students": {
+      "some": "Alguns alunos simplesmente enviam ",
+      "thank": "um e-mail de agradecimento."
+    },
+
+    "answers": {
+      "i": "Não pedi a ninguém para vir de avião. Eles simplesmente vieram. Se quer saber que tipo de ",
+      "tutor": "professor sou, aí está a sua",
+      "br": "resposta!"
+    }
+  },
+
+  "testimonialSection": {
+    "heading": "Os meus alunos dizem;",
+    "subHeading": "Testemunhos",
+    "noTestimonial": "Ainda não existem testemunhos disponíveis.",
+    "loading": "A carregar testemunhos..."
+  },
+
+  "schedule": {
+    "heading": "Pronto para voltar a divertir-se a aprender inglês?"
+  },
+
+  "faq": {
+    "heading": "",
+
+    "q&a": [
+      {
+        "question": "Preciso de já falar algum inglês ou posso começar do zero?",
+
+        "answer": "Damos as boas-vindas a alunos em todas as fases de aprendizagem, quer esteja a começar completamente do zero ou queira melhorar a sua fluência. As nossas aulas abrangem tudo, desde as bases para principiantes até ao inglês avançado, garantindo que recebe apoio direcionado e adaptado precisamente ao seu nível atual. Isto elimina a intimidação para os principiantes absolutos, ao mesmo tempo que oferece desafios exigentes e de alto nível aos alunos avançados que pretendem aperfeiçoar as suas competências."
+      },
+
+      {
+        "question": "Posso aprender ao meu próprio ritmo ou existe um programa fixo?",
+
+        "answer": "Acreditamos numa experiência de aprendizagem totalmente flexível, onde pode aprender ao seu próprio ritmo, sem um programa rígido ou fixo a limitá-lo. Estruturamos as suas aulas em função do seu horário pessoal e da sua velocidade de aprendizagem. Isto elimina a pressão de programas acelerados, permitindo-lhe dominar completamente os conceitos, desenvolver verdadeira confiança e alcançar uma fluência conversacional duradoura sem se sentir sobrecarregado."
+      },
+
+      {
+        "question": "Que tipo de materiais serão utilizados?",
+
+        "answer": "Criamos materiais totalmente personalizados, desenvolvidos de acordo com as suas preferências e objetivos. Cada aluno participa numa entrevista e responde a um questionário detalhado, que utilizamos para criar recursos personalizados e adaptados especificamente às suas necessidades, ao seu nível atual e aos seus interesses pessoais. Isto garante que cada minuto das suas aulas é relevante, envolvente e diretamente alinhado com os seus objetivos de comunicação no mundo real."
+      },
+
+      {
+        "question": "De que preciso para começar a aprender?",
+
+        "answer": "Mantemos a barreira de entrada ao mínimo. Tudo o que precisa é de uma ligação à Internet fiável e da determinação para se tornar um melhor comunicador. Isto permite-lhe começar imediatamente a sua aprendizagem a partir do conforto da sua casa, concentrando-se inteiramente no seu progresso sem se preocupar com software complicado ou manuais físicos dispendiosos."
+      },
+
+      {
+        "question": "Como é que estas aulas me vão realmente ajudar a falar com confiança na vida real?",
+
+        "answer": "Concentramo-nos intensamente na comunicação prática e conversacional, em vez de simplesmente memorizar regras gramaticais de um manual. Concebemos cada sessão com base em situações reais que são importantes para si, seja para avançar na sua carreira, viajar ou socializar com facilidade. Isto ajuda a reduzir a distância entre a teoria aprendida nas aulas e a aplicação no dia a dia, garantindo que consegue falar inglês de forma natural e confiante fora das aulas desde o primeiro dia."
+      }
+    ]
+  },
+
+  "message": {
+    "heading": "Ligue. Envie uma mensagem. Mande um e-mail; estou aqui.",
+
+    "paragraph": "Fale-me sobre si. Responderei pessoalmente a todas as mensagens, chamadas e e-mails no prazo de 24 horas.",
+
+    "form": [
+      {
+        "label": "O seu nome",
+        "placeholder": "Introduza o seu nome completo",
+        "validationError": "Por favor, introduza o seu nome."
+      },
+
+      {
+        "label": "E-mail",
+        "placeholder": "Introduza o seu e-mail",
+        "validationError": "Por favor, introduza o seu e-mail.",
+        "validationError2": "Por favor, introduza um endereço de e-mail válido."
+      },
+
+      {
+        "label": "A sua mensagem",
+        "placeholder": "Fale-nos brevemente sobre a sua mensagem",
+        "validationError": "Por favor, introduza a sua mensagem."
+      }
+    ],
+
+    "error": "Não foi possível enviar a mensagem",
+
+    "error2": "Não foi possível enviar a mensagem. Por favor, tente novamente ou envie-nos um e-mail diretamente.",
+
+    "success": "Mensagem enviada com sucesso! Entraremos em contacto consigo em breve.",
+
+    "buttonText": ["A enviar...", "Enviar mensagem"]
+  },
+
+  "footer": {
+    "paragraph": "Sou um professor experiente de inglês como língua estrangeira, com qualificações TEFL e TEO. Tenho mais de 7 anos de experiência no ensino.",
+
+    "hello": {
+      "text": "Diga olá!",
+      "links": ["E-mail", "Deixar uma avaliação"]
+    },
+
+    "explore": {
+      "text": "Explorar",
+      "links": ["Início", "Sobre mim", "Tutorial", "Testemunho", "Verificar certificação"]
+    }
+  },
+
+  "testimonialPage": {
+    "hero": {
+      "heading": "Testemunhos"
+    },
+
+    "testimonial": {
+      "heading": "Os meus alunos dizem;",
+      "subHeading": "Testemunhos"
+    },
+
+    "buttonText": {
+      "sendReview": "Enviar uma avaliação",
+      "loading": "A enviar..."
+    },
+
+    "texts": {
+      "laoding": "A carregar testemunhos...",
+      "noTestimonial": "Ainda não existem testemunhos disponíveis."
+    },
+
+    "thankYou": {
+      "paragraph": "Obrigado por enviar uma avaliação"
+    },
+
+    "reviewModal": {
+      "heading": "Enviar uma avaliação ao Tutor Philips",
+
+      "form": [
+        {
+          "label": "O seu nome",
+          "placeholder": "Introduza o seu nome completo",
+          "validationError": "Por favor, introduza o seu nome."
+        },
+
+        {
+          "label": "E-mail",
+          "placeholder": "Introduza o seu e-mail",
+          "validationError": "Por favor, introduza o seu e-mail.",
+          "validationError2": "Por favor, introduza um endereço de e-mail válido."
+        },
+
+        {
+          "label": "Profissão",
+          "placeholder": "Introduza a sua profissão",
+          "validationError": "Por favor, introduza a sua profissão."
+        },
+
+        {
+          "label": "País",
+          "placeholder": "Introduza o seu país",
+          "validationError": "Por favor, introduza o seu país."
+        },
+
+        {
+          "label": "A sua mensagem",
+          "placeholder": "Introduza a sua avaliação",
+          "validationError": "Por favor, introduza a sua avaliação.",
+          "validationError2": "A sua avaliação deve ter pelo menos 10 caracteres."
+        }
+      ],
+
+      "successful": "Avaliação enviada com sucesso!",
+
+      "error": "Não foi possível enviar o testemunho:",
+
+      "error2": "Não foi possível enviar a avaliação. Por favor, tente novamente."
+    }
+  }
+}

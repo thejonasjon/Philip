@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState } from "react";
 import About2 from "../assets/about-2.png";
 import About1 from "../assets/about-1.png";
@@ -39,6 +40,7 @@ export default function AboutMeSection() {
     flag16,
     flag17,
   ];
+  const { t } = useTranslation();
 
   const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -128,7 +130,7 @@ export default function AboutMeSection() {
       <div className="min-w-0 rounded-xl md:rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-5 md:hidden">
         <div className="flex min-w-0 items-center gap-4">
           <div className="shrink-0 whitespace-nowrap text-base font-normal leading-6 text-[#22222299]">
-            Lectured students in;
+            {t("aboutMe.lectured")}
           </div>
 
           <div className="min-w-0 flex-1 overflow-hidden">
@@ -185,9 +187,9 @@ export default function AboutMeSection() {
               </div>
 
               <div className="p-6 text-xl font-normal leading-8 text-[#222222]">
-                Certified by{" "}
-                <span className="font-semibold">CELTA · TEFL · TESOL</span>{" "}
-                Vouched for by <span className="font-semibold">students.</span>
+                {t("aboutMe.certified.by")}{" "}
+                <span className="font-semibold">{t("aboutMe.certified.cert")}</span>{" "}
+                {t("aboutMe.certified.vouched")}<span className="font-semibold">{t("aboutMe.certified.student")}</span>
               </div>
             </div>
           </motion.div>
@@ -212,16 +214,14 @@ export default function AboutMeSection() {
               </div>
 
               <div className="relative z-10">
-                <div className="text-4xl font-bold text-[#222222]">2000+</div>
+                <div className="text-4xl font-bold text-[#222222]">{t("aboutMe.taught.stats")}</div>
                 <span className="text-base font-light leading-7 text-[#22222299]">
-                  Students taught
+                  {t("aboutMe.taught.students")}
                 </span>
               </div>
 
               <div className="relative z-10 text-base font-light leading-7 text-[#22222299]">
-                Personalized lessons let students learn at their own pace, build
-                confidence and fluency, and have fun in a pressure-free
-                environment.
+                {t("aboutMe.taught.paragraph")}
               </div>
             </div>
           </motion.div>
@@ -238,9 +238,9 @@ export default function AboutMeSection() {
             }}
           >
             <div className="relative overflow-hidden min-h-30 flex flex-col justify-center text-2xl font-semibold leading-tight text-[#222222] rounded-xl md:rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-6">
-              7+ Years
+              {t("aboutMe.years.year")}
               <span className="block text-base font-light text-[#222222B2]">
-                of English teaching experience
+                {t("aboutMe.years.paragraph")}
               </span>
               <div className="absolute -left-40 top-5 w-full h-full bg-[#2B59FF]/20 blur-3xl z-10" />
               <div className="absolute bottom-8 -right-40 w-full h-full bg-[#F98272]/20 blur-3xl z-10" />
@@ -251,7 +251,7 @@ export default function AboutMeSection() {
                 <img src={About2} className="w-full h-full object-cover" />
               </div>
               <div className="relative z-10 max-w-60 text-2xl font-medium text-[#22222299]">
-                From complete beginners to almost fluent.
+                {t("aboutMe.fluent")}
               </div>
             </div>
           </motion.div>
@@ -301,12 +301,12 @@ export default function AboutMeSection() {
           </div>
 
           <div className="max-w-80 relative z-10 text-[32px] font-normal leading-11.5 text-[#787878]">
-            Certified by{" "}
+            {t("aboutMe.certified.by")}{" "}
             <span className="font-semibold text-[#222222]">
-              CELTA · TEFL · TESOL
+              {t("aboutMe.certified.cert")}
             </span>{" "}
-            Vouched for by{" "}
-            <span className="font-semibold text-[#222222]">students.</span>
+            {t("aboutMe.certified.vouched")}{" "}
+            <span className="font-semibold text-[#222222]">{t("aboutMe.certified.student")}</span>
           </div>
         </motion.div>
 
@@ -335,17 +335,15 @@ export default function AboutMeSection() {
             </div>
 
             <div className="relative z-10">
-              <div className="text-6xl font-bold text-[#222222]">2000+</div>
+              <div className="text-6xl font-bold text-[#222222]">{t("aboutMe.taught.stats")}</div>
 
               <span className="text-[22px] font-light leading-9.5 text-[#22222299]">
-                Students taught
+                {t("aboutMe.taught.students")}
               </span>
             </div>
 
             <div className="relative z-10 text-[22px] font-light leading-9.5 text-[#22222299]">
-              Personalized lessons let students learn at their own pace, build
-              confidence and fluency, and have fun in a pressure-free
-              environment.
+              {t("aboutMe.taught.paragraph")}
             </div>
           </motion.div>
 
@@ -365,9 +363,9 @@ export default function AboutMeSection() {
               }}
               className="relative overflow-hidden min-h-49 flex flex-col justify-center text-[38px] font-semibold leading-tight text-[#222222] rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-10"
             >
-              7+ Years
+                {t("aboutMe.years.year")}
               <span className="block text-2xl font-light text-[#222222B2]">
-                of English teaching experience
+                {t("aboutMe.years.paragraph")}
               </span>
               <motion.div
                 animate={{
@@ -412,7 +410,7 @@ export default function AboutMeSection() {
               </div>
 
               <div className="relative z-10 max-w-60 text-[40px] font-medium text-[#22222299]">
-                From complete beginners to almost fluent.
+                {t("aboutMe.fluent")}
               </div>
             </motion.div>
           </motion.div>
@@ -432,7 +430,7 @@ export default function AboutMeSection() {
         >
           <div className="flex min-w-0 items-center gap-4">
             <div className="shrink-0 whitespace-nowrap text-2xl font-normal leading-7.5 text-[#22222299]">
-              Lectured students in;
+              {t("aboutMe.lectured")}
             </div>
 
             <div className="min-w-0 relative flex-1 overflow-hidden">

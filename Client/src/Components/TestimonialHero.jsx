@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import ImagePlaceHolder from "../assets/philip-new.jpg";
+import { useTranslation } from "react-i18next";
 import { Star } from "lucide-react";
 import ImagePlaceHolder1 from "../assets/Avatar1.png";
 import ImagePlaceHolder2 from "../assets/Avatar2.png";
@@ -7,6 +7,7 @@ import ImagePlaceHolder3 from "../assets/Avatar3.png";
 import ImagePlaceHolder4 from "../assets/Avatar4.png";
 
 export default function TestimonialHero() {
+  const { t } = useTranslation();
   const profileRatings = [
     {
       imageName: ImagePlaceHolder1,
@@ -163,7 +164,7 @@ export default function TestimonialHero() {
           custom={0.2}
           className="max-w-4xl text-[36px] md:text-[56px] font-medium leading-[1.1] text-[#F7F4EF mt-2"
         >
-          Testimonials
+          {t("testimonialPage.hero.heading")}
         </motion.h1>
 
         {/* Reviews */}

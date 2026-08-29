@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import Heading from "./ui/Heading";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -13,36 +14,33 @@ import { BOOKING_URL } from "../constants/links";
 import Button from "./ui/Button";
 
 export default function TutorialSection() {
+  const { t } = useTranslation();
+
   const tutorialData = [
     {
       icon: <HugeiconsIcon icon={ConversationFreeIcons} size={32} />,
-      heading: "Conversational English",
-      paragraph:
-        "Real conversation from day one. Fluency, vocabulary and ease for everyday life.",
+      heading: t("tutorial.cards.0.heading"),
+      paragraph: t("tutorial.cards.0.paragraph")
     },
     {
       icon: <HugeiconsIcon icon={BriefcaseBusinessFreeIcons} size={32} />,
-      heading: "Business English",
-      paragraph:
-        "Meetings, presentations, emails and negotiation. Professional English with a native ear.",
+       heading: t("tutorial.cards.1.heading"),
+      paragraph: t("tutorial.cards.1.paragraph")
     },
     {
       icon: <HugeiconsIcon icon={ContentWritingFreeIcons} size={32} />,
-      heading: "Interview Preparations",
-      paragraph:
-        "Mock interviews, confident answers and the exact vocabulary of your industry.",
+       heading: t("tutorial.cards.2.heading"),
+      paragraph: t("tutorial.cards.2.paragraph")
     },
     {
       icon: <HugeiconsIcon icon={GraduationCapFreeIcons} size={32} />,
-      heading: "Exam Preparation",
-      paragraph:
-        "Targeted preparation for IELTS, Cambridge, TOEFL and other recognised English exams.",
+       heading: t("tutorial.cards.3.heading"),
+      paragraph: t("tutorial.cards.3.paragraph")
     },
     {
       icon: <HugeiconsIcon icon={SpeechFreeIcons} size={32} />,
-      heading: "Pronunciation & Fluency",
-      paragraph:
-        "Soften your accent, master proper English sounds and speak with rhythm and clarity.",
+       heading: t("tutorial.cards.4.heading"),
+      paragraph: t("tutorial.cards.4.paragraph")
     },
   ];
 
@@ -63,12 +61,10 @@ export default function TutorialSection() {
         }}
         className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-10"
       >
-        <Heading heading="Tutorial Focus" subHeading="Choose Your Focus" />
+        <Heading heading={t("tutorial.heading")} subHeading={t("tutorial.subHeading")} />
 
         <p className="max-w-full md:max-w-2xl text-base md:text-xl font-light text-[#22222299]">
-          There's no fixed curriculum waiting for you to catch up to it. Every
-          program starts where you are and moves at the pace you set; shaped
-          around your goals, your level, and the life you're already living.
+          {t("tutorial.paragraph")}
         </p>
       </motion.div>
 
@@ -86,7 +82,7 @@ export default function TutorialSection() {
           variant="primary"
           size="lg"
         >
-          Schedule a Trial Lesson
+          {t("nav.scheduleTrial")}
         </Button>
       </div>
     </SectionLayout>

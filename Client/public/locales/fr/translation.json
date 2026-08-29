@@ -1,0 +1,260 @@
+{
+  "global": {
+  "buttonText": ["Laisser un avis", "Voir tous les avis"]
+},
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos de moi",
+    "tutorial": "Tutoriels",
+    "testimonial": "Témoignages",
+    "scheduleTrial": "Planifier une leçon d'essai"
+  },
+
+  "hero": {
+    "heading": "Le professeur d'anglais",
+    "headingC": "qui renforce votre confiance !",
+    "paragraph": "Je vous aide à améliorer votre aisance, votre prononciation et votre confiance grâce à des leçons personnalisées et stimulantes.",
+    "ratingText": "Plus de 500 élèves satisfaits"
+  },
+
+  "aboutMe": {
+    "certified": {
+      "by": "Certifié par",
+      "cert": "CELTA · TEFL · TESOL",
+      "vouched": "Recommandé par",
+      "student": "les élèves."
+    },
+
+    "taught": {
+      "students": "Élèves formés",
+      "stats": "2000+",
+      "paragraph": "Les leçons personnalisées permettent aux élèves d'apprendre à leur propre rythme, de développer leur confiance et leur aisance, tout en s'amusant dans un environnement sans pression."
+    },
+
+    "years": {
+      "year": "Plus de 7 ans",
+      "paragraph": "d'expérience dans l'enseignement de l'anglais"
+    },
+
+    "fluent": "Des débutants complets aux apprenants presque bilingues.",
+
+    "lectured": "A enseigné à des étudiants dans :"
+  },
+
+  "tutorial": {
+    "heading": "Axes d'apprentissage",
+
+    "subHeading": "Choisissez votre objectif",
+
+    "paragraph": "Il n'y a pas de programme fixe auquel vous devez vous adapter. Chaque parcours commence là où vous en êtes et avance au rythme que vous choisissez, en fonction de vos objectifs, de votre niveau et de votre mode de vie.",
+
+    "cards": [
+      {
+        "heading": "Anglais conversationnel",
+        "paragraph": "De vraies conversations dès le premier jour. Aisance, vocabulaire et naturel pour la vie quotidienne."
+      },
+
+      {
+        "heading": "Anglais professionnel",
+        "paragraph": "Réunions, présentations, e-mails et négociations. Un anglais professionnel avec l'oreille d'un locuteur natif."
+      },
+
+      {
+        "heading": "Préparation aux entretiens",
+        "paragraph": "Entretiens blancs, réponses assurées et vocabulaire précis adapté à votre secteur d'activité."
+      },
+
+      {
+        "heading": "Préparation aux examens",
+        "paragraph": "Une préparation ciblée pour l'IELTS, Cambridge, le TOEFL et d'autres examens d'anglais reconnus."
+      },
+
+      {
+        "heading": "Prononciation et aisance",
+        "paragraph": "Atténuez votre accent, maîtrisez les sons de l'anglais et parlez avec rythme et clarté."
+      }
+    ]
+  },
+
+  "moments": {
+    "heading": "Quelques-uns de mes meilleurs moments avec mes élèves",
+
+    "mine": "Les miens ont réservé des vols",
+
+    "students": {
+      "some": "Certains élèves envoient simplement ",
+      "thank": "un e-mail de remerciement."
+    },
+
+    "answers": {
+      "i": "Je n'ai demandé à personne de venir en avion. Ils l'ont simplement fait. Si vous voulez savoir quel type de ",
+      "tutor": "professeur je suis, voici votre",
+      "br": "réponse !"
+    }
+  },
+
+  "testimonialSection": {
+    "heading": "Ce que disent mes élèves ;",
+    "subHeading": "Témoignages",
+    "noTestimonial": "Aucun témoignage disponible pour le moment.",
+    "loading": "Chargement des témoignages..."
+  },
+
+  "schedule": {
+    "heading": "Prêt à remettre du plaisir dans l'apprentissage de l'anglais ?"
+  },
+
+  "faq": {
+    "heading": "",
+
+    "q&a": [
+      {
+        "question": "Dois-je déjà parler un peu anglais ou puis-je commencer de zéro ?",
+
+        "answer": "Nous accueillons les apprenants à tous les niveaux, que vous partiez complètement de zéro ou que vous souhaitiez améliorer votre aisance. Nos leçons couvrent aussi bien les bases pour débutants que l'anglais avancé, afin de vous offrir un accompagnement ciblé et adapté précisément à votre niveau actuel. Cela permet aux débutants de commencer sans intimidation tout en proposant des défis exigeants aux apprenants avancés qui souhaitent perfectionner leurs compétences."
+      },
+
+      {
+        "question": "Puis-je apprendre à mon propre rythme ou existe-t-il un programme fixe ?",
+
+        "answer": "Nous croyons en une expérience d'apprentissage entièrement flexible, où vous pouvez progresser à votre propre rythme sans être limité par un programme rigide ou fixe. Nous organisons vos leçons en fonction de votre emploi du temps et de votre vitesse d'apprentissage. Cela vous permet d'éviter la pression des programmes accélérés, de maîtriser pleinement les notions, de développer une véritable confiance et d'acquérir une aisance durable sans vous épuiser."
+      },
+
+      {
+        "question": "Quels types de supports seront utilisés ?",
+
+        "answer": "Nous concevons des supports entièrement personnalisés en fonction de vos préférences et de vos objectifs. Chaque élève participe à un entretien et remplit un questionnaire détaillé que nous utilisons pour créer des ressources sur mesure adaptées à ses besoins précis, à son niveau actuel et à ses centres d'intérêt. Cela garantit que chaque minute de votre cours est pertinente, stimulante et directement liée à vos objectifs de communication dans la vie réelle."
+      },
+
+      {
+        "question": "De quoi ai-je besoin pour commencer à apprendre ?",
+
+        "answer": "Nous rendons le démarrage aussi simple que possible. Tout ce dont vous avez besoin est d'une connexion Internet fiable et de la détermination nécessaire pour devenir un meilleur anglophone. Vous pouvez ainsi commencer immédiatement votre apprentissage depuis le confort de votre domicile, en vous concentrant entièrement sur votre progression sans vous soucier de logiciels compliqués ou de manuels coûteux."
+      },
+
+      {
+        "question": "Comment ces leçons vont-elles réellement m'aider à parler avec confiance dans la vie quotidienne ?",
+
+        "answer": "Nous nous concentrons avant tout sur une communication pratique et conversationnelle plutôt que sur la simple mémorisation de règles de grammaire tirées d'un manuel. Chaque séance est conçue autour de situations réelles qui vous concernent, qu'il s'agisse de faire progresser votre carrière, de voyager ou de communiquer facilement avec les autres. Cela permet de combler le fossé entre la théorie apprise en cours et son utilisation au quotidien, afin que vous puissiez parler anglais naturellement et avec confiance en dehors des cours dès le premier jour."
+      }
+    ]
+  },
+
+  "message": {
+    "heading": "Appelez. Écrivez. Envoyez un e-mail ; je suis là.",
+
+    "paragraph": "Parlez-moi de vous. Je répondrai personnellement à chaque message, appel et e-mail dans un délai de 24 heures.",
+
+    "form": [
+      {
+        "label": "Votre nom",
+        "placeholder": "Saisissez votre nom complet",
+        "validationError": "Veuillez saisir votre nom."
+      },
+
+      {
+        "label": "E-mail",
+        "placeholder": "Saisissez votre adresse e-mail",
+        "validationError": "Veuillez saisir votre adresse e-mail.",
+        "validationError2": "Veuillez saisir une adresse e-mail valide."
+      },
+
+      {
+        "label": "Votre message",
+        "placeholder": "Parlez-nous brièvement de votre demande",
+        "validationError": "Veuillez saisir votre message."
+      }
+    ],
+
+    "error": "Échec de l'envoi du message",
+
+    "error2": "Échec de l'envoi du message. Veuillez réessayer ou nous envoyer directement un e-mail.",
+
+    "success": "Message envoyé avec succès ! Nous vous répondrons bientôt.",
+
+    "buttonText": ["Envoi en cours...", "Envoyer le message"]
+  },
+
+  "footer": {
+    "paragraph": "Je suis un professeur d'anglais langue étrangère expérimenté, titulaire des qualifications TEFL et TEO, avec plus de 7 ans d'expérience dans l'enseignement.",
+
+    "hello": {
+      "text": "Dites bonjour !",
+      "links": ["E-mail", "Laisser un avis"]
+    },
+
+    "explore": {
+      "text": "Explorer",
+      "links": ["Accueil", "À propos de moi", "Tutoriel", "Témoignages", "Vérifier la certification"]
+    }
+  },
+
+  "testimonialPage": {
+    "hero": {
+      "heading": "Témoignages"
+    },
+
+    "testimonial": {
+      "heading": "Ce que disent mes élèves ;",
+      "subHeading": "Témoignages"
+    },
+
+    "buttonText": {
+      "sendReview": "Envoyer un avis",
+      "loading": "Envoi en cours..."
+    },
+
+    "texts": {
+      "laoding": "Chargement des témoignages...",
+      "noTestimonial": "Aucun témoignage disponible pour le moment."
+    },
+
+    "thankYou": {
+      "paragraph": "Merci d'avoir envoyé votre avis"
+    },
+
+    "reviewModal": {
+      "heading": "Envoyer un avis à Tutor Philips",
+
+      "form": [
+        {
+          "label": "Votre nom",
+          "placeholder": "Saisissez votre nom complet",
+          "validationError": "Veuillez saisir votre nom."
+        },
+
+        {
+          "label": "E-mail",
+          "placeholder": "Saisissez votre adresse e-mail",
+          "validationError": "Veuillez saisir votre adresse e-mail.",
+          "validationError2": "Veuillez saisir une adresse e-mail valide."
+        },
+
+        {
+          "label": "Profession",
+          "placeholder": "Saisissez votre profession",
+          "validationError": "Veuillez saisir votre profession."
+        },
+
+        {
+          "label": "Pays",
+          "placeholder": "Saisissez votre pays",
+          "validationError": "Veuillez saisir votre pays."
+        },
+
+        {
+          "label": "Votre message",
+          "placeholder": "Saisissez votre avis",
+          "validationError": "Veuillez saisir votre avis.",
+          "validationError2": "Votre avis doit comporter au moins 10 caractères."
+        }
+      ],
+
+      "successful": "Avis envoyé avec succès !",
+
+      "error": "Échec de l'envoi du témoignage :",
+
+      "error2": "Échec de l'envoi de l'avis. Veuillez réessayer."
+    }
+  }
+}

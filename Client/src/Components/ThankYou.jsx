@@ -1,7 +1,10 @@
 import { X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import Scheldule from "../assets/scheldule.png";
 
 export default function ThankYou({ onClose }) {
+  const { t } = useTranslation();
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4 backdrop-blur-sm"
@@ -9,7 +12,7 @@ export default function ThankYou({ onClose }) {
     >
       {/* Modal */}
       <div
-        className="relative max-h-[90vh] w-full max-w-11/12 overflow-hidden rounded-xl md:rounded-3xl bg-white"
+        className="relative mt-0 md:mt-20 max-h-[90vh] w-full max-w-11/12 overflow-hidden rounded-xl md:rounded-3xl bg-white"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close */}
@@ -32,7 +35,7 @@ export default function ThankYou({ onClose }) {
         >
           {/* Heading */}
           <h4 className="relative z-10 mt-10 md:mt-30 text-center text-[28px] md:text-[56px] font-medium leading-tight text-[#F7F4EF] md:leading-20">
-            Thanks for sending a review
+            {t("testimonialPage.thankYou.paragraph")}
           </h4>
 
           {/* Image */}

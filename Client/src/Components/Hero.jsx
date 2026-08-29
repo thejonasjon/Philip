@@ -1,17 +1,18 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import Button from "./ui/Button";
 import ImagePlaceHolder1 from "../assets/Avatar1.png";
 import ImagePlaceHolder2 from "../assets/Avatar2.png";
 import ImagePlaceHolder3 from "../assets/Avatar3.png";
 import ImagePlaceHolder4 from "../assets/Avatar4.png";
 import { Star } from "lucide-react";
-import { Certificate01Icon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import heroPattern from "../assets/overlay.png";
 import headShot from "../assets/headshot.jpg";
 import { BOOKING_URL } from "../constants/links";
 
 export default function Hero() {
+  const { t } = useTranslation();
+
   const reveal = {
     hidden: { opacity: 0, y: 30 },
     visible: (delay = 0) => ({
@@ -67,7 +68,7 @@ export default function Hero() {
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute -right-[15%] top-[5%] h-[480px] w-[480px] rounded-full bg-[#DA5548]/30 blur-[100px]"
+          className="absolute -right-[15%] top-[5%] h-120 w-120 rounded-full bg-[#DA5548]/30 blur-[100px]"
           animate={{
             x: [0, -120, -260, -140, 0],
             y: [0, 120, 250, 340, 0],
@@ -126,7 +127,7 @@ export default function Hero() {
           custom={0.2}
           className="max-w-xs md:max-w-4xl text-[32px] md:text-[56px] font-medium leading-[1.15] md:leading-[1.1] text-[#F7F4EF]"
         >
-          The English{" "}
+          {t("hero.heading")}{" "}
           <span className="relative inline-block h-13 w-22 md:h-23.5 md:w-40 align-middle">
             <span className="absolute inset-0 h-13 w-22 md:h-23.5 md:w-40 rounded-lg md:rounded-xl bg-[#F98272] opacity-50 rotate-8" />
             <span className="absolute inset-0 h-13 w-22 md:h-23.5 md:w-40 overflow-hidden rounded-lg md:rounded-xl -rotate-12">
@@ -137,7 +138,7 @@ export default function Hero() {
               />
             </span>
           </span>{" "}
-          Tutor that Builds Your Confidence!
+          {t("hero.headingC")}
         </motion.h1>
 
         <motion.p
@@ -147,8 +148,7 @@ export default function Hero() {
           custom={0.6}
           className="mt-3 max-w-xs md:max-w-2xl text-base md:text-[22px] leading-relaxed text-[#F7F4EFB2]"
         >
-          Helping you improve fluency, pronunciation, and confidence through
-          engaging, personalized lessons.
+          {t("hero.paragraph")}
         </motion.p>
 
         <motion.div
@@ -164,7 +164,7 @@ export default function Hero() {
             variant="primary"
             size="lg"
           >
-            Schedule a Trial Lesson
+            {t("nav.scheduleTrial")}
           </Button>
 
           {/* <Button
@@ -237,7 +237,7 @@ export default function Hero() {
               <span className="text-[11px] font-medium">4.5/5</span>
             </div>
 
-            <p className="mt-1 text-[10px]">Over 500+ Satisfied Students</p>
+            <p className="mt-1 text-[10px]">{t("hero.ratingText")}</p>
           </div>
         </motion.div>
       </div>

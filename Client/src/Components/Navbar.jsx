@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { X } from "lucide-react";
 import NavLink from "./ui/NavLink";
 import Button from "./ui/Button";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Certificate01Icon, Menu02Icon } from "@hugeicons/core-free-icons";
+import { Menu02Icon } from "@hugeicons/core-free-icons";
 import LanguageSelector from "./ui/LanguageSelector";
 import useSectionNavigation from "../hooks/useSectionNavigation";
 import { BOOKING_URL } from "../constants/links";
@@ -11,12 +12,13 @@ import { BOOKING_URL } from "../constants/links";
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigateToSection = useSectionNavigation();
+  const { t } = useTranslation();
 
   const navLinks = [
-    { id: "home", label: "Home", to: "/" },
-    { id: "about", label: "About Me", to: "/#aboutMe" },
-    { id: "tutorials", label: "Tutorials", to: "/#tutorial" },
-    { id: "testimonials", label: "Testimonials", to: "/testimonials" },
+    { id: "home", label: t("nav.home"), to: "/" },
+    { id: "about", label: t("nav.about"), to: "/#aboutMe" },
+    { id: "tutorials", label: t("nav.tutorial"), to: "/#tutorial" },
+    { id: "testimonials", label: t("nav.testimonial"), to: "/testimonials" },
   ];
 
   const handleNavigation = (to) => {
@@ -75,13 +77,10 @@ export default function Navbar() {
             variant="primary"
             size="lg"
           >
-            Schedule a Trial Lesson
+            {t("nav.scheduleTrial")}
           </Button>
 
-          <LanguageSelector
-              onChange={(language) => {
-                console.log("Selected language:", language.code);
-              }} />
+          <LanguageSelector />
 
         </div>
 
@@ -123,7 +122,7 @@ export default function Navbar() {
               variant="primary"
               size="lg"
             >
-              Schedule a Trial Lesson
+              {t("nav.scheduleTrial")}
             </Button>
 
             {/* <Button
@@ -149,10 +148,7 @@ export default function Navbar() {
               </Button> */}
 
 
-              <LanguageSelector
-              onChange={(language) => {
-                console.log("Selected language:", language.code);
-              }} />
+              <LanguageSelector />
             </div>
           </div>
         </div>

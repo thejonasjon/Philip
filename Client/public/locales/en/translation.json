@@ -1,0 +1,205 @@
+{
+  "global": {
+    "buttonText": ["Leave a review", "View all Reviews"]
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About Me",
+    "tutorial": "Tutorials",
+    "testimonial": "Testimonials",
+    "scheduleTrial": "Schedule a Trial Lesson"
+  },
+  "hero": {
+    "heading": "The English",
+    "headingC": "Tutor that Builds Your Confidence!",
+    "paragraph": "Helping you improve fluency, pronunciation, and confidence through engaging, personalized lessons.",
+    "ratingText": "Over 500+ Satisfied Students"
+  },
+  "aboutMe": {
+    "certified": { "by": "Certified by", "cert": "CELTA · TEFL · TESOL", "vouched": "Vouched for by", "student": "students."},
+    "taught": {"students": "Students taught", "stats": "2000+", "paragraph": "Personalized lessons let students learn at their own pace, build confidence and fluency, and have fun in a pressure-free environment."},
+    "years": {"year": "7+ Years", "paragraph": "of English teaching experience"},
+    "fluent": "From complete beginners to almost fluent.",
+    "lectured": "Lectured students in;"
+  },
+  "tutorial": {
+    "heading": "Tutorial Focus",
+    "subHeading": "Choose Your Focus",
+    "paragraph": "There's no fixed curriculum waiting for you to catch up to it. Every program starts where you are and moves at the pace you set; shaped around your goals, your level, and the life you're already living.",
+    "cards": [
+      {"heading": "Conversational English",
+      "paragraph":
+        "Real conversation from day one. Fluency, vocabulary and ease for everyday life."
+     },
+    {
+      "heading": "Business English",
+      "paragraph": "Meetings, presentations, emails and negotiation. Professional English with a native ear."
+    },
+    {
+      "heading": "Interview Preparations",
+      "paragraph":
+        "Mock interviews, confident answers and the exact vocabulary of your industry."
+    },
+    {
+      "heading": "Exam Preparation",
+      "paragraph":
+        "Targeted preparation for IELTS, Cambridge, TOEFL and other recognised English exams."
+    },
+    {
+      "heading": "Pronunciation & Fluency",
+      "paragraph":
+        "Soften your accent, master proper English sounds and speak with rhythm and clarity."
+    }]
+  },
+  "moments": {
+    "heading": "Some of my favourite moments with students",
+    "mine": "Mine booked flights",
+    "students": {
+      "some": "Some students just send ",
+      "thank": "a thank-you email."
+    },
+    "answers": {
+      "i": "I didn't ask anyone to fly in. They just did. If you want to know what kind of ",
+      "tutor": "tutor I am, that's your",
+      "br": "answer right there!"
+    }
+  },
+  "testimonialSection": {
+    "heading": "My students say;",
+    "subHeading": "Testimonials",
+    "noTestimonial": "No testimonials available yet.",
+    "loading": "Loading testimonials..."
+  },
+  "schedule": {
+    "heading": "Ready to put the fun back Into English?"
+  },
+  "faq": {
+    "heading": "",
+    "q&a": [
+      {
+    "question":
+      "Do I need to already speak some English, or can I start from zero?",
+    "answer":
+      "We welcome learners at every stage, whether you are starting completely from zero or looking to advance your fluency. Our lessons cover everything from beginner foundations to advanced English, ensuring you receive targeted support tailored precisely to your current proficiency level. This is beneficial because it eliminates intimidation for absolute beginners while providing rigorous, high-level challenges for advanced speakers wanting to polish their skills."
+  },
+
+  {
+    "question":
+      "Can I learn at my own pace, or is there a fixed program?",
+    "answer":
+      "We believe in a fully flexible learning experience where you can learn at your own pace with no rigid or fixed program holding you back. We structure your lessons around your personal schedule and learning speed. This is beneficial because it removes the pressure of rushed course structures, allowing you to thoroughly master concepts, build genuine confidence, and achieve lasting conversational fluency without burnout."
+  },
+
+  {
+    "question": "What kind of materials will be used?",
+    "answer":
+      "We design completely custom materials built around your unique preferences and objectives. Every student is interviewed and given a detailed questionnaire, which we use to craft bespoke resources tailored specifically to your exact needs, current level, and personal interests. This is beneficial because it ensures every single minute of your lesson time is relevant, engaging, and directly aligned with your real-world communication goals."
+  },
+
+  {
+    "question": "What do I need to start learning?",
+    "answer":
+      "We keep the barrier to entry minimal. All you need is a reliable internet connection and the determination to become a better speaker. This is beneficial because it allows you to start your language-learning journey immediately from the comfort of your home, focusing entirely on your growth without worrying about complicated software or expensive physical textbooks."
+  },
+
+  {
+    "question":
+      "How will these lessons actually help me speak with confidence in real life?",
+    "answer":
+      "We focus intensely on practical, conversational communication rather than just memorizing grammar rules out of a textbook. We design every session around real-world scenarios you care about; whether that's advancing your career, traveling, or socializing effortlessly. This is beneficial because it bridges the gap between classroom theory and daily application, ensuring you can open your mouth and speak English naturally and confidently outside of class from day one."
+  }
+    ]
+  },
+  "message": {
+    "heading": "Call. Message. Email; I’m Here.",
+    "paragraph": "Tell me about yourself. I will respond to every message, call & email personally within 24 hours.",
+    "form": [
+      {
+        "label": "Your name",
+        "placeholder": "Enter your full name",
+        "validationError": "Please enter your name."
+      },
+      {
+        "label": "Email",
+        "placeholder": "Enter your email",
+        "validationError": "Please enter your email.",
+        "validationError2": "Please enter a valid email address."
+      },
+      {
+        "label": "Your Message",
+        "placeholder": "Briefly tell us about your message",
+        "validationError": "Please enter your message."
+      }
+    ],
+    "error": "Failed to send message",
+    "error2": "Failed to send message. Please try again or email us directly.",
+    "success": "Message sent successfully! We'll get back to you soon.",
+    "buttonText": ["Sending...", "Send Message"]
+  },
+  "footer": {
+    "paragraph": "I am an experienced online ESL tutor with TEFL and TEO qualifications. With over 7 years of teaching experience.",
+    "hello": {
+      "text": "Say hello!",
+      "links": ["Email", "Leave a Review"]
+    },
+    "explore": {
+      "text": "Explore",
+      "links": ["Home", "About Me", "Tutorial", "Testimonial", "Verify Certification"]
+    }
+  },
+  "testimonialPage": {
+    "hero": {
+      "heading": "Testimonials"
+    },
+    "testimonial": {
+      "heading": "My students say;",
+      "subHeading": "Testimonials"
+    },
+    "buttonText": {
+      "sendReview": "Send a Review",
+      "loading": "Sending..."
+    },
+    "texts": {
+      "laoding": "Loading testimonials...",
+      "noTestimonial": "No testimonials available yet."
+    },
+    "thankYou":{
+      "paragraph": "Thanks for sending a review"
+    },
+    "reviewModal": {
+      "heading": "Send a Review to Tutor Philips",
+      "form": [
+        {
+          "label": "Your name",
+          "placeholder": "Enter your full name",
+          "validationError": "Please enter your name."
+        },
+        {
+          "label": "Email",
+          "placeholder": "Enter your email",
+          "validationError": "Please enter your email.",
+          "validationError2": "Please enter a valid email address."
+        },
+        {
+          "label": "Profession",
+          "placeholder": "Enter your profession",
+          "validationError": "Please enter your profession."
+        },
+        {
+          "label": "Country",
+          "placeholder": "Enter your country",
+          "validationError": "Please enter your country."
+        },
+        {
+          "label": "Your message",
+          "placeholder": "Enter your review",
+          "validationError": "Please enter your review.",
+          "validationError2": "Your review should be at least 10 characters."
+        }
+      ],
+      "successful": "Review submitted successfully!",
+      "error": "Failed to submit testimonial:",
+      "error2": "Failed to submit review. Please try again."
+    }
+  }
+}

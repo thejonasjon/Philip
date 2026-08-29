@@ -1,0 +1,260 @@
+{
+  "global": {
+  "buttonText": ["Een beoordeling achterlaten", "Alle beoordelingen bekijken"]
+},
+  "nav": {
+    "home": "Home",
+    "about": "Over mij",
+    "tutorial": "Lessen",
+    "testimonial": "Getuigenissen",
+    "scheduleTrial": "Plan een proefles"
+  },
+
+  "hero": {
+    "heading": "De docent Engels",
+    "headingC": "die jouw zelfvertrouwen vergroot!",
+    "paragraph": "Ik help je jouw spreekvaardigheid, uitspraak en zelfvertrouwen te verbeteren door middel van boeiende, gepersonaliseerde lessen.",
+    "ratingText": "Meer dan 500 tevreden studenten"
+  },
+
+  "aboutMe": {
+    "certified": {
+      "by": "Gecertificeerd door",
+      "cert": "CELTA · TEFL · TESOL",
+      "vouched": "Aanbevolen door",
+      "student": "studenten."
+    },
+
+    "taught": {
+      "students": "Lesgegeven aan studenten",
+      "stats": "2000+",
+      "paragraph": "Gepersonaliseerde lessen stellen studenten in staat om in hun eigen tempo te leren, zelfvertrouwen en spreekvaardigheid op te bouwen en plezier te hebben in een omgeving zonder druk."
+    },
+
+    "years": {
+      "year": "7+ jaar",
+      "paragraph": "ervaring in het geven van Engelse les"
+    },
+
+    "fluent": "Van absolute beginners tot bijna vloeiend.",
+
+    "lectured": "Lesgegeven aan studenten in:"
+  },
+
+  "tutorial": {
+    "heading": "Focus van de lessen",
+
+    "subHeading": "Kies jouw focus",
+
+    "paragraph": "Er is geen vast lesprogramma dat je moet proberen bij te houden. Elk programma begint waar jij bent en gaat verder in het tempo dat jij bepaalt, afgestemd op jouw doelen, jouw niveau en jouw leven.",
+
+    "cards": [
+      {
+        "heading": "Conversationeel Engels",
+        "paragraph": "Echte gesprekken vanaf de eerste dag. Spreekvaardigheid, woordenschat en gemak voor het dagelijks leven."
+      },
+
+      {
+        "heading": "Zakelijk Engels",
+        "paragraph": "Vergaderingen, presentaties, e-mails en onderhandelingen. Professioneel Engels met het oor van een moedertaalspreker."
+      },
+
+      {
+        "heading": "Voorbereiding op sollicitatiegesprekken",
+        "paragraph": "Oefengesprekken, zelfverzekerde antwoorden en de juiste woordenschat voor jouw sector."
+      },
+
+      {
+        "heading": "Examenvoorbereiding",
+        "paragraph": "Gerichte voorbereiding op IELTS, Cambridge, TOEFL en andere erkende Engelse examens."
+      },
+
+      {
+        "heading": "Uitspraak en spreekvaardigheid",
+        "paragraph": "Verzacht je accent, beheers de juiste Engelse klanken en spreek met ritme en duidelijkheid."
+      }
+    ]
+  },
+
+  "moments": {
+    "heading": "Enkele van mijn favoriete momenten met studenten",
+
+    "mine": "De mijne boekten vluchten",
+
+    "students": {
+      "some": "Sommige studenten sturen gewoon ",
+      "thank": "een bedankmail."
+    },
+
+    "answers": {
+      "i": "Ik heb niemand gevraagd om over te vliegen. Ze deden het gewoon. Als je wilt weten wat voor soort ",
+      "tutor": "docent ik ben, dan is dat jouw",
+      "br": "antwoord!"
+    }
+  },
+
+  "testimonialSection": {
+    "heading": "Mijn studenten zeggen;",
+    "subHeading": "Getuigenissen",
+    "noTestimonial": "Er zijn nog geen getuigenissen beschikbaar.",
+    "loading": "Getuigenissen laden..."
+  },
+
+  "schedule": {
+    "heading": "Klaar om het plezier terug te brengen in het leren van Engels?"
+  },
+
+  "faq": {
+    "heading": "",
+
+    "q&a": [
+      {
+        "question": "Moet ik al een beetje Engels spreken, of kan ik vanaf nul beginnen?",
+
+        "answer": "We verwelkomen leerlingen in elke fase, of je nu volledig vanaf nul begint of je spreekvaardigheid wilt verbeteren. Onze lessen behandelen alles, van de basis voor beginners tot gevorderd Engels, zodat je gerichte ondersteuning krijgt die precies is afgestemd op jouw huidige niveau. Dit neemt de intimidatie weg voor absolute beginners en biedt tegelijkertijd uitdagende lessen op hoog niveau voor gevorderde sprekers die hun vaardigheden willen verfijnen."
+      },
+
+      {
+        "question": "Kan ik in mijn eigen tempo leren, of is er een vast programma?",
+
+        "answer": "Wij geloven in een volledig flexibele leerervaring waarin je in je eigen tempo kunt leren, zonder dat een rigide of vast programma je tegenhoudt. We stemmen je lessen af op jouw persoonlijke planning en leertempo. Dit neemt de druk van gehaaste cursusstructuren weg, zodat je concepten grondig kunt beheersen, echt zelfvertrouwen kunt opbouwen en duurzame spreekvaardigheid kunt ontwikkelen zonder overbelasting."
+      },
+
+      {
+        "question": "Welke soorten lesmaterialen worden gebruikt?",
+
+        "answer": "We ontwerpen volledig gepersonaliseerde materialen die zijn afgestemd op jouw unieke voorkeuren en doelen. Elke student krijgt een gesprek en een uitgebreide vragenlijst, die we gebruiken om op maat gemaakte leermiddelen te creëren die specifiek aansluiten bij jouw behoeften, huidige niveau en persoonlijke interesses. Dit zorgt ervoor dat elke minuut van je lestijd relevant, boeiend en direct afgestemd is op jouw communicatiedoelen in het dagelijks leven."
+      },
+
+      {
+        "question": "Wat heb ik nodig om te beginnen met leren?",
+
+        "answer": "We houden de drempel om te beginnen zo laag mogelijk. Alles wat je nodig hebt is een betrouwbare internetverbinding en de vastberadenheid om een betere spreker te worden. Hierdoor kun je jouw taalreis onmiddellijk vanuit het comfort van je eigen huis beginnen en je volledig richten op jouw groei, zonder je zorgen te maken over ingewikkelde software of dure fysieke studieboeken."
+      },
+
+      {
+        "question": "Hoe helpen deze lessen mij daadwerkelijk om in het dagelijks leven zelfverzekerd te spreken?",
+
+        "answer": "We richten ons sterk op praktische, conversationele communicatie in plaats van alleen grammaticaregels uit een studieboek uit het hoofd te leren. Elke sessie wordt ontworpen rond situaties uit het echte leven die voor jou belangrijk zijn, zoals vooruitgang in je carrière, reizen of gemakkelijk contact maken met anderen. Hierdoor wordt de kloof tussen theorie in de klas en dagelijkse toepassing kleiner, zodat je vanaf de eerste dag buiten de les natuurlijk en zelfverzekerd Engels kunt spreken."
+      }
+    ]
+  },
+
+  "message": {
+    "heading": "Bel. Stuur een bericht. Mail. Ik ben er.",
+
+    "paragraph": "Vertel me iets over jezelf. Ik reageer persoonlijk op elk bericht, telefoontje en elke e-mail binnen 24 uur.",
+
+    "form": [
+      {
+        "label": "Jouw naam",
+        "placeholder": "Vul je volledige naam in",
+        "validationError": "Vul je naam in."
+      },
+
+      {
+        "label": "E-mail",
+        "placeholder": "Vul je e-mailadres in",
+        "validationError": "Vul je e-mailadres in.",
+        "validationError2": "Vul een geldig e-mailadres in."
+      },
+
+      {
+        "label": "Jouw bericht",
+        "placeholder": "Vertel ons kort waarover je bericht gaat",
+        "validationError": "Vul je bericht in."
+      }
+    ],
+
+    "error": "Het bericht kon niet worden verzonden",
+
+    "error2": "Het bericht kon niet worden verzonden. Probeer het opnieuw of stuur ons rechtstreeks een e-mail.",
+
+    "success": "Bericht succesvol verzonden! We nemen binnenkort contact met je op.",
+
+    "buttonText": ["Verzenden...", "Bericht verzenden"]
+  },
+
+  "footer": {
+    "paragraph": "Ik ben een ervaren online docent Engels als tweede taal met TEFL- en TEO-kwalificaties. Ik heb meer dan 7 jaar ervaring in het onderwijs.",
+
+    "hello": {
+      "text": "Zeg hallo!",
+      "links": ["E-mail", "Laat een beoordeling achter"]
+    },
+
+    "explore": {
+      "text": "Ontdek",
+      "links": ["Home", "Over mij", "Les", "Getuigenissen", "Certificering verifiëren"]
+    }
+  },
+
+  "testimonialPage": {
+    "hero": {
+      "heading": "Getuigenissen"
+    },
+
+    "testimonial": {
+      "heading": "Mijn studenten zeggen;",
+      "subHeading": "Getuigenissen"
+    },
+
+    "buttonText": {
+      "sendReview": "Stuur een beoordeling",
+      "loading": "Verzenden..."
+    },
+
+    "texts": {
+      "laoding": "Getuigenissen laden...",
+      "noTestimonial": "Er zijn nog geen getuigenissen beschikbaar."
+    },
+
+    "thankYou": {
+      "paragraph": "Bedankt voor het versturen van een beoordeling"
+    },
+
+    "reviewModal": {
+      "heading": "Stuur een beoordeling naar Tutor Philips",
+
+      "form": [
+        {
+          "label": "Jouw naam",
+          "placeholder": "Vul je volledige naam in",
+          "validationError": "Vul je naam in."
+        },
+
+        {
+          "label": "E-mail",
+          "placeholder": "Vul je e-mailadres in",
+          "validationError": "Vul je e-mailadres in.",
+          "validationError2": "Vul een geldig e-mailadres in."
+        },
+
+        {
+          "label": "Beroep",
+          "placeholder": "Vul je beroep in",
+          "validationError": "Vul je beroep in."
+        },
+
+        {
+          "label": "Land",
+          "placeholder": "Vul je land in",
+          "validationError": "Vul je land in."
+        },
+
+        {
+          "label": "Jouw bericht",
+          "placeholder": "Vul je beoordeling in",
+          "validationError": "Vul je beoordeling in.",
+          "validationError2": "Je beoordeling moet minimaal 10 tekens bevatten."
+        }
+      ],
+
+      "successful": "Beoordeling succesvol verzonden!",
+
+      "error": "Het indienen van de getuigenis is mislukt:",
+
+      "error2": "Het indienen van de beoordeling is mislukt. Probeer het opnieuw."
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import MessageImage from "../assets/message.png";
+import { useTranslation } from "react-i18next";
 import Heading from "./ui/Heading";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -11,20 +12,21 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 export default function MessageSection() {
+  const { t } = useTranslation();
+
   return (
     <SectionLayout id="contact">
       <div className="space-y-8">
         <div className="flex flex-col md:flex-row items-start justify-between gap-6 md:gap-10">
           <div className="w-full md:max-w-120">
             <Heading
-              heading="Call. Message. Email; I’m Here."
+              heading={t("message.heading")}
               subHeading=""
             />
           </div>
 
           <p className="w-full md:max-w-140 text-base md:text-xl font-light text-[#22222299]">
-            Tell me about yourself. I will respond to every message, call &
-            email personally within 24 hours.
+            {t("message.paragraph")}
           </p>
         </div>
 
@@ -69,6 +71,8 @@ function MessageForm() {
     email: "",
     message: "",
   });
+  const { t } = useTranslation();
+
 
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -78,23 +82,23 @@ function MessageForm() {
 
     if (name === "name") {
       if (!value.trim()) {
-        error = "Please enter your name.";
+        error = t("message.form.0.validationError");
       }
     }
 
     if (name === "email") {
       if (!value.trim()) {
-        error = "Please enter your email.";
+        error = t("message.form.1.validationError");
       } else if (
         !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
       ) {
-        error = "Please enter a valid email address.";
+        error = t("message.form.1.validationError2");
       }
     }
 
     if (name === "message") {
       if (!value.trim()) {
-        error = "Please enter your message.";
+        error = t("message.form.2.validationError");
       }
     }
 
@@ -169,11 +173,11 @@ function MessageForm() {
       );
 
       if (!response.ok) {
-        throw new Error("Failed to send message");
+        throw new Error(t("message.error"));
       }
 
       toast.success(
-        "Message sent successfully! We'll get back to you soon."
+        t("message.success")
       );
 
       setFormData({
@@ -187,7 +191,7 @@ function MessageForm() {
       console.error("Error sending message:", error);
 
       toast.error(
-        "Failed to send message. Please try again or email us directly."
+        t("message.form.error2")
       );
     } finally {
       setLoading(false);
@@ -201,7 +205,7 @@ function MessageForm() {
         {/* Name */}
         <div className="flex flex-col gap-2">
           <label className="text-[12px] text-[#0156D2] font-semibold uppercase">
-            Your name
+            {t("message.form.0.label")}
           </label>
 
           <input
@@ -228,7 +232,7 @@ function MessageForm() {
         {/* Email */}
         <div className="flex flex-col gap-2">
           <label className="text-[12px] text-[#0156D2] font-semibold uppercase">
-            Email
+            {t("message.form.1.label")}
           </label>
 
           <input
@@ -255,7 +259,7 @@ function MessageForm() {
         {/* Message */}
         <div className="flex flex-col gap-2">
           <label className="text-[12px] text-[#0156D2] font-semibold uppercase">
-            Your Message
+            {t("message.form.2.label")}
           </label>
 
           <textarea
@@ -288,7 +292,7 @@ function MessageForm() {
               : ""
           }`}
         >
-          {loading ? "Sending..." : "Send Message"}
+          {loading ? t("message.buttonText.0") : t("message.buttonText.1")}
         </Button>
 
       </div>

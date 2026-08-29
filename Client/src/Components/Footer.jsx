@@ -1,4 +1,5 @@
 import { ArrowUpRight03FreeIcons } from "@hugeicons/core-free-icons";
+import { useTranslation } from "react-i18next";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Link } from "react-router-dom";
 import tutorPhilps from "../assets/tutorPhilps.png";
@@ -7,6 +8,7 @@ import useSectionNavigation from "../hooks/useSectionNavigation";
 
 export default function Footer() {
   const navigateToSection = useSectionNavigation();
+  const { t } = useTranslation();
 
   const socialLinks = [
     { name: "X", link: "https://x.com/osephilips", external: true },
@@ -14,18 +16,18 @@ export default function Footer() {
     {name: "LinkedIn",link: "https://www.linkedin.com/in/osose-ijewere-tefl", external: true},
     { name: "Whatsapp", link: "https://wa.me/447473344313", external: true },
     { name: "Instagram", link: "https://www.instagram.com/ose_philips", external: true },
-    { name: "Email", link: "/#contact" },
-    { name: "Leave a Review", link: "/testimonials" },
+    { name: t("footer.hello.links.0"), link: "/#contact" },
+    { name: t("footer.hello.links.1"), link: "/testimonials" },
   ];
 
   // These match the same "to" format Navbar uses, so useSectionNavigation
   // handles them identically (scroll on current page, or navigate then scroll)
   const exploreLinks = [
-    { name: "Home", link: "/" },
-    { name: "About Me", link: "/#aboutMe" },
-    { name: "Tutorial", link: "/#tutorial" },
-    { name: "Testimonials", link: "/testimonials" },
-    // { name: "Verify Certification", link: "#" },
+    { name: t("footer.explore.links.0"), link: "/" },
+    { name: t("footer.explore.links.1"), link: "/#aboutMe" },
+    { name: t("footer.explore.links.2"), link: "/#tutorial" },
+    { name: t("footer.explore.links.3"), link: "/testimonials" },
+    // { name: t("footer.explore.3"), link: "#" },
   ];
 
   return (
@@ -39,23 +41,18 @@ export default function Footer() {
             </h3>
 
             <div className="max-w-full md:max-w-3/6 text-lg text-[#22222299] font-light leading-8">
-              I am an experienced online ESL tutor with TEFL and TEO
-              qualifications. With over 7 years of teaching experience.
+              {t("footer.paragraph")}
             </div>
           </div>
 
           {/* Country / Language */}
           <div className="order-2 md:order-4">
-            <LanguageSelector
-              onChange={(language) => {
-                console.log("Selected language:", language.code);
-              }}
-            />
+            <LanguageSelector />
           </div>
 
           {/* Say Hello */}
           <div className="order-3 w-full flex flex-col gap-6 md:order-2">
-            <h3 className="text-2xl text-[#22222226] font-bold">Say hello!</h3>
+            <h3 className="text-2xl text-[#22222226] font-bold">{t("footer.hello.text")}</h3>
 
             <div className="w-full flex flex-col gap-3">
               {socialLinks.map((socialLink, i) => (
@@ -68,7 +65,7 @@ export default function Footer() {
                     (e) => {
                     e.preventDefault();
                     navigateToSection(socialLink.link);} :
-                    ""
+                    undefined
                   }
                 />
               ))}
@@ -77,7 +74,7 @@ export default function Footer() {
 
           {/* Explore */}
           <div className="order-4 w-full flex flex-col gap-6 md:order-3">
-            <h3 className="text-2xl text-[#22222226] font-bold">Explore</h3>
+            <h3 className="text-2xl text-[#22222226] font-bold">{t("footer.explore.text")}</h3>
 
             <div className="w-full flex flex-col gap-3">
               {exploreLinks.map((exploreLink, i) => (

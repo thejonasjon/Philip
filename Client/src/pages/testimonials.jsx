@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Heading from "../Components/ui/Heading";
 import Button from "../Components/ui/Button";
 import SectionLayout from "../layouts/SectionLayout";
@@ -8,6 +9,7 @@ import ReviewModal from "../Components/ReviewModal";
 import ThankYou from "../Components/ThankYou";
 
 export default function NewTestimonials() {
+  const { t } = useTranslation();
   const [testimonials, setTestimonials] = useState([]);
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
@@ -40,20 +42,20 @@ export default function NewTestimonials() {
       <SectionLayout>
         {/* Header */}
         <div className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-10">
-          <Heading heading="My students say;" subHeading="Testimonials" />
+          <Heading heading={t("testimonialPage.testimonial.heading")} subHeading={t("testimonialPage.testimonial.subHeading")} />
 
           <Button
             onClick={() => setShowReviewModal(true)}
             className="w-full md:w-auto rounded-lg bg-[#0245a8] px-8 py-3 text-base font-normal text-[#F7F4EF]"
           >
-            Send a Review
+            {t("testimonialPage.buttonText.sendReview")}
           </Button>
         </div>
 
         {/* Loading */}
         {loading && (
           <div className="py-20 text-center text-[#22222299]">
-            Loading testimonials...
+            {t("testimonialPage.texts.loading")}
           </div>
         )}
 
@@ -114,7 +116,7 @@ export default function NewTestimonials() {
         {/* Empty state */}
         {!loading && testimonials.length === 0 && (
           <div className="py-20 text-center text-[#22222299]">
-            No testimonials available yet.
+            {t("testimonialPage.texts.noTestimonial")}
           </div>
         )}
 
@@ -133,7 +135,7 @@ export default function NewTestimonials() {
             onClick={() => setShowReviewModal(true)}
             className="w-full md:w-auto rounded-lg bg-[#0245a8] px-12 py-3 text-base font-normal text-[#F7F4EF]"
           >
-            Send a Review
+            {t("testimonialPage.buttonText.sendReview")}
           </Button>
         </div>
 

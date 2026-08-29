@@ -1,37 +1,24 @@
 import { useState, useRef, useEffect, useLayoutEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { ChevronDown, Check } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export const LANGUAGES = [
   { code: "en", name: "English", flag: "🇬🇧" },
-  // { code: "es", name: "Español", flag: "🇪🇸" },
-  // { code: "fr", name: "Français", flag: "🇫🇷" },
-  // { code: "pt", name: "Português", flag: "🇵🇹" },
-  // { code: "de", name: "Deutsch", flag: "🇩🇪" },
-  // { code: "it", name: "Italiano", flag: "🇮🇹" },
-  // { code: "zh", name: "中文", flag: "🇨🇳" },
-  // { code: "ar", name: "العربية", flag: "🇸🇦" },
+  { code: "es", name: "Español", flag: "🇪🇸" },
+  { code: "fr", name: "Français", flag: "🇫🇷" },
+  { code: "pt", name: "Português", flag: "🇵🇹" },
+  { code: "de", name: "Deutsch", flag: "🇩🇪" },
+  { code: "it", name: "Italiano", flag: "🇮🇹" },
+  { code: "ja", name: "日本語", flag: "🇯🇵" },
+  { code: "zh", name: "中文", flag: "🇨🇳" },
 ];
 
-const STORAGE_KEY = "tp-language";
 const DROPDOWN_WIDTH = 224; // w-56
 const VIEWPORT_MARGIN = 12;
 
-export default function LanguageSelector({
-  value,
-  onChange,
-  persist = true,
-  className = "",
-}) {
-  const isControlled = value !== undefined;
-
-  const [internalCode, setInternalCode] = useState(() => {
-    if (isControlled) return value;
-    if (persist && typeof window !== "undefined") {
-      return window.localStorage.getItem(STORAGE_KEY) || "en";
-    }
-    return "en";
-  });
+export default function LanguageSelector({ className = "" }) {
+  const { i18n } = useTranslation();
 
   const [open, setOpen] = useState(false);
   const [coords, setCoords] = useState({ top: 0, left: 0 });
@@ -39,12 +26,12 @@ export default function LanguageSelector({
   const buttonRef = useRef(null);
   const dropdownRef = useRef(null);
 
-  const activeCode = isControlled ? value : internalCode;
+  // i18n.language is the single source of truth — no separate internal state
+  // that could drift out of sync with the rest of the app.
+  const activeCode = i18n.language?.split("-")[0]; // handles "en-US" -> "en"
   const activeLanguage =
     LANGUAGES.find((lang) => lang.code === activeCode) || LANGUAGES[0];
 
-  // Compute where the dropdown should sit, anchored to the button,
-  // clamped so it never overflows off the right/left edge of the screen.
   const updatePosition = useCallback(() => {
     const btn = buttonRef.current;
     if (!btn) return;
@@ -52,10 +39,8 @@ export default function LanguageSelector({
     const rect = btn.getBoundingClientRect();
     const viewportWidth = window.innerWidth;
 
-    // Prefer aligning the dropdown's right edge with the button's right edge
     let left = rect.right - DROPDOWN_WIDTH;
 
-    // Clamp within viewport
     if (left < VIEWPORT_MARGIN) left = VIEWPORT_MARGIN;
     if (left + DROPDOWN_WIDTH > viewportWidth - VIEWPORT_MARGIN) {
       left = viewportWidth - DROPDOWN_WIDTH - VIEWPORT_MARGIN;
@@ -71,7 +56,6 @@ export default function LanguageSelector({
     if (open) updatePosition();
   }, [open, updatePosition]);
 
-  // Close on outside click / Escape, reposition on resize / scroll
   useEffect(() => {
     if (!open) return;
 
@@ -102,15 +86,9 @@ export default function LanguageSelector({
   }, [open, updatePosition]);
 
   const handleSelect = (language) => {
-    if (!isControlled) {
-      setInternalCode(language.code);
-    }
-
-    if (persist && typeof window !== "undefined") {
-      window.localStorage.setItem(STORAGE_KEY, language.code);
-    }
-
-    onChange?.(language);
+    i18n.changeLanguage(language.code); // this is the actual switch
+    // i18next-browser-languagedetector already persists this to localStorage
+    // via the `caches: ["localStorage"]` config — no manual localStorage needed here.
     setOpen(false);
   };
 

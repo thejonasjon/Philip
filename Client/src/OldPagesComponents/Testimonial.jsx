@@ -2,7 +2,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FetchTestimonies } from "./services/api";
+import { FetchTestimonies } from "../services/api";
 
 const fallbackTestimonials = [
   // {
@@ -175,7 +175,7 @@ const Testimonial = () => {
             onClick={() => navigate("/testimonials")}
             className="bg-orange-600 text-white font-semibold px-6 py-2 rounded-full cursor-pointer hover:bg-orange-700 transition duration-300"
           >
-            View All Reviews
+            {t("global.buttonText.1")}
           </button>
         </div>
       </div>

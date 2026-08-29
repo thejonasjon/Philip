@@ -1,6 +1,7 @@
 import Button from "./ui/Button";
+import { useTranslation } from "react-i18next";
 import Scheldule from "../assets/scheldule.png"
-import { Certificate01Icon, SpeechFreeIcons } from "@hugeicons/core-free-icons";
+import { SpeechFreeIcons } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import bg from "../assets/overlay.png"
 import { BOOKING_URL } from "../constants/links";
@@ -8,6 +9,7 @@ import { BOOKING_URL } from "../constants/links";
 
 
 export default function ScheduleLesson() {
+   const { t } = useTranslation();
 
     const handleScheduleClick = () => {
           window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
@@ -20,14 +22,14 @@ export default function ScheduleLesson() {
         </div>
         <div className="w-full md:min-h-118.75 flex flex-col justify-center gap-8 md:gap-10 relative z-50">
             <h3 className="max-w-full md:max-w-xl text-3xl md:text-5xl text-[#F7F4EF] font-medium leading-tight md:leading-15">
-                Ready to put the fun back Into English?
+                {t("schedule.heading")}
             </h3>
 
             <div className="flex flex-col md:flex-row gap-4">
             <Button
             onClick={handleScheduleClick}
             className="w-full md:w-auto bg-[#F98272] text-base text-[#F7F4EF] py-3 font-medium hover:bg-[#f47766] cursor-pointer">
-                Schedule a Trial Lesson
+               {t("nav.scheduleTrial")}
             </Button>
             {/* <Button
                 className="group w-full md:w-auto flex items-center justify-center gap-2 bg-white px-4 shadow-xl hover:bg-[#f0f0f0]"

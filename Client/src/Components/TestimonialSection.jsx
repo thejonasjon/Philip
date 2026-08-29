@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Button from "./ui/Button";
 import { Link } from "react-router-dom";
 import Heading from "./ui/Heading";
@@ -8,6 +9,7 @@ import { BOOKING_URL } from "../constants/links";
 
 export default function TestimonialSection() {
   const scrollRef = useRef(null);
+   const { t } = useTranslation();
 
   const [testimonials, setTestimonials] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -106,20 +108,20 @@ export default function TestimonialSection() {
     <SectionLayout>
       {/* Header */}
       <div className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-10">
-        <Heading heading="My students say;" subHeading="Testimonials" />
+        <Heading heading={t("testimonialSection.heading")} subHeading={t("testimonialSection.subHeading")} />
 
           <Link
           to="/testimonials"
           className="hidden md:block max-w-2xl text-base font-normal text-[#0145A8] underline"
         >
-          View all Reviews
+          {t("global.buttonText.1")}
         </Link>
       </div>
 
       {/* Loading */}
       {loading && (
         <div className="py-20 text-center text-[#22222299]">
-          Loading testimonials...
+          {t("testimonialSection.loading.1")}
         </div>
       )}
 
@@ -140,7 +142,7 @@ export default function TestimonialSection() {
       {/* Empty state */}
       {!loading && testimonials.length === 0 && (
         <div className="py-20 text-center text-[#22222299]">
-          No testimonials available yet.
+          {t("testimonialSection.noTestimonial")}
         </div>
       )}
 
@@ -173,7 +175,7 @@ export default function TestimonialSection() {
           to="/testimonials"
           className="block md:hidden text-center text-sm font-normal text-[#0145A8] underline"
         >
-          View all reviews
+          {t("global.buttonText.1")}
         </Link>
       )}
 
@@ -181,7 +183,7 @@ export default function TestimonialSection() {
           to="/testimonials"
           className="sm:w-auto min-w-55 h-12 px-8 inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-[#0245a8] border-[0.5px] border-[#0245a8] font-medium rounded-lg transform transition-all duration-300 ease-in-out hover:scale-101 cursor-pointer"
         >
-          Leave a review
+          {t("global.buttonText.0")}
         </Link>
 
         <Button
@@ -190,7 +192,7 @@ export default function TestimonialSection() {
           variant="primary"
           size="lg"
         >
-          Schedule a Trial Lesson
+          {t("nav.scheduleTrial")}
         </Button>
       </div>
     </SectionLayout>

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import Heading from "./ui/Heading";
 import Button from "./ui/Button";
 import MomentOne from "../assets/moment-1.png";
@@ -31,13 +32,14 @@ const card = {
 
 export default function MomentSection() {
     const navigateToSection = useSectionNavigation();
+    const { t } = useTranslation();
 
   return (
     <SectionLayout>
       {/* Section heading */}
       <div className="max-w-full md:max-w-160 flex items-start justify-between gap-1 mb-6 md:mb-8">
         <Heading
-          heading="Some of my favourite moments with students"
+          heading={t("moments.heading")}
           subHeading=""
         />
       </div>
@@ -64,8 +66,8 @@ export default function MomentSection() {
           </div>
 
           <div className="pt-6 px-2 pb-2 text-3xl leading-tight text-[#a2a2a2]">
-            <span className="font-semibold text-[#222222]">Some students just send</span> a
-            thank-you email.
+            <span className="font-semibold text-[#222222]">{t("moments.students.some")}</span>
+            {t("moments.students.thank")}
           </div>
         </motion.div>
 
@@ -75,7 +77,7 @@ export default function MomentSection() {
           className="relative flex justify-center items-center overflow-hidden rounded-xl bg-[#F98272] p-10 min-h-65 text-white"
         >
           <div className="max-w-40 text-center text-3xl text-[#FEFEFE] font-bold leading-[1.1]">
-            Mine booked flights
+            {t("moments.mine")}
           </div>
           <div className="absolute inset-0 w-full h-full bg-blend-multiply">
             <img src={bg} className="w-full h-full object-cover opacity-50" />
@@ -112,10 +114,9 @@ export default function MomentSection() {
 
           <p className="relative z-10 max-w-11/12 text-xl leading-8 text-left text-[#625c5c]">
             <span className="text-xl text-[#222222] font-bold">
-              ...I didn't ask anyone to fly in. They just did. If you want to
-              know what kind of
+              {t("moments.answers.i")}
             </span>{" "}
-            tutor I am, that's your answer right there!
+              {t("moments.answers.tutor")}{" "}{t("moments.answers.br")}
           </p>
         </motion.div>
       </motion.div>
@@ -143,8 +144,7 @@ export default function MomentSection() {
 
           <div className="flex items-center justify-between gap-6 p-8 text-[28px] leading-tight text-[#a2a2a2]">
             <div>
-              <span className="font-semibold text-[#222222]">Some students just send</span> a
-              thank-you email.
+              <span className="font-semibold text-[#222222]">{t("moments.students.some")}</span>{t("moments.students.thank")}
             </div>
 
             <Button
@@ -163,7 +163,7 @@ export default function MomentSection() {
         <motion.div variants={card} className="flex gap-4 w-full h-full overflow-hidden">
           <div className="relative w-full flex justify-center items-center rounded-3xl bg-[#F98272] p-8 text-[28px] leading-tight text-white">
             <div className="max-w-50 text-center text-[40px] text-[#FEFEFE] font-bold leading-[1.1]">
-              Mine booked flights
+              {t("moments.mine")}
             </div>
             <div className="absolute inset-0 w-full h-full bg-blend-multiply">
               <img src={bg} className="w-full h-full object-cover opacity-50" />
@@ -202,11 +202,10 @@ export default function MomentSection() {
 
             <p className="max-w-9/12 self-end text-[22px] leading-10 text-right tracking-[0px] align-middle text-[#625c5c]">
               <span className="text-2xl text-[#222222] font-bold">
-                ...I didn't ask anyone to fly in. They just did. If you want to
-                know what kind of
+                {t("moments.answers.i")}
               </span>{" "}
-              tutor I am, that's your <br />
-              answer right there!
+              {t("moments.answers.tutor")}<br />
+              {t("moments.answers.br")}
             </p>
           </div>
         </motion.div>

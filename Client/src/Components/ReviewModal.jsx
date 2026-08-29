@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { X } from "lucide-react";
 import { toast } from "react-toastify";
 import Button from "./ui/Button";
@@ -6,6 +7,7 @@ import Scheldule from "../assets/scheldule.png";
 import { CreateTestimonial } from "../services/api";
 
 export default function ReviewModal({ onClose, onSuccess }) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -38,29 +40,30 @@ export default function ReviewModal({ onClose, onSuccess }) {
     const newErrors = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = "Please enter your name.";
+      newErrors.name = t("testimonialPage.reviewModal.form.0.validationError");
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "Please enter your email.";
+      newErrors.email = t("testimonialPage.reviewModal.form.1.validationError");
     } else if (
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
     ) {
-      newErrors.email = "Please enter a valid email address.";
+      newErrors.email = t("testimonialPage.reviewModal.form.1.validationError2");
     }
 
     if (!formData.profession.trim()) {
-      newErrors.profession = "Please enter your profession.";
+      newErrors.profession = t("testimonialPage.reviewModal.form.2.validationError");
     }
 
     if (!formData.country.trim()) {
-      newErrors.country = "Please enter your country.";
+      newErrors.country = t("testimonialPage.reviewModal.form.3.validationError");
     }
 
     if (!formData.text.trim()) {
-      newErrors.text = "Please enter your review.";
+      newErrors.text = t("testimonialPage.reviewModal.form.4.validationError");
+
     } else if (formData.text.trim().length < 10) {
-      newErrors.text = "Your review should be at least 10 characters.";
+      newErrors.text = t("testimonialPage.reviewModal.form.4.validationError2");
     }
 
     setErrors(newErrors);
@@ -89,7 +92,7 @@ export default function ReviewModal({ onClose, onSuccess }) {
       await CreateTestimonial(newTestimonial);
       onSuccess();
 
-      toast.success("Review submitted successfully!");
+      toast.success(t("testimonialPage.reviewModal.successful"));
 
       setFormData({
         name: "",
@@ -103,11 +106,11 @@ export default function ReviewModal({ onClose, onSuccess }) {
 
       onClose();
     } catch (error) {
-      console.error("Failed to submit testimonial:", error);
+      console.error(t("testimonialPage.reviewModal.error"), error);
 
       toast.error(
         error?.response?.data?.message ||
-          "Failed to submit review. Please try again."
+          t("testimonialPage.reviewModal.error")
       );
     } finally {
       setLoading(false);
@@ -119,7 +122,7 @@ export default function ReviewModal({ onClose, onSuccess }) {
       {/* Name */}
       <div className="flex flex-col gap-1 md:gap-2">
         <label className="text-[12px] font-semibold uppercase text-[#0156D2]">
-          Your name
+          {t("testimonialPage.reviewModal.form.0.label")}
         </label>
 
         <input
@@ -127,7 +130,7 @@ export default function ReviewModal({ onClose, onSuccess }) {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          placeholder="Enter your full name"
+          placeholder={t("testimonialPage.reviewModal.form.0.placeholder")}
           className={`rounded-lg border bg-[#f6f8fb] px-2.5 py-2 md:py-3 text-sm leading-8 text-[#222222] outline-none transition-colors ${
             errors.name
               ? "border-red-400"
@@ -143,7 +146,7 @@ export default function ReviewModal({ onClose, onSuccess }) {
       {/* Email */}
       <div className="flex flex-col gap-1 md:gap-2">
         <label className="text-[12px] font-semibold uppercase text-[#0156D2]">
-          Email
+         {t("testimonialPage.reviewModal.form.1.label")}
         </label>
 
         <input
@@ -151,7 +154,7 @@ export default function ReviewModal({ onClose, onSuccess }) {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          placeholder="Enter your email"
+          placeholder={t("testimonialPage.reviewModal.form.1.placeholder")}
           className={`rounded-lg border bg-[#f6f8fb] px-2.5 py-2 md:py-3 text-sm leading-8 text-[#222222] outline-none transition-colors ${
             errors.email
               ? "border-red-400"
@@ -167,7 +170,7 @@ export default function ReviewModal({ onClose, onSuccess }) {
       {/* Profession */}
       <div className="flex flex-col gap-1 md:gap-2">
         <label className="text-[12px] font-semibold uppercase text-[#0156D2]">
-          Profession
+          {t("testimonialPage.reviewModal.form.2.label")}
         </label>
 
         <input
@@ -175,7 +178,7 @@ export default function ReviewModal({ onClose, onSuccess }) {
           name="profession"
           value={formData.profession}
           onChange={handleChange}
-          placeholder="Enter your profession"
+          placeholder={t("testimonialPage.reviewModal.form.2.placeholder")}
           className={`rounded-lg border bg-[#f6f8fb] px-2.5 py-2 md:py-3 text-sm leading-8 text-[#222222] outline-none transition-colors ${
             errors.profession
               ? "border-red-400"
@@ -191,7 +194,7 @@ export default function ReviewModal({ onClose, onSuccess }) {
       {/* Country */}
       <div className="flex flex-col gap-1 md:gap-2">
         <label className="text-[12px] font-semibold uppercase text-[#0156D2]">
-          Country
+          {t("testimonialPage.reviewModal.form.3.label")}
         </label>
 
         <input
@@ -199,7 +202,7 @@ export default function ReviewModal({ onClose, onSuccess }) {
           name="country"
           value={formData.country}
           onChange={handleChange}
-          placeholder="Enter your country"
+          placeholder={t("testimonialPage.reviewModal.form.3.placeholder")}
           className={`rounded-lg border bg-[#f6f8fb] px-2.5 py-2 md:py-3 text-sm leading-8 text-[#222222] outline-none transition-colors ${
             errors.country
               ? "border-red-400"
@@ -215,14 +218,14 @@ export default function ReviewModal({ onClose, onSuccess }) {
       {/* Message */}
       <div className="flex flex-col gap-1 md:gap-2">
         <label className="text-[12px] font-semibold uppercase text-[#0156D2]">
-          Your Message
+          {t("testimonialPage.reviewModal.form.4.label")}
         </label>
 
         <textarea
           name="text"
           value={formData.text}
           onChange={handleChange}
-          placeholder="Enter your review"
+          placeholder={t("testimonialPage.reviewModal.form.4.placeholder")}
           className={`h-25 md:h-50 resize-none rounded-lg border bg-[#f6f8fb] px-2.5 py-2 md:py-3 text-sm leading-8 text-[#222222] outline-none transition-colors ${
             errors.text
               ? "border-red-400"
@@ -243,7 +246,7 @@ export default function ReviewModal({ onClose, onSuccess }) {
           loading ? "cursor-not-allowed bg-[#0245a8]/50" : "bg-[#0245a8]"
         }`}
       >
-        {loading ? "Sending..." : "Send Review"}
+        {loading ? t("testimonialPage.buttonText.loading") : t("testimonialPage.buttonText.sendReview")}
       </Button>
     </>
   );
@@ -278,7 +281,7 @@ export default function ReviewModal({ onClose, onSuccess }) {
           }}
         >
           <h4 className="relative z-10 mb-3 max-w-60 md:w-full md:mb-6 text-[28px] font-medium leading-tight text-[#F7F4EF]">
-            Send a Review to Tutor Philips
+            {t("testimonialPage.reviewModal.heading")}
           </h4>
 
           <div className="relative z-10 flex flex-col gap-2 md:gap-4 rounded-xl md:rounded-3xl bg-white p-6">
@@ -297,7 +300,7 @@ export default function ReviewModal({ onClose, onSuccess }) {
             }}
           >
             <h4 className="relative z-10 max-w-80 text-[42px] font-medium leading-tight text-[#F7F4EF] md:text-[56px] md:leading-20">
-              Send a Review to Tutor Philips
+              {t("testimonialPage.reviewModal.heading")}
             </h4>
 
             <div className="absolute -right-60 top-100 w-125 md:-right-28 md:top-200 md:max-w-450">

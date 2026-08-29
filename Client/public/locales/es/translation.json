@@ -1,0 +1,260 @@
+{
+  "global": {
+  "buttonText": ["Dejar una reseña", "Ver todas las reseñas"]
+},
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "tutorial": "Tutoriales",
+    "testimonial": "Testimonios",
+    "scheduleTrial": "Programar una clase de prueba"
+  },
+
+  "hero": {
+    "heading": "El profesor de inglés",
+    "headingC": "que aumenta tu confianza",
+    "paragraph": "Te ayudo a mejorar tu fluidez, pronunciación y confianza mediante clases atractivas y personalizadas.",
+    "ratingText": "Más de 500 estudiantes satisfechos"
+  },
+
+  "aboutMe": {
+    "certified": {
+      "by": "Certificado por",
+      "cert": "CELTA · TEFL · TESOL",
+      "vouched": "Recomendado por",
+      "student": "estudiantes."
+    },
+
+    "taught": {
+      "students": "Estudiantes enseñados",
+      "stats": "2000+",
+      "paragraph": "Las clases personalizadas permiten a los estudiantes aprender a su propio ritmo, desarrollar confianza y fluidez, y divertirse en un entorno sin presión."
+    },
+
+    "years": {
+      "year": "Más de 7 años",
+      "paragraph": "de experiencia enseñando inglés"
+    },
+
+    "fluent": "Desde principiantes absolutos hasta personas casi fluidas.",
+
+    "lectured": "He enseñado a estudiantes en:"
+  },
+
+  "tutorial": {
+    "heading": "Enfoque de las clases",
+
+    "subHeading": "Elige tu enfoque",
+
+    "paragraph": "No hay un programa fijo esperando a que lo alcances. Cada programa comienza donde estás y avanza al ritmo que tú estableces, adaptándose a tus objetivos, tu nivel y la vida que ya llevas.",
+
+    "cards": [
+      {
+        "heading": "Inglés conversacional",
+        "paragraph": "Conversaciones reales desde el primer día. Fluidez, vocabulario y naturalidad para la vida cotidiana."
+      },
+
+      {
+        "heading": "Inglés para negocios",
+        "paragraph": "Reuniones, presentaciones, correos electrónicos y negociaciones. Inglés profesional con el oído de un hablante nativo."
+      },
+
+      {
+        "heading": "Preparación para entrevistas",
+        "paragraph": "Entrevistas simuladas, respuestas seguras y el vocabulario específico de tu sector."
+      },
+
+      {
+        "heading": "Preparación para exámenes",
+        "paragraph": "Preparación específica para IELTS, Cambridge, TOEFL y otros exámenes de inglés reconocidos."
+      },
+
+      {
+        "heading": "Pronunciación y fluidez",
+        "paragraph": "Suaviza tu acento, domina los sonidos correctos del inglés y habla con ritmo y claridad."
+      }
+    ]
+  },
+
+  "moments": {
+    "heading": "Algunos de mis momentos favoritos con mis estudiantes",
+
+    "mine": "Los míos reservaron vuelos",
+
+    "students": {
+      "some": "Algunos estudiantes simplemente envían ",
+      "thank": "un correo electrónico de agradecimiento."
+    },
+
+    "answers": {
+      "i": "No le pedí a nadie que viniera en avión. Simplemente lo hicieron. Si quieres saber qué tipo de ",
+      "tutor": "profesor soy, ahí tienes tu",
+      "br": "respuesta."
+    }
+  },
+
+  "testimonialSection": {
+    "heading": "Mis estudiantes dicen;",
+    "subHeading": "Testimonios",
+    "noTestimonial": "Aún no hay testimonios disponibles.",
+    "loading": "Cargando testimonios..."
+  },
+
+  "schedule": {
+    "heading": "¿Listo para volver a divertirte aprendiendo inglés?"
+  },
+
+  "faq": {
+    "heading": "",
+
+    "q&a": [
+      {
+        "question": "¿Necesito hablar ya algo de inglés o puedo empezar desde cero?",
+
+        "answer": "Damos la bienvenida a estudiantes de todos los niveles, tanto si empiezas completamente desde cero como si buscas mejorar tu fluidez. Nuestras clases abarcan desde las bases para principiantes hasta el inglés avanzado, asegurando que recibas apoyo específico adaptado exactamente a tu nivel actual. Esto elimina la intimidación para los principiantes absolutos y, al mismo tiempo, ofrece desafíos exigentes y de alto nivel para los estudiantes avanzados que desean perfeccionar sus habilidades."
+      },
+
+      {
+        "question": "¿Puedo aprender a mi propio ritmo o existe un programa fijo?",
+
+        "answer": "Creemos en una experiencia de aprendizaje completamente flexible, en la que puedes aprender a tu propio ritmo sin que un programa rígido o fijo te limite. Estructuramos tus clases según tu horario personal y tu velocidad de aprendizaje. Esto elimina la presión de los cursos acelerados, permitiéndote dominar los conceptos a fondo, desarrollar una confianza real y alcanzar una fluidez conversacional duradera sin agotarte."
+      },
+
+      {
+        "question": "¿Qué tipo de materiales se utilizarán?",
+
+        "answer": "Diseñamos materiales completamente personalizados basados en tus preferencias y objetivos únicos. Cada estudiante participa en una entrevista y completa un cuestionario detallado, que utilizamos para crear recursos personalizados adaptados específicamente a sus necesidades, nivel actual e intereses personales. Esto garantiza que cada minuto de tus clases sea relevante, interesante y esté directamente alineado con tus objetivos de comunicación en la vida real."
+      },
+
+      {
+        "question": "¿Qué necesito para empezar a aprender?",
+
+        "answer": "Mantenemos los requisitos para comenzar al mínimo. Todo lo que necesitas es una conexión a internet fiable y la determinación de convertirte en un mejor hablante. Esto te permite comenzar tu aprendizaje de idiomas inmediatamente desde la comodidad de tu hogar, concentrándote completamente en tu progreso sin preocuparte por programas complicados o costosos libros de texto."
+      },
+
+      {
+        "question": "¿Cómo me ayudarán realmente estas clases a hablar con confianza en la vida real?",
+
+        "answer": "Nos centramos intensamente en la comunicación práctica y conversacional, en lugar de simplemente memorizar reglas gramaticales de un libro de texto. Diseñamos cada sesión en torno a situaciones reales que te importan, ya sea avanzar en tu carrera, viajar o relacionarte con otras personas con facilidad. Esto reduce la distancia entre la teoría del aula y la aplicación diaria, asegurando que puedas hablar inglés de forma natural y con confianza fuera de clase desde el primer día."
+      }
+    ]
+  },
+
+  "message": {
+    "heading": "Llama. Escribe. Envía un correo. Estoy aquí.",
+
+    "paragraph": "Cuéntame sobre ti. Responderé personalmente a cada mensaje, llamada y correo electrónico en un plazo de 24 horas.",
+
+    "form": [
+      {
+        "label": "Tu nombre",
+        "placeholder": "Introduce tu nombre completo",
+        "validationError": "Por favor, introduce tu nombre."
+      },
+
+      {
+        "label": "Correo electrónico",
+        "placeholder": "Introduce tu correo electrónico",
+        "validationError": "Por favor, introduce tu correo electrónico.",
+        "validationError2": "Por favor, introduce una dirección de correo electrónico válida."
+      },
+
+      {
+        "label": "Tu mensaje",
+        "placeholder": "Cuéntanos brevemente sobre tu mensaje",
+        "validationError": "Por favor, introduce tu mensaje."
+      }
+    ],
+
+    "error": "No se pudo enviar el mensaje",
+
+    "error2": "No se pudo enviar el mensaje. Por favor, inténtalo de nuevo o envíanos un correo electrónico directamente.",
+
+    "success": "¡Mensaje enviado correctamente! Nos pondremos en contacto contigo pronto.",
+
+    "buttonText": ["Enviando...", "Enviar mensaje"]
+  },
+
+  "footer": {
+    "paragraph": "Soy un profesor de inglés como segunda lengua con experiencia y certificaciones TEFL y TEO. Cuento con más de 7 años de experiencia en la enseñanza.",
+
+    "hello": {
+      "text": "¡Di hola!",
+      "links": ["Correo electrónico", "Dejar una reseña"]
+    },
+
+    "explore": {
+      "text": "Explorar",
+      "links": ["Inicio", "Sobre mí", "Tutorial", "Testimonio", "Verificar certificación"]
+    }
+  },
+
+  "testimonialPage": {
+    "hero": {
+      "heading": "Testimonios"
+    },
+
+    "testimonial": {
+      "heading": "Mis estudiantes dicen;",
+      "subHeading": "Testimonios"
+    },
+
+    "buttonText": {
+      "sendReview": "Enviar una reseña",
+      "loading": "Enviando..."
+    },
+
+    "texts": {
+      "laoding": "Cargando testimonios...",
+      "noTestimonial": "Aún no hay testimonios disponibles."
+    },
+
+    "thankYou": {
+      "paragraph": "Gracias por enviar una reseña"
+    },
+
+    "reviewModal": {
+      "heading": "Enviar una reseña a Tutor Philips",
+
+      "form": [
+        {
+          "label": "Tu nombre",
+          "placeholder": "Introduce tu nombre completo",
+          "validationError": "Por favor, introduce tu nombre."
+        },
+
+        {
+          "label": "Correo electrónico",
+          "placeholder": "Introduce tu correo electrónico",
+          "validationError": "Por favor, introduce tu correo electrónico.",
+          "validationError2": "Por favor, introduce una dirección de correo electrónico válida."
+        },
+
+        {
+          "label": "Profesión",
+          "placeholder": "Introduce tu profesión",
+          "validationError": "Por favor, introduce tu profesión."
+        },
+
+        {
+          "label": "País",
+          "placeholder": "Introduce tu país",
+          "validationError": "Por favor, introduce tu país."
+        },
+
+        {
+          "label": "Tu mensaje",
+          "placeholder": "Introduce tu reseña",
+          "validationError": "Por favor, introduce tu reseña.",
+          "validationError2": "Tu reseña debe tener al menos 10 caracteres."
+        }
+      ],
+
+      "successful": "¡Reseña enviada correctamente!",
+
+      "error": "No se pudo enviar el testimonio:",
+
+      "error2": "No se pudo enviar la reseña. Por favor, inténtalo de nuevo."
+    }
+  }
+}
