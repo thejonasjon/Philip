@@ -1,8 +1,0 @@
-As a QA Engineer, I want you to generate a risk base test plan containing shared questions previously, and What you'd test first and why, and what you'd automate vs. test manually.
-Your approach to the tier × transfer type × limit-state coverage matrix (show us how you'd handle the
-combinations without writing 500 cases).
-
-Here is what I want aside mention above
-introduction/purpose, objective, scope, automation, in scope and out of scope, test strategy
-
-Keep is clear and straigt forward
