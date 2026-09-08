@@ -1,4 +1,5 @@
 import MessageImage from "../assets/message.png";
+import ContactImageBG from "../assets/contact_card.svg";
 import { useTranslation } from "react-i18next";
 import Heading from "./ui/Heading";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -46,18 +47,24 @@ export default function MessageSection() {
           <MessageForm />
 
           <div className="relative hidden md:block overflow-hidden bg-[#F7F4EF] rounded-3xl border-[0.2px] border-[#00000033] h-80 md:h-auto">
-            <div className="absolute -left-16 top-6 md:-left-45 md:top-16">
+            <div className="absolute -left-16 top-6 md:-left-45 md:top-16 z-50">
               <img
                 src={MessageImage}
                 className="w-full h-full object-cover -scale-x-100"
               />
-
-              <div className="absolute inset-0 bg-[#978e8e] opacity-100 mix-blend-color" />
+              {/* <div className="absolute inset-0 bg-[#978e8e] opacity-100 mix-blend-color" /> */}
             </div>
 
-            <div className="absolute -left-10 top-20 md:-left-50 md:top-86 w-full h-full rounded-full bg-[#2B59FF]/20 blur-[60px] md:blur-[80px] z-10" />
+            <div className="absolute inset-0 w-full h-full z-10">
+              <img
+                src={ContactImageBG}
+                className="w-full h-full object-cover"
+              />
+            </div>
 
-            <div className="absolute -right-10 bottom-10 md:-right-60 md:bottom-50 w-full h-full rounded-full bg-[#F98272]/80 blur-[100px] md:blur-[280px] z-10" />
+            {/* <div className="absolute -left-10 top-20 md:-left-50 md:top-86 w-full h-full rounded-full bg-[#2B59FF]/20 blur-[60px] md:blur-[80px] z-10" /> */}
+
+            {/* <div className="absolute -right-10 bottom-10 md:-right-60 md:bottom-50 w-full h-full rounded-full bg-[#F98272]/80 blur-[100px] md:blur-[280px] z-10" /> */}
           </div>
         </div>
       </div>

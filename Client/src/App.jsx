@@ -12,6 +12,7 @@ import NewTestimonials from "./pages/testimonials";
 import LoginPage from "./features/Admin/loginPage";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
+import ScrollToTtop from "./lib/ScrollToTop";
 
 
 function AppContent() {
@@ -22,6 +23,7 @@ function AppContent() {
   return (
     <>
       {!hideNavbar && <Navbar />}
+      <ScrollToTtop />
 
       <Routes>
         <Route path="/" element={<Home />} />

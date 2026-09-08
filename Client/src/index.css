@@ -1,9 +1,127 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: 'EuclidFlexTrial', sans-serif;
+  --font-euclid: 'EuclidFlexTrial', sans-serif;
+}
+
 :root {
   --animate-aurora: aurora 60s linear infinite;
   --animate-shimmer: shimmer 2s linear infinite;
   --animate-gradient-shift: gradient-shift 1.5s ease infinite;
+}
+
+/* EuclidFlexTrial — full family */
+@font-face {
+  font-family: 'EuclidFlexTrial';
+  src: url('/fonts/EuclidFlexTrial-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EuclidFlexTrial';
+  src: url('/fonts/EuclidFlexTrial-ThinItalic.woff2') format('woff2');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EuclidFlexTrial';
+  src: url('/fonts/EuclidFlexTrial-Ultralight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EuclidFlexTrial';
+  src: url('/fonts/EuclidFlexTrial-UltralightItalic.woff2') format('woff2');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EuclidFlexTrial';
+  src: url('/fonts/EuclidFlexTrial-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EuclidFlexTrial';
+  src: url('/fonts/EuclidFlexTrial-LightItalic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EuclidFlexTrial';
+  src: url('/fonts/EuclidFlexTrial-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EuclidFlexTrial';
+  src: url('/fonts/EuclidFlexTrial-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EuclidFlexTrial';
+  src: url('/fonts/EuclidFlexTrial-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EuclidFlexTrial';
+  src: url('/fonts/EuclidFlexTrial-MediumItalic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EuclidFlexTrial';
+  src: url('/fonts/EuclidFlexTrial-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EuclidFlexTrial';
+  src: url('/fonts/EuclidFlexTrial-SemiboldItalic.woff2') format('woff2');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EuclidFlexTrial';
+  src: url('/fonts/EuclidFlexTrial-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EuclidFlexTrial';
+  src: url('/fonts/EuclidFlexTrial-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
 }
 
 /* aurora animation */

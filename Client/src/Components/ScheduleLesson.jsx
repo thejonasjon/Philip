@@ -4,6 +4,7 @@ import Scheldule from "../assets/scheldule.png"
 import { SpeechFreeIcons } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import bg from "../assets/overlay.png"
+import BgImage from "../assets/Background.svg";
 import { BOOKING_URL } from "../constants/links";
 
 
@@ -16,9 +17,9 @@ export default function ScheduleLesson() {
     };
   return (
     <section className="w-full ">
-      <div className="relative overflow-hidden w-full min-h-auto md:min-h-118.75 bg-[linear-gradient(65deg,#1C1C7E_5%,#8B8FA8_35%,#DA554880_50%,#DA5548CC_80%)] px-6 md:px-8 py-16 md:py-0">
-        <div className="absolute inset-0 w-full h-full bg-blend-multiply">
-            <img src={bg} className="w-full h-full opacity-20" />
+      <div className="relative overflow-hidden w-full min-h-auto md:min-h-118.75 bg-[linear-gradient(65deg,#1C1C7E_5%,#8B8FA8_35%,#DA554880_50%,#DA5548CC_80%)] px-12 md:px-24 py-16 md:py-0">
+        <div className="absolute inset-0 w-full h-full">
+            <img src={BgImage} className="w-full h-full object-cover" />
         </div>
         <div className="w-full md:min-h-118.75 flex flex-col justify-center gap-8 md:gap-10 relative z-50">
             <h3 className="max-w-full md:max-w-xl text-3xl md:text-5xl text-[#F7F4EF] font-medium leading-tight md:leading-15">
@@ -26,11 +27,11 @@ export default function ScheduleLesson() {
             </h3>
 
             <div className="flex flex-col md:flex-row gap-4">
-            <Button
-            onClick={handleScheduleClick}
-            className="w-full md:w-auto bg-[#F98272] text-base text-[#F7F4EF] py-3 font-medium hover:bg-[#f47766] cursor-pointer">
-               {t("nav.scheduleTrial")}
-            </Button>
+                <Button
+                    onClick={handleScheduleClick}
+                    className="w-full md:w-auto bg-[#F98272] text-base text-[#F7F4EF] py-3 font-medium hover:bg-[#f47766] cursor-pointer">
+                    {t("nav.scheduleTrial")}
+                </Button>
             {/* <Button
                 className="group w-full md:w-auto flex items-center justify-center gap-2 bg-white px-4 shadow-xl hover:bg-[#f0f0f0]"
                 variant="outline"
@@ -59,8 +60,8 @@ export default function ScheduleLesson() {
                             <HugeiconsIcon icon={SpeechFreeIcons} className="text-xs" />
                         </div>
                     </div>
-                    <div className="text-xs">
-                        /'<span className="font-medium">In(g)lIj</span>/
+                    <div className="text-xs font-['Arial',sans-serif]">
+                        /<span className="font-medium">ˈɪŋ(ɡ)lɪʃ</span>/
                     </div>
                 </div>
 
@@ -70,8 +71,8 @@ export default function ScheduleLesson() {
                             <HugeiconsIcon icon={SpeechFreeIcons} className="text-xs" />
                         </div>
                     </div>
-                    <div className="text-xs">
-                        /'<span className="font-medium">In.glif</span>/
+                    <div className="text-xs font-['Arial',sans-serif]">
+                        /<span className="font-medium">'ɪŋ.ɡlɪʃ</span>/
                     </div>
                 </div>
 
@@ -81,8 +82,8 @@ export default function ScheduleLesson() {
                             <HugeiconsIcon icon={SpeechFreeIcons} className="text-xs" />
                         </div>
                     </div>
-                    <div className="text-xs">
-                        /'<span className="font-medium">lektfar</span>/
+                    <div className="text-xs font-['Arial',sans-serif]">
+                        /<span className="font-medium">'lek.tʃər</span>/
                     </div>
                 </div>
             </div>
@@ -96,8 +97,8 @@ export default function ScheduleLesson() {
                         <HugeiconsIcon icon={SpeechFreeIcons} className="text-base" />
                     </div>
                 </div>
-                <div className="text-base">
-                    /'<span className="font-medium">lektfar</span>/
+                <div className="text-base font-['Arial',sans-serif]">
+                    /<span className="font-medium">ˈlek.tʃər</span>/
                 </div>
             </div>
 
@@ -107,8 +108,8 @@ export default function ScheduleLesson() {
                         <HugeiconsIcon icon={SpeechFreeIcons} className="text-base" />
                     </div>
                 </div>
-                <div className="text-base">
-                    /'<span className="font-medium">In(g)lIj</span>/
+                <div className="text-base font-['Arial',sans-serif]">
+                    /<span className="font-medium">ˈɪŋ(ɡ)lɪʃ</span>/
                 </div>
             </div>
 
@@ -118,8 +119,8 @@ export default function ScheduleLesson() {
                         <HugeiconsIcon icon={SpeechFreeIcons} className="text-base" />
                     </div>
                 </div>
-                <div className="text-base">
-                    /'<span className="font-medium">In.glif</span>/
+                <div className="text-base font-['Arial',sans-serif]">
+                    /<span className="font-medium">ˈɪŋ.ɡlɪʃ</span>/
                 </div>
             </div>
         </div>

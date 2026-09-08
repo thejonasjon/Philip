@@ -104,7 +104,7 @@ export default function LanguageSelector({ className = "" }) {
       >
         <span className="text-xl leading-none">{activeLanguage.flag}</span>
 
-        <span className="text-sm font-medium uppercase leading-6.5 text-[#0245a8]">
+        <span className="font-euclid text-sm font-medium uppercase leading-6.5 text-[#0245a8]">
           {activeLanguage.code}
         </span>
 
@@ -139,13 +139,13 @@ export default function LanguageSelector({ className = "" }) {
                   role="option"
                   aria-selected={isActive}
                   onClick={() => handleSelect(language)}
-                  className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors duration-200 ease-in-out hover:bg-[#f6f8fb] cursor-pointer ${
+                  className={`font-euclid flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors duration-200 ease-in-out hover:bg-[#f6f8fb] cursor-pointer ${
                     isActive ? "bg-[#f0f5ff]" : ""
                   }`}
                 >
-                  <span className="text-xl leading-none">{language.flag}</span>
+                  <span className="font-euclidtext-xl leading-none">{language.flag}</span>
 
-                  <span className="flex-1 text-sm font-medium text-[#222222]">
+                  <span className="font-euclid flex-1 text-sm font-medium text-[#222222]">
                     {language.name}
                   </span>
 

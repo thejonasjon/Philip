@@ -29,7 +29,7 @@ export default function Heading({ heading, subHeading }) {
     >
       <motion.h2
         variants={item}
-        className="text-3xl md:text-5xl text-[#222222]"
+        className="font-euclid text-3xl md:text-5xl text-[#222222]"
       >
         {heading}
       </motion.h2>
@@ -37,7 +37,7 @@ export default function Heading({ heading, subHeading }) {
       {subHeading && (
         <motion.h5
           variants={item}
-          className="text-xs font-bold text-[#0156D2]"
+          className="font-euclid text-xs font-bold text-[#0156D2]"
         >
           {subHeading.toUpperCase()}
         </motion.h5>

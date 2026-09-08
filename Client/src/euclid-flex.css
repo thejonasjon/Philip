@@ -1,0 +1,13 @@
+h1 {
+  font-family: 'EuclidFlexTrial', sans-serif;
+  font-weight: 700;
+}
+
+p {
+  font-family: 'EuclidFlexTrial', sans-serif;
+  font-weight: 400;
+}
+
+em {
+  font-style: italic;
+}

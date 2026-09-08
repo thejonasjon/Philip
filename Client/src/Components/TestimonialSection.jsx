@@ -6,10 +6,14 @@ import Heading from "./ui/Heading";
 import SectionLayout from "../layouts/SectionLayout";
 import { FetchTestimonies } from "../services/api";
 import { BOOKING_URL } from "../constants/links";
+import ThankYou from "./ThankYou";
+import ReviewModal from "./ReviewModal";
 
 export default function TestimonialSection() {
   const scrollRef = useRef(null);
-   const { t } = useTranslation();
+  const { t } = useTranslation();
+  const [showReviewModal, setShowReviewModal] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
 
   const [testimonials, setTestimonials] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -108,9 +112,12 @@ export default function TestimonialSection() {
     <SectionLayout>
       {/* Header */}
       <div className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-10">
-        <Heading heading={t("testimonialSection.heading")} subHeading={t("testimonialSection.subHeading")} />
+        <Heading
+          heading={t("testimonialSection.heading")}
+          subHeading={t("testimonialSection.subHeading")}
+        />
 
-          <Link
+        <Link
           to="/testimonials"
           className="hidden md:block max-w-2xl text-base font-normal text-[#0145A8] underline"
         >
@@ -146,7 +153,6 @@ export default function TestimonialSection() {
         </div>
       )}
 
-
       {/* Indicators */}
       {!loading && testimonials.length > 0 && (
         <div className="hidden md:flex justify-center gap-2 mt-4">
@@ -170,21 +176,22 @@ export default function TestimonialSection() {
 
       <div className="w-full flex flex-col md:flex-row justify-center items-center gap-4 mt:10 md:mt-20">
         {/* Mobile View All */}
-      {!loading && testimonials.length > 0 && (
-         <Link
-          to="/testimonials"
-          className="block md:hidden text-center text-sm font-normal text-[#0145A8] underline"
-        >
-          {t("global.buttonText.1")}
-        </Link>
-      )}
+        {!loading && testimonials.length > 0 && (
+          <Link
+            to="/testimonials"
+            className="block md:hidden text-center text-sm font-normal text-[#0145A8] underline"
+          >
+            {t("global.buttonText.1")}
+          </Link>
+        )}
 
-        <Link
-          to="/testimonials"
+        <Button
+          // to="/testimonials"
+          onClick={() => setShowReviewModal(true)}
           className="sm:w-auto min-w-55 h-12 px-8 inline-flex items-center justify-center gap-2 bg-[#0245a8] hover:bg-[#0156d2] text-white border-[0.5px] border-[#0245a8] font-medium rounded-lg transform transition-all duration-300 ease-in-out hover:scale-101 cursor-pointer"
         >
           {t("global.buttonText.0")}
-        </Link>
+        </Button>
 
         <Button
           onClick={handleScheduleClick}
@@ -195,6 +202,18 @@ export default function TestimonialSection() {
           {t("nav.scheduleTrial")}
         </Button>
       </div>
+
+      {showReviewModal && (
+        <ReviewModal
+          onClose={() => setShowReviewModal(false)}
+          onSuccess={() => {
+            setShowReviewModal(false);
+            setShowThankYou(true);
+          }}
+        />
+      )}
+
+      {showThankYou && <ThankYou onClose={() => setShowThankYou(false)} />}
     </SectionLayout>
   );
 }

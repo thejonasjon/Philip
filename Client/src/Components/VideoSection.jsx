@@ -8,6 +8,7 @@ export default function VideoSection() {
   const containerRef = useRef(null);
   const wasPlayingBeforeHiddenRef = useRef(true);
   const isInViewRef = useRef(false);
+  const hasUserUnmutedRef = useRef(false);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -15,6 +16,8 @@ export default function VideoSection() {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+
+    // video.muted = true;
 
     const handlePlay = () => setIsPlaying(true);
     const handlePause = () => setIsPlaying(false);
@@ -36,34 +39,44 @@ export default function VideoSection() {
 
   // Scroll-triggered play/pause
   useEffect(() => {
-    const video = videoRef.current;
-    const container = containerRef.current;
-    if (!video || !container) return;
+  const video = videoRef.current;
+  const container = containerRef.current;
+  if (!video || !container) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        isInViewRef.current = entry.isIntersecting;
+  const attemptPlay = () => {
+    video.play().catch(() => {
+      if (hasUserUnmutedRef.current) return;
 
-        if (prefersReducedMotion) return;
+      video.muted = true;
+      video.play().catch(() => {
+        // Even muted autoplay was blocked (rare) — leave it paused,
+        // the poster is shown and the user can hit play manually.
+      });
+    });
+  };
 
-        if (entry.isIntersecting) {
-          video.play().catch(() => {
-            // Autoplay might be blocked - state stays accurate via listeners above.
-          });
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.5 } // fires once 50% of the video is visible
-    );
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      isInViewRef.current = entry.isIntersecting;
 
-    observer.observe(container);
-    return () => observer.disconnect();
-  }, []);
+      if (prefersReducedMotion) return;
+
+      if (entry.isIntersecting) {
+        attemptPlay();
+      } else {
+        video.pause();
+      }
+    },
+    { threshold: 0.5 }
+  );
+
+  observer.observe(container);
+  return () => observer.disconnect();
+}, []);
 
   // Tab visibility: pause when tab is hidden, resume only if in view when tab returns
   useEffect(() => {
@@ -83,6 +96,42 @@ export default function VideoSection() {
     return () =>
       document.removeEventListener("visibilitychange", handleVisibilityChange);
   }, []);
+
+ useEffect(() => {
+  const video = videoRef.current;
+  if (!video) return;
+
+  let hasUnmuted = false;
+  const events = ["click", "touchstart", "keydown"];
+
+  const unmuteOnFirstInteraction = () => {
+    if (hasUnmuted) return;
+    hasUnmuted = true;
+    hasUserUnmutedRef.current = true;
+
+    video.muted = false;
+
+    if (video.paused && isInViewRef.current) {
+      video.play().catch(() => {});
+    }
+
+    events.forEach((evt) =>
+      document.removeEventListener(evt, unmuteOnFirstInteraction)
+    );
+  };
+
+  events.forEach((evt) =>
+    document.addEventListener(evt, unmuteOnFirstInteraction, {
+      passive: true,
+    })
+  );
+
+  return () => {
+    events.forEach((evt) =>
+      document.removeEventListener(evt, unmuteOnFirstInteraction)
+    );
+  };
+}, []);
 
   const togglePlay = () => {
     const video = videoRef.current;
@@ -104,8 +153,8 @@ export default function VideoSection() {
 
   return (
     <section ref={containerRef} className="w-full mx-auto mt-6 md:mt-10">
-      <div className="relative w-full h-[85vh] aspect-video overflow-hidden rounded-xl md:rounded-none bg-black">
-       <div className="relative h-full w-full overflow-hidden">
+      <div className="relative w-full h-[85vh] aspect-video overflow-hidden rounded-2xl md:rounded-3xl bg-black">
+        <div className="relative h-full w-full overflow-hidden">
           {/* Poster */}
           <img
             src={posterimage}
@@ -117,9 +166,11 @@ export default function VideoSection() {
           <video
             ref={videoRef}
             src={samuraiVideo}
+            poster={posterimage}
             loop
             playsInline
-            className="absolute inset-0 h-full w-full object-cover"
+            preload="metadata"
+            className="absolute inset-0 h-full w-full object-cover object-[20%_10%]"
           />
         </div>
 
@@ -130,7 +181,7 @@ export default function VideoSection() {
             type="button"
             onClick={togglePlay}
             aria-label={isPlaying ? "Pause video" : "Play video"}
-            className="flex h-11 w-11 md:h-14 md:w-14 cursor-pointer items-center justify-center rounded-full bg-white/25 backdrop-blur-md border border-white/30 text-white transition-all duration-300 hover:scale-105 hover:bg-white/35"
+            className="flex h-10 w-10 md:h-11 md:w-11 cursor-pointer items-center justify-center rounded-full bg-white/25 backdrop-blur-md border border-white/30 text-white transition-all duration-300 hover:scale-105 hover:bg-white/35"
           >
             {isPlaying ? (
               <Pause size={18} fill="white" className="md:hidden" />
@@ -148,7 +199,7 @@ export default function VideoSection() {
             type="button"
             onClick={toggleMute}
             aria-label={isMuted ? "Unmute video" : "Mute video"}
-            className="flex h-11 w-11 md:h-14 md:w-14 cursor-pointer items-center justify-center rounded-full bg-white/25 backdrop-blur-md border border-white/30 text-white transition-all duration-300 hover:scale-105 hover:bg-white/35"
+            className="flex h-10 w-10 md:h-11 md:w-11 cursor-pointer items-center justify-center rounded-full bg-white/25 backdrop-blur-md border border-white/30 text-white transition-all duration-300 hover:scale-105 hover:bg-white/35"
           >
             {isMuted ? (
               <VolumeX size={18} className="md:hidden" />

@@ -37,7 +37,7 @@ export default function Navbar() {
         {/* Logo */}
         <div
           onClick={() => handleNavigation("/")}
-          className="cursor-pointer text-lg font-semibold text-[#222222E5]"
+          className="font-euclid cursor-pointer text-lg font-semibold text-[#222222E5]"
         >
           Tutor Philips
         </div>
@@ -61,7 +61,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center justify-center gap-3">
 
           {/* <Button
-            className="group hover:bg-[#f0f0f0]"
+            className="font-euclid group hover:bg-[#f0f0f0]"
             variant="outline"
             size="lg"
           >
@@ -73,7 +73,7 @@ export default function Navbar() {
 
           <Button
             onClick={handleScheduleClick}
-            className="bg-[#0245a8] hover:bg-[#0156d2]"
+            className="font-euclid bg-[#0245a8] hover:bg-[#0156d2]"
             variant="primary"
             size="lg"
           >
@@ -88,7 +88,7 @@ export default function Navbar() {
         <button
           onClick={() => setMenuOpen((open) => !open)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
-          className="flex md:hidden items-center justify-center text-[#222222E5] cursor-pointer"
+          className="font-euclid flex md:hidden items-center justify-center text-[#222222E5] cursor-pointer"
         >
           {menuOpen ? <X size={26} /> : <HugeiconsIcon icon={Menu02Icon} size={26} className="text-[#6b6b6b]" />}
         </button>
@@ -118,7 +118,7 @@ export default function Navbar() {
           <div className="flex flex-col gap-3">
             <Button
              onClick={handleScheduleClick}
-              className="w-full bg-[#0245a8] hover:bg-[#0156d2]"
+              className="font-euclid w-full bg-[#0245a8] hover:bg-[#0156d2]"
               variant="primary"
               size="lg"
             >
@@ -129,7 +129,7 @@ export default function Navbar() {
                 className="group w-full flex items-center justify-center gap-2 bg-white px-4 shadow-2xl hover:bg-gray-100"
                 variant="outline"
                 size="lg">
-                    <span className="text-base text-[#0245a8] font-medium">
+                    <span className="font-euclid text-base text-[#0245a8] font-medium">
                         Verify Certification
                     </span>
                 <HugeiconsIcon icon={Certificate01Icon} className="text-2xl text-[#0245a8] transition-transform duration-300 ease-in-out group-hover:scale-110" />
@@ -137,13 +137,13 @@ export default function Navbar() {
 
             <div className="flex justify-center items-center gap-3">
               {/* <Button
-                className="group flex-1 hover:bg-[#f0f0f0]"
+                className="font-euclid group flex-1 hover:bg-[#f0f0f0]"
                 variant="outline"
                 size="lg"
               >
                 <HugeiconsIcon
                   icon={Certificate01Icon}
-                  className="text-2xl text-[#0245a8] transition-transform duration-300 ease-in-out group-hover:scale-110"
+                  className="font-euclid text-2xl text-[#0245a8] transition-transform duration-300 ease-in-out group-hover:scale-110"
                 />
               </Button> */}
 

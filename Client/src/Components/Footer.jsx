@@ -5,10 +5,15 @@ import { Link } from "react-router-dom";
 import tutorPhilps from "../assets/tutorPhilps.png";
 import LanguageSelector from "./ui/LanguageSelector";
 import useSectionNavigation from "../hooks/useSectionNavigation";
+// import ThankYou from "./ThankYou";
+// import ReviewModal from "./ReviewModal";
+import { useState } from "react";
 
 export default function Footer() {
   const navigateToSection = useSectionNavigation();
   const { t } = useTranslation();
+  // const [showReviewModal, setShowReviewModal] = useState(false);
+  // const [showThankYou, setShowThankYou] = useState(false);
 
   const socialLinks = [
     { name: "X", link: "https://x.com/osephilips", external: true },
@@ -95,6 +100,18 @@ export default function Footer() {
       <div className="w-full">
         <img src={tutorPhilps} className="w-full object-center" />
       </div>
+
+      {/* {showReviewModal && (
+              <ReviewModal
+                onClose={() => setShowReviewModal(false)}
+                onSuccess={() => {
+                  setShowReviewModal(false);
+                  setShowThankYou(true);
+                }}
+              />
+            )}
+
+            {showThankYou && <ThankYou onClose={() => setShowThankYou(false)} />} */}
     </footer>
   );
 }

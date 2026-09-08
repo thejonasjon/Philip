@@ -19,7 +19,7 @@ export default function NavLink({ to, linkText, onClick }) {
       }`}
     >
       <span
-        className={`relative transition-all duration-300 ease-in-out group-hover:font-bold ${
+        className={`font-euclid relative transition-all duration-300 ease-in-out group-hover:font-bold ${
           isActive ? "font-bold" : ""
         }`}
       >

@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Button from "./ui/Button";
-import ImagePlaceHolder1 from "../assets/Avatar1.png";
-import ImagePlaceHolder2 from "../assets/Avatar2.png";
-import ImagePlaceHolder3 from "../assets/Avatar3.png";
-import ImagePlaceHolder4 from "../assets/Avatar4.png";
+import ImagePlaceHolder1 from "../assets/Avatar1.svg";
+import ImagePlaceHolder2 from "../assets/Avatar2.svg";
+// import ImagePlaceHolder3 from "../assets/Avatar3.png";
+// import ImagePlaceHolder4 from "../assets/Avatar4.png";
 import { Star } from "lucide-react";
-import heroPattern from "../assets/overlay.png";
-import headShot from "../assets/headshot.jpg";
+// import heroPattern from "../assets/overlay.png";
+import BgImage from "../assets/Background.svg";
+import headShot from "../assets/headshot.svg";
 import { BOOKING_URL } from "../constants/links";
 
 export default function Hero() {
@@ -33,24 +34,25 @@ export default function Hero() {
     {
       imageName: ImagePlaceHolder2,
     },
-    {
-      imageName: ImagePlaceHolder3,
-    },
-    {
-      imageName: ImagePlaceHolder4,
-    },
+    // {
+    //   imageName: ImagePlaceHolder3,
+    // },
+    // {
+    //   imageName: ImagePlaceHolder4,
+    // },
   ];
 
   return (
     <div
-      className="relative w-11/12 mx-auto h-auto md:h-[83.333vh] overflow-hidden rounded-xl md:rounded-3xl text-center text-white mt-20 md:mt-30"
-      style={{
-        background:
-          "linear-gradient(78.97deg, rgba(28,28,126,0.8) 9.02%, rgba(139,143,168,0.8) 43.05%, rgba(218,85,72,0.4) 63.19%, rgba(218,85,72,0.64) 102.35%)",
-      }}
+      className="relative w-11/12 mx-auto h-[80.333vh] md:h-[76.333vh] overflow-hidden rounded-xl md:rounded-3xl text-center text-white mt-20 md:mt-30"
+      // style={{
+      //   background:
+      //     "linear-gradient(78.97deg, rgba(28,28,126,0.8) 9.02%, rgba(139,143,168,0.8) 43.05%, rgba(218,85,72,0.4) 63.19%, rgba(218,85,72,0.64) 102.35%)",
+      // }}
     >
+
       {/* ... liquid glass background, unchanged ... */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      {/* <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div
           className="absolute -left-[15%] -top-[20%] h-230 w-230 rounded-full bg-[#1C1C7E]/40 blur-[100px]"
           animate={{
@@ -110,12 +112,18 @@ export default function Hero() {
           transition={{ duration: 17, repeat: Infinity, ease: "easeInOut" }}
         />
         <div className="absolute inset-0 bg-white/2.5 backdrop-blur-[1px]" />
-      </div>
+      </div> */}
 
-      <div className="w-full h-full absolute inset-0">
+      {/* <div className="w-full h-full absolute inset-0">
         <img
           src={heroPattern}
           className="w-full h-full object-cover opacity-25"
+        />
+      </div> */}
+      <div className="w-full h-full absolute inset-0">
+        <img
+          src={BgImage}
+          className="w-full h-full object-cover"
         />
       </div>
 
@@ -125,18 +133,25 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           custom={0.2}
-          className="max-w-xs md:max-w-4xl text-[32px] md:text-[56px] font-medium leading-[1.15] md:leading-[1.1] text-[#F7F4EF]"
+          className="font-euclid font-medium max-w-xs md:max-w-4xl text-[32px] md:text-[56px] leading-[1.15] md:leading-[1.1] text-[#F7F4EF]"
         >
           {t("hero.heading")}{" "}
-          <span className="relative inline-block h-13 w-22 md:h-23.5 md:w-40 align-middle">
-            <span className="absolute inset-0 h-13 w-22 md:h-23.5 md:w-40 rounded-lg md:rounded-xl bg-[#F98272] opacity-50 rotate-8" />
-            <span className="absolute inset-0 h-13 w-22 md:h-23.5 md:w-40 overflow-hidden rounded-lg md:rounded-xl -rotate-12">
+          <span className="relative inline-block h-12 w-15 md:h-22 md:w-27 align-middle">
+            {/* <span className="absolute inset-0 h-13 w-22 md:h-23.5 md:w-40 rounded-lg md:rounded-xl bg-[#F98272] opacity-50 rotate-8" /> */}
+            <span className="absolute inset-0 z-100">
               <img
                 src={headShot}
                 alt="English tutor"
-                className="h-full w-full scale-[2.2] object-cover object-[50%_-13%]"
+                className="h-full w-full object-cover"
               />
             </span>
+            {/* <span className="absolute w-24 h-full">
+              <img
+                src={headShot}
+                alt="English tutor"
+                className="h-full w-full object-cover"
+              />
+            </span> */}
           </span>{" "}
           {t("hero.headingC")}
         </motion.h1>
@@ -146,7 +161,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           custom={0.6}
-          className="mt-3 max-w-xs md:max-w-2xl text-base md:text-[22px] leading-relaxed text-[#F7F4EFB2]"
+          className="font-euclid font-regular mt-3 max-w-xs md:max-w-2xl text-base md:text-[22px] leading-relaxed text-[#F7F4EFB2]"
         >
           {t("hero.paragraph")}
         </motion.p>
@@ -156,7 +171,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           custom={0.95}
-          className="mt-8 flex items-center justify-center gap-4"
+          className="font-euclid mt-8 flex items-center justify-center gap-4"
         >
           <Button
             onClick={handleScheduleClick}
@@ -184,7 +199,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           custom={1.25}
-          className="hidden md:flex mt-8 items-center justify-center gap-4"
+          className="font-euclid hidden md:flex mt-8 items-center justify-center gap-4"
         >
           <div className="flex items-center">
             {profileRatings.map((profile, i) => (
@@ -234,10 +249,10 @@ export default function Hero() {
                 ))}
               </div>
 
-              <span className="text-[11px] font-medium">4.5/5</span>
+              <span className="font-euclid text-[11px] font-medium">4.5/5</span>
             </div>
 
-            <p className="mt-1 text-[10px]">{t("hero.ratingText")}</p>
+            <p className="mt-1 font-euclid text-[10px]">{t("hero.ratingText")}</p>
           </div>
         </motion.div>
       </div>

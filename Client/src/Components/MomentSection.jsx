@@ -3,8 +3,10 @@ import { useTranslation } from "react-i18next";
 import Heading from "./ui/Heading";
 import Button from "./ui/Button";
 import MomentOne from "../assets/moment-1.png";
-import MomentTwo from "../assets/moment-2.png";
+// import MomentTwo from "../assets/moment-2.png";
+import MomentTwo from "../assets/tutor_and_student.svg";
 import MomentThree from "../assets/moment-3.png";
+import momentThreeBg from "../assets/moment4.svg";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 import bg from "../assets/overlay.png";
@@ -76,13 +78,13 @@ export default function MomentSection() {
           variants={card}
           className="relative flex justify-center items-center overflow-hidden rounded-xl bg-[#F98272] p-10 min-h-65 text-white"
         >
-          <div className="max-w-40 text-center text-3xl text-[#FEFEFE] font-bold leading-[1.1]">
+          <div className="max-w-40 relative z-100 text-center text-3xl text-[#FEFEFE] font-bold leading-[1.1]">
             {t("moments.mine")}
           </div>
-          <div className="absolute inset-0 w-full h-full bg-blend-multiply">
+          <div className="absolute inset-0 z-30 w-full h-full bg-blend-multiply">
             <img src={bg} className="w-full h-full object-cover opacity-50" />
           </div>
-          <div className="absolute inset-0 w-full h-full bg-blend-multiply">
+          <div className="absolute z-40 inset-0 w-full h-full bg-blend-multiply">
             <img src={texture} className="w-full h-full object-cover" />
           </div>
         </motion.div>
@@ -92,29 +94,36 @@ export default function MomentSection() {
           <img
             src={MomentTwo}
             alt="Student testimonial"
-            className="w-full h-64 object-cover rounded-xl rotate-90 scale-140"
+            className="w-full h-full object-cover rounded-xl"
           />
         </motion.div>
 
         {/* Card 3 */}
         <motion.div
           variants={card}
-          className="relative overflow-hidden rounded-xl border-[0.2px] border-[#22222220] bg-[linear-gradient(to_right,#bbc4e8,#eee1de)] p-6 min-h-90"
+          className="relative overflow-hidden flex justify-between flex-col rounded-xl border-[0.2px] border-[#22222220] bg-[linear-gradient(to_right,#bbc4e8,#eee1de)] p-6 min-h-[90.33vh]"
         >
-          <div className="absolute -right-38 top-10">
+          <div className="absolute -right-18 top-96 z-50">
             <img
               src={MomentThree}
               alt="Student testimonial"
-              className="object-cover scale-70"
+              className="object-cover scale-140"
             />
-            <div className="w-full h-full absolute top-0 bg-[#978e8e] opacity-100 mix-blend-color blur-2xl" />
+            {/* <div className="w-full h-full absolute top-0 bg-[#978e8e] opacity-100 mix-blend-color blur-2xl" /> */}
           </div>
-          <div className="absolute -left-20 bottom-0 w-full h-full bg-[#2B59FF]/20 blur-[80px] z-10" />
-          <div className="absolute w-40 right-4 h-40 bg-[#F98272] blur-[120px] z-10" />
+          <div className="absolute inset-0 w-full h-full z-10">
+              <img
+                src={momentThreeBg}
+                alt="moment four background"
+                className="w-full h-full object-cover"
+              />
+          </div>
+          {/* <div className="absolute -left-20 bottom-0 w-full h-full bg-[#2B59FF]/20 blur-[80px] z-10" />
+          <div className="absolute w-40 right-4 h-40 bg-[#F98272] blur-[120px] z-10" /> */}
 
-          <p className="relative z-10 max-w-11/12 text-xl leading-8 text-left text-[#625c5c]">
+          <p className="relative z-100 max-w-7/12 text-xl leading-12 text-left text-[#625c5c] mt-5">
             <span className="text-xl text-[#222222] font-bold">
-              {t("moments.answers.i")}
+              ...{t("moments.answers.i")}
             </span>{" "}
               {t("moments.answers.tutor")}{" "}{t("moments.answers.br")}
           </p>
@@ -162,7 +171,7 @@ export default function MomentSection() {
         {/* Card 2 - Top Middle */}
         <motion.div variants={card} className="flex gap-4 w-full h-full overflow-hidden">
           <div className="relative w-full flex justify-center items-center rounded-3xl bg-[#F98272] p-8 text-[28px] leading-tight text-white">
-            <div className="max-w-50 text-center text-[40px] text-[#FEFEFE] font-bold leading-[1.1]">
+            <div className="max-w-50 relative z-50 text-center text-[40px] text-[#FEFEFE] font-bold leading-[1.1]">
               {t("moments.mine")}
             </div>
             <div className="absolute inset-0 w-full h-full bg-blend-multiply">
@@ -177,7 +186,7 @@ export default function MomentSection() {
             <img
               src={MomentTwo}
               alt="Student testimonial"
-              className="h-full w-4000 object-cover rounded-3xl rotate-90 scale-140"
+              className="h-full w-full object-cover rounded-3xl"
             />
           </div>
         </motion.div>
@@ -187,22 +196,33 @@ export default function MomentSection() {
           variants={card}
           className="relative flex w-full items-end overflow-hidden rounded-3xl border-[0.2px] border-[#22222220] bg-[linear-gradient(to_right,#bbc4e8,#eee1de)] p-8"
         >
-          <div className="absolute -left-55 -bottom-100">
-            <img
-              src={MomentThree}
-              alt="Student testimonial"
-              className="max-w-3/6 object-cover"
-            />
-            <div className="w-full h-full absolute top-0 bg-[#978e8e] opacity-100 mix-blend-color blur-2xl" />
+
+          <div className="absolute -left-55 -bottom-100 z-20">
+            <div className="relative w-fit h-fit">
+              <img
+                src={MomentThree}
+                alt="Student testimonial"
+                className="max-w-3/6 object-cover"
+              />
+
+              {/* <div className="absolute inset-0 bg-[#978e8e] opacity-100 mix-blend-color blur-2xl pointer-events-none" /> */}
+            </div>
           </div>
-          <div className="absolute -left-120 -bottom-20 w-full h-full bg-[#2B59FF]/20 blur-[80px] z-10" />
-          <div className="absolute w-55.5 right-20 h-46.5 bg-[#F98272] blur-[180px] z-10" />
-          <div className="flex items-end z-10">
+          <div className="absolute inset-0 w-full h-full z-10">
+              <img
+                src={momentThreeBg}
+                alt="moment four background"
+                className="w-full h-full object-cover"
+              />
+          </div>
+          {/* <div className="absolute -left-120 -bottom-20 w-full h-full bg-[#2B59FF]/20 blur-[80px] z-15" />
+          <div className="absolute w-55.5 right-20 h-46.5 bg-[#F98272] blur-[180px] z-15" /> */}
+          <div className="relative flex items-end z-100">
             <div className="w-1/2"></div>
 
-            <p className="max-w-9/12 self-end text-[22px] leading-10 text-right tracking-[0px] align-middle text-[#625c5c]">
+            <p className=" max-w-9/12 self-end text-[22px] leading-10 text-right tracking-[0px] align-middle text-[#625c5c]">
               <span className="text-2xl text-[#222222] font-bold">
-                {t("moments.answers.i")}
+                ...{t("moments.answers.i")}
               </span>{" "}
               {t("moments.answers.tutor")}<br />
               {t("moments.answers.br")}

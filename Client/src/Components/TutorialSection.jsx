@@ -96,6 +96,10 @@ export default function TutorialSection() {
 function TutorialCard({ tutorial, index }) {
   const isBlue = index % 2 !== 0;
 
+  const handleScheduleClick = () => {
+          window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
+    };
+
   return (
     <motion.div
       initial={{
@@ -122,10 +126,11 @@ function TutorialCard({ tutorial, index }) {
           ease: "easeOut",
         },
       }}
+      onClick={handleScheduleClick}
       className={`
         col-span-1
         ${index >= 3 ? "md:col-span-3" : "md:col-span-2"}
-        min-h-60 md:min-h-100
+        min-h-92 md:min-h-100
         flex flex-col justify-between
         p-8 md:p-12
         cursor-pointer

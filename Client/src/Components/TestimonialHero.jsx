@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Star } from "lucide-react";
-import ImagePlaceHolder1 from "../assets/Avatar1.png";
-import ImagePlaceHolder2 from "../assets/Avatar2.png";
-import ImagePlaceHolder3 from "../assets/Avatar3.png";
-import ImagePlaceHolder4 from "../assets/Avatar4.png";
+import ImagePlaceHolder1 from "../assets/Avatar1.svg";
+import ImagePlaceHolder2 from "../assets/Avatar2.svg";
+// import ImagePlaceHolder3 from "../assets/Avatar3.png";
+// import ImagePlaceHolder4 from "../assets/Avatar4.png";
 
 export default function TestimonialHero() {
   const { t } = useTranslation();
@@ -15,12 +15,12 @@ export default function TestimonialHero() {
     {
       imageName: ImagePlaceHolder2,
     },
-    {
-      imageName: ImagePlaceHolder3,
-    },
-    {
-      imageName: ImagePlaceHolder4,
-    },
+    // {
+    //   imageName: ImagePlaceHolder3,
+    // },
+    // {
+    //   imageName: ImagePlaceHolder4,
+    // },
   ];
 
   const reveal = {

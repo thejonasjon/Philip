@@ -1,0 +1,242 @@
+You are senior QA Enginer, take below feature specification and my QA question of the requirement.
+
+- Improve my question to comunicate clearly
+- Identify missing information to a more clearer specification
+- No assumption and makeup word
+- Put this into words document
+
+First Draft:
+
+Feature spec: Digital Wallet Transfer Limits & Account Tiers
+A mobile wallet app lets users send money to other wallet users and to bank accounts. Every account belongs
+to one of three tiers, based on the level of identity verification (KYC) completed.
+1. Tier 1 accounts may send up to 20,000 per transaction and 50,000 per day. Tier 2: 200,000 per transaction,
+500,000 per day. Tier 3: no per-transaction limit, 5,000,000 per day.
+2. The daily limit resets at midnight.
+3. Pending transfers count toward the daily limit. If a transfer fails or is reversed, the amount is returned to
+the user's available daily limit.
+4. Transfers to a user's own linked bank accounts are exempt from all limits.
+5. Users can schedule transfers for a future date; scheduled transfers execute at 8:00 AM on the scheduled
+day.
+6. When a user completes the next KYC level, the tier upgrade takes effect immediately.
+7. If a transfer would exceed the remaining daily limit, it is rejected with a clear error message showing the
+remaining limit.
+
+
+
+QA Analysis
+
+Feature: Digital Wallet, Transfer, Account Tiers
+
+1 - Account Tiers:
+Tier 1:
+-- The statement say "Tier 1 accounts may send up to 20,000 per transaction and 50,000 per day."
+Question: Does this mean there is exceptions to this criteria using may?
+
+Tier 2:
+-- 200,000 per transaction, 500,000 per day.
+
+Tier 2:
+-- no per-transaction limit, 5,000,000 per day.
+Question: "no per-transaction limit": Does this mean that on single transaction user can exceed per pay limit of 5,000,000
+
+- The daily limit resets at midnight.
+Question: What's the exact time for this reset and what timezone
+Question:
+
+3. Pending transfers count toward the daily limit. If a transfer fails or is reversed, the amount is returned to
+the user's available daily limit.
+Question: On what instance will transfer be marked as fail or reversed and successful?
+Question: How long does it take for transfer to fail or reversed?
+Question: Is there a timeline to how long a transfer can be on pending state?
+Question: What happen when pending transfer failed before and after daily reset and what happen for successful, does this affect the privious limit or current
+
+4. Transfers to a user's own linked bank accounts are exempt from all limits.
+Question: How will owner account be verified? Is it possible to have another user eg family memeber user relative account (Third party)?
+
+5. Users can schedule transfers for a future date; scheduled transfers execute at 8:00 AM on the scheduled
+day.
+Question: "Scheduled transfers execute at 8:00 AM on the scheduled
+day." We only have one 8:00 AM in one day what happen when user schedule transfer after 8:00 AM? Would that not be schedule the next day?
+
+6. When a user completes the next KYC level, the tier upgrade takes effect immediately.
+Question: What are the required information/details for user each tier to be mark as completed
+Question: At what level or registration stage can we say user can proceed to start KYC verififcation, just by signup or after email verification etc?
+Question: The KYC verifications, is it will third party or internal verification?
+
+7. If a transfer would exceed the remaining daily limit, it is rejected with a clear error message showing the
+remaining limit.
+Question: What form of message, like a pop or alert?
+Question: What layer is this verification happening, on the FE or BE layer?
+Question: Where does the feedback message come from, is it going to be handle by FE or BE return message?
+
+General:
+- Is this a both android and ios mobile app?
+- The transfer within wallet and bank is within Nigeria or cross border ?
+- Is there limit to amount user can receive?
+- Is there any transfer fee or hidden charges?
+- What happen when duplicate transaction is attempted?
+- What happen when provider timeout or transaction timeout?
+
+
+Improved Draft
+
+## Feature: Digital Wallet Transfer Limits & Account Tiers
+
+---
+
+## 1. Feature Overview and Scope
+
+Area                               | Details                                                                                                  |
+
+Feature Name                       | Digital Wallet Transfer Limits & Account Tiers                                                           |
+Primary Function                   | Control wallet transfer limits based on the user's KYC account tier                                      |
+Supported Transfer Types           | Wallet-to-wallet transfers and wallet-to-bank transfers                                                  |
+Account Tiers                      | Tier 1, Tier 2, and Tier 3                                                                               |
+Limits Controlled                  | Per-transaction limit and daily transfer limit                                                           |
+Daily Limit Behaviour              | Resets at midnight                                                                                       |
+Pending Transfer Behaviour         | Pending transfers count towards the daily transfer limit                                                 |
+Failed/Reversed Transfer Behaviour | Transfer amount is returned to the user's available daily limit                                          |
+Exemption                          | Transfers to the user's own linked bank accounts are exempt from transfer limits                         |
+Scheduled Transfers                | Can be scheduled for a future date and execute at 8:00 AM on the scheduled day                           |
+KYC Upgrade Behaviour              | Tier upgrade takes effect immediately after completion of the next KYC level                             |
+Limit Validation                   | Transfers exceeding the remaining daily limit must be rejected with an error showing the remaining limit |
+
+
+# 2. Functional Requirements and Testability Analysis
+
+## 2.1 Account Tiers and Transfer Limits
+
+Questions:
+- The word **"may"** could imply that exceptions are possible. Does Tier 1 always have a maximum limit of 20,000 per transaction and 50,000 per day, or are there circumstances where these limits can be exceeded?                                                    |
+- No specific clarification identified beyond the general definition of what counts towards the daily limit.                                                                                                                                                           |
+- Does **"no per-transaction limit"** mean a user can submit a single transfer of up to 5,000,000, provided they have not used any of their daily limit? Can a single transaction exceed 5,000,000, or must every transaction remain within the remaining daily limit? |
+- Are the limits applied equally to both wallet transfers and bank transfers?                                                                                                                                                                                          |
+
+---
+
+## 2.2 Daily Limit Reset
+
+Questions:
+- What is the exact timezone used to determine midnight?
+- Is the reset based on a single system timezone or the user's local timezone?
+- How should a transfer that is initiated before midnight but remains pending after midnight be handled for daily limit calculation?
+
+---
+
+## 2.3 Pending, Failed, Reversed and Successful Transfers
+
+Questions
+- At what exact transfer status does the amount begin counting towards the daily limit?
+- What conditions or events cause a transfer to be marked as failed?
+- What conditions or events cause a transfer to be reversed?
+- What are the defined transfer statuses and allowed status transitions?
+- Is there a maximum duration for which a transfer can remain in the pending state?
+- How quickly should the available daily limit be updated after a transfer fails or is reversed?
+- If a transfer is pending before midnight and fails after the daily limit resets, which day's available limit is restored?
+- If a transfer is pending before midnight and becomes successful after midnight, which day's daily limit should the transfer count against?
+
+---
+
+## 2.4 Own Linked Bank Account Exemption
+
+Questions:
+- How is ownership of a linked bank account verified?
+- Can a user link a bank account that belongs to another person?
+- If a user links a family member's or relative's bank account, should the transfer be treated as exempt or as a third-party transfer?
+- Must the bank account already be linked before the transfer is initiated for the exemption to apply?
+
+---
+
+## 2.5 Scheduled Transfers
+
+Questions:
+- What dates are considered valid future dates?
+- What timezone is used for 8:00 AM?
+- If a user schedules a transfer after 8:00 AM for the current day, is the current day still selectable? If so, when should the transfer execute?
+- At what point are transfer limits validated: when the transfer is scheduled, when it executes, or both?
+- What happens if the user does not have sufficient wallet balance when the scheduled transfer is due to execute?
+- What happens if the scheduled transfer would exceed the user's remaining daily limit at 8:00 AM?
+- What status should a scheduled transfer have if it cannot execute successfully?
+
+---
+
+## 2.6 KYC Tier Upgrade
+
+Question
+- What event defines KYC completion?
+- If a user has already consumed part of the previous tier's daily limit, how is the remaining limit calculated immediately after the upgrade?
+- What identity verification information or requirements are needed for Tier 1, Tier 2 and Tier 3?
+- At what stage can a user begin KYC verification? Is account registration sufficient, or must the user complete other verification steps first?
+- Is KYC verification performed internally or through a third-party verification provider?
+- What does "immediately" mean in terms of expected system behaviour?
+
+---
+
+## 2.7 Transfer Limit Error Handling
+
+Questions
+- Should the validation apply only when the amount exceeds the remaining daily limit, or also when other limits are exceeded?
+- What is the expected error message content or format?
+- Where should the error message be displayed in the application?
+- Is the transfer limit validation enforced by the backend, frontend, or both?
+- Should the backend return the error message, or should the frontend generate the message based on validation data returned by the backend?
+
+---
+
+# 3. Additional Functional Clarifications Required-
+
+Questions:
+- Is this feature required for both Android and iOS applications?
+- Are wallet and bank transfers limited to Nigeria, or are cross-border transfers supported?
+- Is there a limit on the amount a user can receive through wallet transfers?
+- Are there any transfer fees or charges associated with wallet or bank transfers?
+- If fees exist, do fees count toward the per-transaction or daily transfer limit?
+- How should the system handle duplicate transfer attempts?
+- What should happen when a network failure occurs during transfer processing?
+- What should happen when a bank or payment provider times out after the transfer request has been submitted?
+- What transfer status should be shown when a transaction times out and the final outcome is unknown?
+- Can users retry a failed or timed-out transfer, and how should duplicate processing be prevented?
+- How should the daily limit be handled when multiple transfers are submitted simultaneously?
+- At what point is the user's wallet balance validated?
+- Should failed, reversed, pending and successful transfers be displayed in the user's transaction history?
+- Should users receive notifications when a scheduled transfer executes, fails, or is reversed?
+- What currency do the stated transfer limits represent?
+- Are decimal transfer amounts supported?
+- Should users be able to view their total daily limit and remaining daily limit before initiating a transfer?
+
+---
+
+# 4. Security and Compliance Analysis
+
+Questions:
+- Is the backend the source of truth for transfer limit validation?
+- What mechanism ensures accurate limit calculation during concurrent transfers?
+- What verification method determines bank account ownership?
+- What system or event authorises the tier upgrade?
+- What security and data handling requirements apply to KYC information?
+- What security requirements apply to transfer and user financial data?
+- Are KYC upgrades, limit changes, transfer reversals and exemptions required to be recorded in audit logs?
+- Are there defined standards for API and application error responses?
+- What authentication or confirmation is required when creating or modifying a scheduled transfer?
+
+---
+
+# 5. Risks
+
+ Risk                                                  | Potential Impact
+ ----------------------------------------------------- | -------------------------------------------------------------------------------------
+ Timezone is not defined                               | Users may receive incorrect daily limit resets or scheduled transfer execution times.
+ Transfer status behaviour is not fully defined        | Limits may be deducted or restored incorrectly.
+ Pending transfers crossing midnight are undefined     | Daily limit calculations may become inconsistent.
+ Concurrent transfers are not defined                  | Users may potentially exceed their allowed daily limit.
+ Tier 3 per-transaction behaviour is unclear           | Transactions may be incorrectly accepted or rejected.
+ Own bank account verification is undefined            | Users may incorrectly receive limit exemptions.
+ Scheduled transfer limit validation timing is unclear | A transfer may be scheduled successfully but fail unexpectedly at execution.
+ KYC tier requirements are not defined                 | The expected user tier cannot be reliably tested.
+ Duplicate transaction handling is not defined         | Users may unintentionally send money more than once.
+ Timeout handling is not defined                       | Users may not know whether a transfer was completed, pending, or failed.
+ Error message behaviour is not defined                | Different platforms or layers may display inconsistent information.
+
+
+
