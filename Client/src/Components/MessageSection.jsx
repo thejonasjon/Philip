@@ -1,5 +1,5 @@
 import MessageImage from "../assets/message.png";
-import ContactImageBG from "../assets/contact_card.svg";
+import ContactImageBG from "../assets/Contact_card.svg";
 import { useTranslation } from "react-i18next";
 import Heading from "./ui/Heading";
 import { HugeiconsIcon } from "@hugeicons/react";
