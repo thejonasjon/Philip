@@ -181,17 +181,17 @@ export default function VideoSection() {
             type="button"
             onClick={togglePlay}
             aria-label={isPlaying ? "Pause video" : "Play video"}
-            className="flex h-10 w-10 md:h-11 md:w-11 cursor-pointer items-center justify-center rounded-full bg-white/25 backdrop-blur-md border border-white/30 text-white transition-all duration-300 hover:scale-105 hover:bg-white/35"
+            className="flex h-7 w-7 md:h-8 md:w-8 cursor-pointer items-center justify-center rounded-full bg-white/25 backdrop-blur-md border border-white/30 text-white transition-all duration-300 hover:scale-105 hover:bg-white/35"
           >
             {isPlaying ? (
-              <Pause size={18} fill="white" className="md:hidden" />
+              <Pause size={10} fill="white" className="md:hidden" />
             ) : (
-              <Play size={18} fill="white" className="ml-0.5 md:hidden" />
+              <Play size={10} fill="white" className="ml-0.5 md:hidden" />
             )}
             {isPlaying ? (
-              <Pause size={22} fill="white" className="hidden md:block" />
+              <Pause size={14} fill="white" className="hidden md:block" />
             ) : (
-              <Play size={22} fill="white" className="ml-0.5 hidden md:block" />
+              <Play size={14} fill="white" className="ml-0.5 hidden md:block" />
             )}
           </button>
 
@@ -199,17 +199,17 @@ export default function VideoSection() {
             type="button"
             onClick={toggleMute}
             aria-label={isMuted ? "Unmute video" : "Mute video"}
-            className="flex h-10 w-10 md:h-11 md:w-11 cursor-pointer items-center justify-center rounded-full bg-white/25 backdrop-blur-md border border-white/30 text-white transition-all duration-300 hover:scale-105 hover:bg-white/35"
+            className="flex h-7 w-7 md:h-8 md:w-8 cursor-pointer items-center justify-center rounded-full bg-white/25 backdrop-blur-md border border-white/30 text-white transition-all duration-300 hover:scale-105 hover:bg-white/35"
           >
             {isMuted ? (
-              <VolumeX size={18} className="md:hidden" />
+              <VolumeX size={10} className="md:hidden" />
             ) : (
-              <Volume2 size={18} className="md:hidden" />
+              <Volume2 size={10} className="md:hidden" />
             )}
             {isMuted ? (
-              <VolumeX size={22} className="hidden md:block" />
+              <VolumeX size={14} className="hidden md:block" />
             ) : (
-              <Volume2 size={22} className="hidden md:block" />
+              <Volume2 size={14} className="hidden md:block" />
             )}
           </button>
         </div>

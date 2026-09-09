@@ -37,7 +37,7 @@ export default function Footer() {
 
   return (
     <footer>
-      <div className="w-11/12 mx-auto pb-20">
+      <div className="w-11/12 mx-auto px-5 pb-20">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4 md:items-start md:gap-7">
           {/* Tutor Phillips */}
           <div className="order-1 w-full flex flex-col gap-6 md:order-1">
