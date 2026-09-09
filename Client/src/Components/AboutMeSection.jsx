@@ -46,15 +46,33 @@ export default function AboutMeSection() {
   const maxProgressRef = useRef(0);
   const collapseDiffRef = useRef(0);
 
-  // Drives the horizontal card scroll purely from vertical page-scroll progress
-  // while the pin wrapper is sticky-pinned on screen.
+  // Lets the user naturally swipe the cards horizontally too, without
+  // fighting the vertical-scroll-driven progress:
+  // - isSyncingRef is set while WE are programmatically moving scrollLeft
+  //   or window.scrollY, so the corresponding native 'scroll' event that
+  //   fires as a result doesn't get treated as a fresh user gesture.
+  // - settleTimeoutRef debounces the user's native horizontal scroll so
+  //   we only reconcile once their swipe/momentum has actually settled.
+  const isSyncingRef = useRef(false);
+  const settleTimeoutRef = useRef(null);
+
+  // Two-way sync between vertical page-scroll and the horizontal card
+  // strip, on mobile only:
   //
-  // IMPORTANT: the card row itself must NOT accept touch panning
-  // (see className: overflow-x-hidden + touch-pan-y below). If it did,
-  // a vertical swipe that starts on a card would get captured as an
-  // attempted horizontal pan and never reach the page scroll — which is
-  // exactly the "can't scroll unless I swipe off the cards" bug.
-  // scrollLeft here is 100% programmatic, driven by page scroll progress.
+  // 1. Page scroll → cards: while the pin wrapper is sticky-pinned,
+  //    vertical scroll progress maps directly onto scrollLeft.
+  // 2. Cards → page scroll (native swipe): the strip is a real
+  //    overflow-x-auto scroller, so the user can swipe it directly. Once
+  //    their swipe settles, we translate the resulting scrollLeft back
+  //    into an equivalent window.scrollY. That correction never causes a
+  //    visible jump — the sticky view already shows that slide — it just
+  //    keeps the two in agreement, so a later vertical scroll picks up
+  //    from where the swipe left off instead of snapping back.
+  //
+  // isSyncingRef stops the two directions from feeding back into each
+  // other: whichever side writes first sets it, so the 'scroll' event it
+  // triggers on the other element is recognized as an echo, not a new
+  // user gesture.
   useEffect(() => {
     const wrapper = pinWrapperRef.current;
     const scrollContainer = scrollRef.current;
@@ -63,21 +81,40 @@ export default function AboutMeSection() {
     const mql = window.matchMedia("(max-width: 767px)");
     let ticking = false;
 
+    const getMetrics = () => {
+      const wrapperHeight = wrapper.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      const scrollableDistance = wrapperHeight - viewportHeight;
+      const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+      return { scrollableDistance, maxScrollLeft };
+    };
+
+    const releaseSyncFlag = () => {
+      // Double rAF: gives the browser a full frame to fire (and let us
+      // ignore) the echoed 'scroll' event before we resume listening for
+      // genuine user input.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          isSyncingRef.current = false;
+        });
+      });
+    };
+
+    // --- Direction 1: vertical page scroll drives the cards ---
     const update = () => {
       ticking = false;
       if (!mql.matches) return;
 
-      const wrapperHeight = wrapper.offsetHeight;
-      const viewportHeight = window.innerHeight;
-      const scrollableDistance = wrapperHeight - viewportHeight;
+      const { scrollableDistance, maxScrollLeft } = getMetrics();
       if (scrollableDistance <= 0) return;
 
       const rect = wrapper.getBoundingClientRect();
       const scrolled = -rect.top;
       const progress = Math.min(1, Math.max(0, scrolled / scrollableDistance));
 
-      const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+      isSyncingRef.current = true;
       scrollContainer.scrollLeft = progress * maxScrollLeft;
+      releaseSyncFlag();
 
       setActiveIndex(Math.round(progress * (slideCount - 1)));
 
@@ -104,13 +141,44 @@ export default function AboutMeSection() {
       }
     };
 
+    // --- Direction 2: a genuine user swipe on the cards drives the page ---
+    const onContainerScroll = () => {
+      if (isSyncingRef.current || collapsedRef.current || !mql.matches) return;
+
+      clearTimeout(settleTimeoutRef.current);
+      settleTimeoutRef.current = setTimeout(() => {
+        const { scrollableDistance, maxScrollLeft } = getMetrics();
+        if (scrollableDistance <= 0 || maxScrollLeft <= 0) return;
+
+        const progress = Math.min(
+          1,
+          Math.max(0, scrollContainer.scrollLeft / maxScrollLeft)
+        );
+        maxProgressRef.current = Math.max(maxProgressRef.current, progress);
+
+        const wrapperTop = wrapper.getBoundingClientRect().top + window.scrollY;
+        const targetY = wrapperTop + progress * scrollableDistance;
+
+        isSyncingRef.current = true;
+        window.scrollTo({ top: targetY, behavior: "auto" });
+        releaseSyncFlag();
+
+        setActiveIndex(Math.round(progress * (slideCount - 1)));
+      }, 120); // wait for the swipe/momentum to settle before reconciling
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    scrollContainer.addEventListener("scroll", onContainerScroll, {
+      passive: true,
+    });
     update();
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      scrollContainer.removeEventListener("scroll", onContainerScroll);
+      clearTimeout(settleTimeoutRef.current);
     };
   }, [slideCount]);
 
@@ -216,14 +284,16 @@ export default function AboutMeSection() {
             </div>
           </div>
 
-          {/* Card row — scrollLeft is driven ONLY by page-scroll progress.
-              overflow-x-hidden + touch-pan-y: the row never intercepts
-              touch as a horizontal pan, so vertical swipes always reach
-              the page scroll, even when they start on top of a card. */}
+          {/* Card row — a real overflow-x-auto scroller. touch-auto (the
+              browser default) lets it decide per-gesture: a mostly-
+              horizontal drag pans the cards natively, a mostly-vertical
+              drag bubbles up and scrolls the page — both work without
+              JS getting involved mid-gesture. scrollLeft is otherwise
+              kept in sync with page-scroll progress by the effect above. */}
           <div className="mt-3 flex flex-1 min-h-0 flex-col">
             <div
               ref={scrollRef}
-              className="flex flex-1 min-h-0 gap-3 overflow-x-hidden touch-pan-y [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="flex flex-1 min-h-0 gap-3 overflow-x-auto touch-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               style={{ scrollBehavior: "auto" }}
             >
               {/* Slide 1 - Certified */}
@@ -264,6 +334,9 @@ export default function AboutMeSection() {
                     <img
                       src={About2}
                       className="w-full h-full object-cover opacity-30"
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
                     />
                   </div>
 
@@ -302,11 +375,19 @@ export default function AboutMeSection() {
                 {/* Beginners */}
                 <div className="relative flex-1 min-h-0 flex flex-col justify-end overflow-hidden rounded-xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-6">
                   <div className="absolute inset-0 border-r-red-700 z-10">
-                    <img src={Aboutbg} className="w-full h-full object-cover" />
+                    <img src={Aboutbg} className="w-full h-full object-cover"
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
+                     />
                   </div>
 
                   <div className="absolute inset-0 w-full h-full z-0">
-                    <img src={About2} className="w-full h-full object-cover" />
+                    <img src={About2} className="w-full h-full object-cover"
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
+                     />
                   </div>
 
                   <div className="font-euclid relative z-50 max-w-60 text-2xl font-medium text-[#22222299]">
@@ -392,6 +473,9 @@ export default function AboutMeSection() {
               <img
                 src={About2}
                 className="w-full h-full object-cover opacity-30"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
               />
             </div>
 
@@ -488,6 +572,9 @@ export default function AboutMeSection() {
                       src={flag}
                       alt={`Flag ${(index % flags.length) + 1}`}
                       className="block w-full object-cover"
+                      loading="eager"
+                      fetchPriority="high"
+                      decoding="async"
                     />
                   </div>
                 ))}
