@@ -19,10 +19,11 @@
 
   "aboutMe": {
     "certified": {
-      "by": "认证机构",
-      "cert": "CELTA · TEFL · TESOL",
-      "vouched": "学生推荐",
-      "student": "学生认可。"
+      "by": "Cambridge",
+      "cert": "CELTA认证。",
+      "tt": "TEFL 和 TESOL。",
+      "vouched": "受到以下人士推荐",
+      "student": "学生。"
     },
 
     "taught": {

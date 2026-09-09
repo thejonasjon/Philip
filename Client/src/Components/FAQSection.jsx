@@ -38,7 +38,7 @@ export default function FAQSection() {
   };
 
   return (
-    <SectionLayout>
+    <SectionLayout className="px-4">
       <div className="mx-auto mb-8 flex max-w-160 flex-col items-start justify-between gap-1 md:flex-row">
         <Heading
           heading={t("faq.heading")}

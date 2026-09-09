@@ -49,7 +49,7 @@ export default function TutorialSection() {
   };
 
   return (
-    <SectionLayout id="tutorial">
+    <SectionLayout id="tutorial" className="px-4">
       {/* Section heading */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}

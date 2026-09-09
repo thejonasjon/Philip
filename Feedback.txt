@@ -15,3 +15,8 @@ Tutor Philips Website
 - Add margin to Ready to put the fun back Into English?: Done
 - Add favicon: Done
 - Remove background pattern on hero section: Done
+
+
+loading="eager"
+fetchPriority="high"
+decoding="async"

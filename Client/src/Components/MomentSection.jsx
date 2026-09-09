@@ -37,7 +37,7 @@ export default function MomentSection() {
     const { t } = useTranslation();
 
   return (
-    <SectionLayout>
+    <SectionLayout className="px-4">
       {/* Section heading */}
       <div className="max-w-full md:max-w-160 flex items-start justify-between gap-1 mb-6 md:mb-8">
         <Heading
@@ -103,7 +103,7 @@ export default function MomentSection() {
           variants={card}
           className="relative overflow-hidden flex justify-between flex-col rounded-xl border-[0.2px] border-[#22222220] bg-[linear-gradient(to_right,#bbc4e8,#eee1de)] p-6 min-h-[90.33vh]"
         >
-          <div className="absolute -right-18 top-96 z-50">
+          <div className="absolute -right-14 top-105 z-50">
             <img
               src={MomentThree}
               alt="Student testimonial"
@@ -121,7 +121,7 @@ export default function MomentSection() {
           {/* <div className="absolute -left-20 bottom-0 w-full h-full bg-[#2B59FF]/20 blur-[80px] z-10" />
           <div className="absolute w-40 right-4 h-40 bg-[#F98272] blur-[120px] z-10" /> */}
 
-          <p className="relative z-100 max-w-7/12 text-xl leading-12 text-left text-[#625c5c] mt-5">
+          <p className="relative z-60 max-w-7/12 text-xl leading-10 md:leading-12 text-left text-[#625c5c] mt-2">
             <span className="text-xl text-[#222222] font-bold">
               ...{t("moments.answers.i")}
             </span>{" "}
@@ -217,7 +217,7 @@ export default function MomentSection() {
           </div>
           {/* <div className="absolute -left-120 -bottom-20 w-full h-full bg-[#2B59FF]/20 blur-[80px] z-15" />
           <div className="absolute w-55.5 right-20 h-46.5 bg-[#F98272] blur-[180px] z-15" /> */}
-          <div className="relative flex items-end z-100">
+          <div className="relative flex items-end z-50">
             <div className="w-1/2"></div>
 
             <p className=" max-w-9/12 self-end text-[22px] leading-10 text-right tracking-[0px] align-middle text-[#625c5c]">

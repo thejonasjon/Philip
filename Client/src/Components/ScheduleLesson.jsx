@@ -22,7 +22,7 @@ export default function ScheduleLesson() {
             <img src={BgImage} className="w-full h-full object-cover" />
         </div>
         <div className="w-full md:min-h-118.75 flex flex-col justify-center gap-8 md:gap-10 relative z-50">
-            <h3 className="max-w-full md:max-w-xl text-3xl md:text-5xl text-[#F7F4EF] font-medium leading-tight md:leading-15">
+            <h3 className="max-w-full md:max-w-xl text-3xl text-center md:text-left md:text-5xl text-[#F7F4EF] font-medium leading-tight md:leading-15">
                 {t("schedule.heading")}
             </h3>
 

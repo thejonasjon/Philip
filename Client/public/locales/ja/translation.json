@@ -19,10 +19,11 @@
 
   "aboutMe": {
     "certified": {
-      "by": "認定資格",
-      "cert": "CELTA · TEFL · TESOL",
-      "vouched": "生徒からの推薦",
-      "student": "生徒から推薦されています。"
+      "by": "Cambridge",
+      "cert": "CELTA認定。",
+      "tt": "TEFL & TESOL。",
+      "vouched": "推薦者",
+      "student": "学生。"
     },
 
     "taught": {

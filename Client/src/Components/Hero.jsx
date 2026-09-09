@@ -44,7 +44,7 @@ export default function Hero() {
 
   return (
     <div
-      className="relative w-11/12 mx-auto h-[80.333vh] md:h-[76.333vh] overflow-hidden rounded-xl md:rounded-3xl text-center text-white mt-20 md:mt-30"
+      className="relative w-11/12 mx-auto h-[78.333vh] md:h-[76.333vh] overflow-hidden rounded-xl md:rounded-3xl text-center text-white mt-20 md:mt-30"
       // style={{
       //   background:
       //     "linear-gradient(78.97deg, rgba(28,28,126,0.8) 9.02%, rgba(139,143,168,0.8) 43.05%, rgba(218,85,72,0.4) 63.19%, rgba(218,85,72,0.64) 102.35%)",
@@ -124,6 +124,9 @@ export default function Hero() {
         <img
           src={BgImage}
           className="w-full h-full object-cover"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
         />
       </div>
 
@@ -133,7 +136,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           custom={0.2}
-          className="font-euclid font-medium max-w-xs md:max-w-4xl text-[32px] md:text-[56px] leading-[1.15] md:leading-[1.1] text-[#F7F4EF]"
+          className="font-euclid font-bold max-w-xs md:max-w-4xl text-[40px] md:text-[56px] leading-[1.15] md:leading-[1.1] text-[#F7F4EF]"
         >
           {t("hero.heading")}{" "}
           <span className="relative inline-block h-12 w-15 md:h-22 md:w-27 align-middle">
@@ -143,6 +146,9 @@ export default function Hero() {
                 src={headShot}
                 alt="English tutor"
                 className="h-full w-full object-cover"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
               />
             </span>
             {/* <span className="absolute w-24 h-full">
@@ -161,7 +167,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           custom={0.6}
-          className="font-euclid font-regular mt-3 max-w-xs md:max-w-2xl text-base md:text-[22px] leading-relaxed text-[#F7F4EFB2]"
+          className="font-euclid font-regular mt-3 max-w-xs md:max-w-2xl text-lg md:text-[22px] leading-relaxed text-[#F7F4EFB2]"
         >
           {t("hero.paragraph")}
         </motion.p>
@@ -211,6 +217,9 @@ export default function Hero() {
                   src={profile.imageName}
                   alt={`Satisfied-student-${i}`}
                   className="h-full w-full rounded-full object-cover"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
             ))}

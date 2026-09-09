@@ -16,7 +16,7 @@ export default function MessageSection() {
   const { t } = useTranslation();
 
   return (
-    <SectionLayout id="contact">
+    <SectionLayout id="contact" className="px-4">
       <div className="space-y-8">
         <div className="flex flex-col md:flex-row items-start justify-between gap-6 md:gap-10">
           <div className="w-full md:max-w-120">

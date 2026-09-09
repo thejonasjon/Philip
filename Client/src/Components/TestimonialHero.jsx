@@ -152,6 +152,9 @@ export default function TestimonialHero() {
                 src={profile.imageName}
                 alt={`Satisfied-student-${i}`}
                 className="h-full w-full rounded-full object-cover"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
               />
             </div>
           ))}

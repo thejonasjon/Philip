@@ -12,7 +12,7 @@ export default function ThankYou({ onClose }) {
     >
       {/* Modal */}
       <div
-        className="relative mt-0 md:mt-20 max-h-[90vh] w-full max-w-11/12 overflow-hidden rounded-xl md:rounded-3xl bg-white"
+        className="relative mt-20 md:mt-20 max-h-[80vh] w-full max-w-11/12 overflow-hidden rounded-xl md:rounded-3xl bg-white"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close */}
@@ -27,23 +27,23 @@ export default function ThankYou({ onClose }) {
 
         {/* Content */}
         <div
-          className="relative flex min-h-90 md:min-h-180 justify-center overflow-hidden rounded-xl md:rounded-3xl border-[0.2px] border-[#00000033] px-6 py-10 md:px-15 md:py-15"
+          className="relative flex min-h-[90vh] md:min-h-180 justify-center overflow-hidden rounded-xl md:rounded-3xl border-[0.2px] border-[#00000033] px-6 py-10 md:px-15 md:py-15"
           style={{
             background:
               "linear-gradient(78.97deg, rgba(28,28,126,0.8) 9.02%, rgba(139,143,168,0.8) 43.05%, rgba(218,85,72,0.4) 63.19%, rgba(218,85,72,0.64) 102.35%)",
           }}
         >
           {/* Heading */}
-          <h4 className="relative z-10 mt-10 md:mt-30 text-center text-[28px] md:text-[56px] font-medium leading-tight text-[#F7F4EF] md:leading-20">
+          <h4 className="relative z-10 mt-20 md:mt-10 text-center text-[28px] md:text-[56px] font-medium leading-tight text-[#F7F4EF] md:leading-20">
             {t("testimonialPage.thankYou.paragraph")}
           </h4>
 
           {/* Image */}
-          <div className="absolute top-80 md:top-128">
+          <div className="absolute -bottom-75 md:-bottom-333">
             <img
               src={Scheldule}
               alt=""
-              className="h-full w-full scale-200 md:scale-150 object-cover"
+              className="h-full w-full scale-250 md:scale-150 object-cover"
             />
           </div>
         </div>

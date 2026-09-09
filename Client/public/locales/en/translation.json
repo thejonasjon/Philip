@@ -16,7 +16,7 @@
     "ratingText": "Over 500+ Satisfied Students"
   },
   "aboutMe": {
-    "certified": { "by": "Certified by", "cert": "CELTA · TEFL · TESOL", "vouched": "Vouched for by", "student": "students."},
+    "certified": { "by": "Cambridge", "cert": "CELTA Certified.", "tt": "TEFL & TESOL.", "vouched": "Vouched for by", "student": "students."},
     "taught": {"students": "Students taught", "stats": "2000+", "paragraph": "Personalized lessons let students learn at their own pace, build confidence and fluency, and have fun in a pressure-free environment."},
     "years": {"year": "7+ Years", "paragraph": "of English teaching experience"},
     "fluent": "From complete beginners to almost fluent.",

@@ -8,6 +8,7 @@ import { FetchTestimonies } from "../services/api";
 import { BOOKING_URL } from "../constants/links";
 import ThankYou from "./ThankYou";
 import ReviewModal from "./ReviewModal";
+import testimonialBG from "../assets/testimonial-bg.svg";
 
 export default function TestimonialSection() {
   const scrollRef = useRef(null);
@@ -109,9 +110,14 @@ export default function TestimonialSection() {
   }, [activeIndex, testimonials.length]);
 
   return (
-    <SectionLayout>
+    <section className="relative w-full h-full bg-[#F7F4EF]">
+      <div className="absolute z-10 inset-0 w-full h-full">
+        <img src={testimonialBG} alt="testimonial-bg" className="w-full h-full object-cover" />
+      </div>
+
+    <SectionLayout className="px-4">
       {/* Header */}
-      <div className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-10">
+      <div className="relative z-50 flex flex-col md:flex-row items-start justify-between gap-4 md:gap-10">
         <Heading
           heading={t("testimonialSection.heading")}
           subHeading={t("testimonialSection.subHeading")}
@@ -136,7 +142,7 @@ export default function TestimonialSection() {
       {!loading && testimonials.length > 0 && (
         <div
           ref={scrollRef}
-          className="flex gap-4 md:gap-10 overflow-x-auto scroll-smooth py-6 md:py-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="relative z-50 flex gap-4 md:gap-10 overflow-x-auto scroll-smooth py-6 md:py-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {testimonials.map((testimonial) => (
             <div key={testimonial.id} className="w-[85%] shrink-0 md:w-125">
@@ -148,14 +154,14 @@ export default function TestimonialSection() {
 
       {/* Empty state */}
       {!loading && testimonials.length === 0 && (
-        <div className="py-20 text-center text-[#22222299]">
+        <div className="relative z-50 py-20 text-center text-[#22222299]">
           {t("testimonialSection.noTestimonial")}
         </div>
       )}
 
       {/* Indicators */}
       {!loading && testimonials.length > 0 && (
-        <div className="hidden md:flex justify-center gap-2 mt-4">
+        <div className="relative z-50 hidden md:flex justify-center gap-2 mt-4">
           {testimonials.map((testimonial, index) => {
             const isActive = index === activeIndex;
 
@@ -164,9 +170,9 @@ export default function TestimonialSection() {
                 key={testimonial.id}
                 onClick={() => scrollToTestimonial(index)}
                 className={`
-                  h-3 shrink-0 rounded-full p-0
+                  h-2 shrink-0 rounded-full p-0
                   transition-all duration-300 ease-in-out
-                  ${isActive ? "w-10 bg-[#0156D2]" : "w-3 bg-[#C8C8C8]"}
+                  ${isActive ? "w-6 bg-[#0156D2]" : "w-2 bg-[#C8C8C8]"}
                 `}
               />
             );
@@ -174,7 +180,7 @@ export default function TestimonialSection() {
         </div>
       )}
 
-      <div className="w-full flex flex-col md:flex-row justify-center items-center gap-4 mt:10 md:mt-20">
+      <div className="relative z-50 w-full flex flex-col md:flex-row justify-center items-center gap-4 mt:10 md:mt-20">
         {/* Mobile View All */}
         {!loading && testimonials.length > 0 && (
           <Link
@@ -215,6 +221,7 @@ export default function TestimonialSection() {
 
       {showThankYou && <ThankYou onClose={() => setShowThankYou(false)} />}
     </SectionLayout>
+    </section>
   );
 }
 
@@ -233,10 +240,10 @@ function TestimonialCard({ testimonial }) {
   return (
     <div
       className="
-        min-h-70 md:min-h-116.75
+        min-h-full md:min-h-116.75
         w-full md:min-w-131.5
         bg-[linear-gradient(180deg,#FFFFFF_0%,#ABABAB0F_100%)]
-        flex flex-col justify-between
+        flex flex-col justify-between gap-8 md:gap-0
         rounded-2xl md:rounded-3xl
         px-6 md:px-9.5
         py-8 md:py-16
