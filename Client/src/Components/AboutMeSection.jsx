@@ -259,6 +259,9 @@ useEffect(() => {
                       src={About1}
                       alt=""
                       className="w-full h-full object-cover"
+                      loading="eager"
+                      fetchPriority="high"
+                      decoding="async"
                     />
                   </div>
 
@@ -386,7 +389,11 @@ useEffect(() => {
           className="row-span-2 relative flex min-h-195 flex-col justify-end rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-10 overflow-hidden"
         >
           <div className="absolute w-full h-full inset-0 z-0">
-            <img src={About1} className="mx-auto object-cover" />
+            <img src={About1} className="mx-auto object-cover"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+            />
           </div>
 
           <div className="font-euclid max-w-80 relative z-10 text-[32px] font-normal leading-11.5 text-[#787878]">
