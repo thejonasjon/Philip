@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import About2 from "../assets/about-2.png";
 import About1 from "../assets/about-1.svg";
 import Aboutbg from "../assets/beginner.svg";
@@ -24,22 +24,8 @@ import { motion } from "framer-motion";
 
 export default function AboutMeSection() {
   const flags = [
-    flag1,
-    flag2,
-    flag3,
-    flag4,
-    flag5,
-    flag6,
-    flag7,
-    flag8,
-    flag9,
-    flag10,
-    flag11,
-    flag13,
-    flag14,
-    flag15,
-    flag16,
-    flag17,
+    flag1, flag2, flag3, flag4, flag5, flag6, flag7, flag8,
+    flag9, flag10, flag11, flag13, flag14, flag15, flag16, flag17,
   ];
   const { t } = useTranslation();
 
@@ -49,94 +35,94 @@ export default function AboutMeSection() {
   const slideCount = 3;
   const SCROLL_VH_PER_SLIDE = 70; // how much extra scroll distance each slide "costs" — tune to taste
 
+  // Once the user has scrolled all the way through the slides and then
+  // fully past the section (i.e. they're done with it), we collapse its
+  // scroll runway down to a plain 100vh. That way, if they later scroll
+  // back UP into it, they aren't forced to replay the whole slide
+  // sequence in reverse — it just passes by quickly, frozen on the last
+  // slide they saw.
+  const [collapsed, setCollapsed] = useState(false);
+  const collapsedRef = useRef(false);
+  const maxProgressRef = useRef(0);
+  const collapseDiffRef = useRef(0);
+
   // Drives the horizontal card scroll purely from vertical page-scroll progress
   // while the pin wrapper is sticky-pinned on screen.
-useEffect(() => {
-  const wrapper = pinWrapperRef.current;
-  const scrollContainer = scrollRef.current;
+  //
+  // IMPORTANT: the card row itself must NOT accept touch panning
+  // (see className: overflow-x-hidden + touch-pan-y below). If it did,
+  // a vertical swipe that starts on a card would get captured as an
+  // attempted horizontal pan and never reach the page scroll — which is
+  // exactly the "can't scroll unless I swipe off the cards" bug.
+  // scrollLeft here is 100% programmatic, driven by page scroll progress.
+  useEffect(() => {
+    const wrapper = pinWrapperRef.current;
+    const scrollContainer = scrollRef.current;
+    if (!wrapper || !scrollContainer) return;
 
-  if (!wrapper || !scrollContainer) return;
+    const mql = window.matchMedia("(max-width: 767px)");
+    let ticking = false;
 
-  let ticking = false;
-  let isHorizontalScrolling = false;
-  let horizontalScrollTimeout;
+    const update = () => {
+      ticking = false;
+      if (!mql.matches) return;
 
-  const update = () => {
-    ticking = false;
+      const wrapperHeight = wrapper.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      const scrollableDistance = wrapperHeight - viewportHeight;
+      if (scrollableDistance <= 0) return;
 
-    if (!window.matchMedia("(max-width: 767px)").matches) return;
+      const rect = wrapper.getBoundingClientRect();
+      const scrolled = -rect.top;
+      const progress = Math.min(1, Math.max(0, scrolled / scrollableDistance));
 
-    // Don't override the position while the user is
-    // manually scrolling horizontally.
-    if (isHorizontalScrolling) return;
+      const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+      scrollContainer.scrollLeft = progress * maxScrollLeft;
 
-    const wrapperHeight = wrapper.offsetHeight;
-    const viewportHeight = window.innerHeight;
-    const scrollableDistance = wrapperHeight - viewportHeight;
+      setActiveIndex(Math.round(progress * (slideCount - 1)));
 
-    if (scrollableDistance <= 0) return;
+      maxProgressRef.current = Math.max(maxProgressRef.current, progress);
 
-    const rect = wrapper.getBoundingClientRect();
-    const scrolled = -rect.top;
+      // Fully viewed (reached the last slide at least once) AND now
+      // entirely scrolled above the viewport — safe to collapse without
+      // any visible jump, since nothing on screen is moving.
+      if (
+        !collapsedRef.current &&
+        maxProgressRef.current >= 0.999 &&
+        rect.bottom <= 0
+      ) {
+        collapsedRef.current = true;
+        collapseDiffRef.current = scrollableDistance;
+        setCollapsed(true);
+      }
+    };
 
-    const progress = Math.min(
-      1,
-      Math.max(0, scrolled / scrollableDistance)
-    );
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
 
-    const maxScrollLeft =
-      scrollContainer.scrollWidth - scrollContainer.clientWidth;
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    update();
 
-    scrollContainer.scrollLeft = progress * maxScrollLeft;
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [slideCount]);
 
-    setActiveIndex(
-      Math.round(progress * (slideCount - 1))
-    );
-  };
-
-  const onPageScroll = () => {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(update);
+  // Runs synchronously after the collapsed height is painted, before the
+  // browser shows the frame — shrinks the runway and offsets scrollY by
+  // the same amount in one go, so the viewport never visibly jumps.
+  useLayoutEffect(() => {
+    if (collapsed && collapseDiffRef.current) {
+      window.scrollBy(0, -collapseDiffRef.current);
+      collapseDiffRef.current = 0;
     }
-  };
-
-  const onHorizontalScroll = () => {
-    isHorizontalScrolling = true;
-
-    clearTimeout(horizontalScrollTimeout);
-
-    horizontalScrollTimeout = setTimeout(() => {
-      isHorizontalScrolling = false;
-    }, 150);
-  };
-
-  window.addEventListener("scroll", onPageScroll, {
-    passive: true,
-  });
-
-  window.addEventListener("resize", onPageScroll);
-
-  scrollContainer.addEventListener(
-    "scroll",
-    onHorizontalScroll,
-    { passive: true }
-  );
-
-  update();
-
-  return () => {
-    window.removeEventListener("scroll", onPageScroll);
-    window.removeEventListener("resize", onPageScroll);
-
-    scrollContainer.removeEventListener(
-      "scroll",
-      onHorizontalScroll
-    );
-
-    clearTimeout(horizontalScrollTimeout);
-  };
-}, [slideCount]);
+  }, [collapsed]);
 
   // Used by the dot indicators — scrolls the PAGE to the point where
   // the requested slide's progress would be reached.
@@ -159,42 +145,26 @@ useEffect(() => {
   };
 
   const cardVariants = {
-    hidden: {
-      opacity: 0,
-      y: 35,
-    },
+    hidden: { opacity: 0, y: 35 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1],
-      },
+      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
     },
   };
 
   const leftCardVariants = {
-    hidden: {
-      opacity: 0,
-      x: -45,
-    },
+    hidden: { opacity: 0, x: -45 },
     visible: {
       opacity: 1,
       x: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1],
-      },
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
     },
   };
 
   const staggerContainer = {
     hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.12,
-      },
-    },
+    visible: { transition: { staggerChildren: 0.12 } },
   };
 
   return (
@@ -204,7 +174,9 @@ useEffect(() => {
         ref={pinWrapperRef}
         className="md:hidden"
         style={{
-          height: `calc(100vh + ${(slideCount - 1) * SCROLL_VH_PER_SLIDE}vh)`,
+          height: collapsed
+            ? "100vh"
+            : `calc(100vh + ${(slideCount - 1) * SCROLL_VH_PER_SLIDE}vh)`,
         }}
       >
         <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
@@ -216,7 +188,6 @@ useEffect(() => {
               </div>
 
               <div className="relative min-w-0 flex-1 overflow-hidden">
-                {/* Left fade overlay */}
                 <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-1/2 bg-linear-to-r from-[#f8f8f8] via-[#f8f8f8cc] to-transparent" />
 
                 <motion.div
@@ -245,11 +216,15 @@ useEffect(() => {
             </div>
           </div>
 
-          {/* Card row — scrollLeft is driven by page-scroll progress, not touch */}
+          {/* Card row — scrollLeft is driven ONLY by page-scroll progress.
+              overflow-x-hidden + touch-pan-y: the row never intercepts
+              touch as a horizontal pan, so vertical swipes always reach
+              the page scroll, even when they start on top of a card. */}
           <div className="mt-3 flex flex-1 min-h-0 flex-col">
-           <div
+            <div
               ref={scrollRef}
-              className="flex flex-1 min-h-0 gap-3 overflow-x-auto overscroll-x-contain touch-pan-x [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="flex flex-1 min-h-0 gap-3 overflow-x-hidden touch-pan-y [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              style={{ scrollBehavior: "auto" }}
             >
               {/* Slide 1 - Certified */}
               <div className="w-[88%] h-full shrink-0">
@@ -269,8 +244,9 @@ useEffect(() => {
                     {t("aboutMe.certified.by")}{" "}
                     <span className="font-semibold">
                       {t("aboutMe.certified.cert")}
-                    </span><br />
-                     <span className="font-semibold">
+                    </span>
+                    <br />
+                    <span className="font-semibold">
                       {t("aboutMe.certified.tt")}
                     </span>{" "}
                     {t("aboutMe.certified.vouched")}{" "}
@@ -326,17 +302,11 @@ useEffect(() => {
                 {/* Beginners */}
                 <div className="relative flex-1 min-h-0 flex flex-col justify-end overflow-hidden rounded-xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-6">
                   <div className="absolute inset-0 border-r-red-700 z-10">
-                    <img
-                      src={Aboutbg}
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={Aboutbg} className="w-full h-full object-cover" />
                   </div>
 
                   <div className="absolute inset-0 w-full h-full z-0">
-                    <img
-                      src={About2}
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={About2} className="w-full h-full object-cover" />
                   </div>
 
                   <div className="font-euclid relative z-50 max-w-60 text-2xl font-medium text-[#22222299]">
@@ -368,7 +338,6 @@ useEffect(() => {
       </div>
 
       {/* Desktop - Original grid layout */}
-      {/* Desktop - Animated grid */}
       <motion.div
         className="hidden md:grid w-full grid-cols-1 gap-3 md:grid-cols-[1fr_2fr] md:grid-rows-[5fr_1fr]"
         variants={staggerContainer}
@@ -379,20 +348,16 @@ useEffect(() => {
         {/* Left - Full Height */}
         <motion.div
           variants={leftCardVariants}
-          whileHover={{
-            y: -5,
-            transition: {
-              duration: 0.25,
-              ease: "easeOut",
-            },
-          }}
+          whileHover={{ y: -5, transition: { duration: 0.25, ease: "easeOut" } }}
           className="row-span-2 relative flex min-h-195 flex-col justify-end rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-10 overflow-hidden"
         >
           <div className="absolute w-full h-full inset-0 z-0">
-            <img src={About1} className="mx-auto object-cover"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
+            <img
+              src={About1}
+              className="mx-auto object-cover"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
             />
           </div>
 
@@ -400,7 +365,8 @@ useEffect(() => {
             {t("aboutMe.certified.by")}{" "}
             <span className="font-euclid font-semibold text-[#222222]">
               {t("aboutMe.certified.cert")}
-            </span><br />
+            </span>
+            <br />
             <span className="font-euclid font-semibold text-[#222222]">
               {t("aboutMe.certified.tt")}
             </span>{" "}
@@ -419,13 +385,7 @@ useEffect(() => {
           {/* Students */}
           <motion.div
             variants={cardVariants}
-            whileHover={{
-              y: -5,
-              transition: {
-                duration: 0.25,
-                ease: "easeOut",
-              },
-            }}
+            whileHover={{ y: -5, transition: { duration: 0.25, ease: "easeOut" } }}
             className="relative overflow-hidden flex flex-col justify-between rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-10"
           >
             <div className="absolute w-full h-full inset-0 z-0">
@@ -457,13 +417,7 @@ useEffect(() => {
           >
             <motion.div
               variants={cardVariants}
-              whileHover={{
-                y: -5,
-                transition: {
-                  duration: 0.25,
-                  ease: "easeOut",
-                },
-              }}
+              whileHover={{ y: -5, transition: { duration: 0.25, ease: "easeOut" } }}
               className="relative overflow-hidden min-h-49 flex flex-col justify-center text-[38px] font-semibold leading-tight text-[#222222] rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-10"
             >
               <span className="font-euclid">{t("aboutMe.years.year")}</span>
@@ -471,27 +425,13 @@ useEffect(() => {
                 {t("aboutMe.years.paragraph")}
               </span>
               <motion.div
-                animate={{
-                  x: [-10, 10, -10],
-                  y: [-5, 5, -5],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+                animate={{ x: [-10, 10, -10], y: [-5, 5, -5] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -left-80 top-5 w-full h-full bg-[#2B59FF]/20 blur-3xl z-10"
               />
               <motion.div
-                animate={{
-                  x: [10, -10, 10],
-                  y: [5, -5, 5],
-                }}
-                transition={{
-                  duration: 7,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+                animate={{ x: [10, -10, 10], y: [5, -5, 5] }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute bottom-12 -right-75 w-full h-full bg-[#F98272]/20 blur-3xl z-10"
               />
             </motion.div>
@@ -499,13 +439,7 @@ useEffect(() => {
             {/* Beginners */}
             <motion.div
               variants={cardVariants}
-              whileHover={{
-                y: -5,
-                transition: {
-                  duration: 0.25,
-                  ease: "easeOut",
-                },
-              }}
+              whileHover={{ y: -5, transition: { duration: 0.25, ease: "easeOut" } }}
               className="relative flex flex-col justify-end w-full h-full rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-10 overflow-hidden"
             >
               <div className="absolute inset-0 border-r-red-700 z-10">
@@ -525,13 +459,7 @@ useEffect(() => {
         {/* Countries */}
         <motion.div
           variants={cardVariants}
-          whileHover={{
-            y: -3,
-            transition: {
-              duration: 0.25,
-              ease: "easeOut",
-            },
-          }}
+          whileHover={{ y: -3, transition: { duration: 0.25, ease: "easeOut" } }}
           className="min-w-0 rounded-3xl border-[0.5px] border-[#00000033] bg-[#f8f8f8] p-10"
         >
           <div className="flex min-w-0 items-center gap-4">
@@ -540,7 +468,6 @@ useEffect(() => {
             </div>
 
             <div className="relative min-w-0 flex-1 overflow-hidden">
-              {/* Left fade overlay */}
               <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-1/2 bg-linear-to-r from-[#f8f8f8] via-[#f8f8f8cc] to-transparent" />
 
               <motion.div
