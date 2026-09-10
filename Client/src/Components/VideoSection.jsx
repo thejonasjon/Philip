@@ -210,7 +210,7 @@ export default function VideoSection() {
       ref={containerRef}
       className="w-full mx-auto mt-6 md:mt-10"
     >
-      <div className="relative w-full h-[85vh] aspect-video overflow-hidden rounded-2xl md:rounded-3xl bg-black">
+      <div className="relative w-full h-[85vh] md:h-full aspect-video overflow-hidden rounded-2xl md:rounded-3xl bg-black">
 
         <video
           ref={videoRef}
