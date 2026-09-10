@@ -219,7 +219,7 @@ export default function VideoSection() {
           playsInline
           preload="metadata"
           muted={isMuted}
-          className="absolute inset-0 h-full w-full object-cover object-[0%_0%] md:object-[20%_10%]"
+          className="absolute inset-0 h-full w-full object-cover object-[0%_0%] md:object-[0%_90%]"
         />
 
         <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/45 via-black/5 to-black/20" />
