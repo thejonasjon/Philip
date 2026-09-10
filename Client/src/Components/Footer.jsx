@@ -2,7 +2,7 @@ import { ArrowUpRight03FreeIcons } from "@hugeicons/core-free-icons";
 import { useTranslation } from "react-i18next";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Link } from "react-router-dom";
-import tutorPhilps from "../assets/tutorPhilps.png";
+import tutorPhilps from "../assets/tutorPhilips.png";
 import LanguageSelector from "./ui/LanguageSelector";
 import useSectionNavigation from "../hooks/useSectionNavigation";
 // import ThankYou from "./ThankYou";
