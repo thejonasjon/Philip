@@ -20,7 +20,7 @@ export default function NewTestimonials() {
       try {
         const data = await FetchTestimonies();
 
-        console.log("Fetched testimonials:", data);
+        // console.log("Fetched testimonials:", data);
 
         setTestimonials(data || []);
       } catch (error) {

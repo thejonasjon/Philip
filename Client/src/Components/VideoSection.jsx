@@ -9,10 +9,25 @@ export default function VideoSection() {
   const containerRef = useRef(null);
   const wasPlayingBeforeHiddenRef = useRef(false);
   const isInViewRef = useRef(false);
+
+  // Was sound explicitly unlocked by a real user gesture (click/tap/key)?
+  // MUST start false — the browser has not granted unmuted autoplay yet.
   const hasUserUnmutedRef = useRef(false);
 
+  // Did the user deliberately hit the mute button? If so, don't auto-unmute
+  // them later just because they clicked something else on the page.
+  const userMutedRef = useRef(false);
+
+  // Start muted. This removes the non-determinism you were seeing on desktop
+  // (where unmuted-first sometimes succeeded due to Chrome's per-site Media
+  // Engagement Index and sometimes didn't). Muted autoplay is unconditionally
+  // allowed by every browser, so this path is now 100% consistent.
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  // Shown while the video is autoplaying muted and no real gesture has
+  // unlocked sound yet. Gives the user an obvious, intentional way to turn
+  // sound on, instead of relying on them to notice the small speaker icon.
+  const [showSoundPrompt, setShowSoundPrompt] = useState(false);
 
   // Select the correct video based on screen size
   useEffect(() => {
@@ -80,18 +95,31 @@ export default function VideoSection() {
     ).matches;
 
     const attemptPlay = async () => {
+      // If the user hasn't unlocked sound with a real gesture yet, don't
+      // even attempt unmuted playback — it will just be rejected by the
+      // browser and wastes a play() call. Go straight to muted, which is
+      // guaranteed to succeed.
+      if (!hasUserUnmutedRef.current) {
+        video.muted = true;
+        try {
+          await video.play();
+          setShowSoundPrompt(true);
+        } catch {
+          // Autoplay fully blocked (rare — e.g. low-power mode)
+        }
+        return;
+      }
+
+      // User has interacted with the page already — try with sound.
       try {
+        video.muted = userMutedRef.current; // respect an explicit mute choice
         await video.play();
       } catch {
-        // Browser blocked audible autoplay
-        if (!hasUserUnmutedRef.current) {
-          video.muted = true;
-
-          try {
-            await video.play();
-          } catch {
-            // Autoplay completely blocked
-          }
+        video.muted = true;
+        try {
+          await video.play();
+        } catch {
+          // Autoplay fully blocked
         }
       }
     };
@@ -106,6 +134,7 @@ export default function VideoSection() {
           attemptPlay();
         } else {
           video.pause();
+          setShowSoundPrompt(false);
         }
       },
       { threshold: 0.5 }
@@ -145,34 +174,49 @@ export default function VideoSection() {
       );
   }, []);
 
-  // First user interaction enables sound
-  useEffect(() => {
+  // Shared unlock: called by (a) the visible "Tap for sound" prompt, and
+  // (b) a first click/tap/key anywhere else on the page. Either one counts
+  // as the real gesture browsers require before allowing sound.
+  const unlockSound = () => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || hasUserUnmutedRef.current) return;
 
-    const enableSound = () => {
-      if (hasUserUnmutedRef.current) return;
+    hasUserUnmutedRef.current = true;
+    setShowSoundPrompt(false);
 
-      hasUserUnmutedRef.current = true;
+    // Respect it if the user had already tapped the mute button manually
+    // before this fired.
+    if (!userMutedRef.current) {
       video.muted = false;
-
-      if (video.paused && isInViewRef.current) {
+      if (isInViewRef.current) {
         video.play().catch(() => {});
       }
+    }
+  };
 
-      window.removeEventListener("click", enableSound);
-      window.removeEventListener("touchstart", enableSound);
-      window.removeEventListener("keydown", enableSound);
+  // First genuine user interaction (click / tap / key) anywhere on the page
+  // unlocks sound. Scroll is intentionally NOT included here — browsers
+  // don't treat scroll as an activation gesture, so listening for it
+  // wouldn't change anything; it would just silently fail the same way an
+  // unattended autoplay does. The visible prompt below is the reliable
+  // substitute: it turns "some click, somewhere, eventually" into an
+  // obvious, immediate action.
+  useEffect(() => {
+    const handlePageInteraction = () => {
+      unlockSound();
+      window.removeEventListener("click", handlePageInteraction);
+      window.removeEventListener("touchstart", handlePageInteraction);
+      window.removeEventListener("keydown", handlePageInteraction);
     };
 
-    window.addEventListener("click", enableSound, { passive: true });
-    window.addEventListener("touchstart", enableSound, { passive: true });
-    window.addEventListener("keydown", enableSound);
+    window.addEventListener("click", handlePageInteraction, { passive: true });
+    window.addEventListener("touchstart", handlePageInteraction, { passive: true });
+    window.addEventListener("keydown", handlePageInteraction);
 
     return () => {
-      window.removeEventListener("click", enableSound);
-      window.removeEventListener("touchstart", enableSound);
-      window.removeEventListener("keydown", enableSound);
+      window.removeEventListener("click", handlePageInteraction);
+      window.removeEventListener("touchstart", handlePageInteraction);
+      window.removeEventListener("keydown", handlePageInteraction);
     };
   }, []);
 
@@ -182,7 +226,7 @@ export default function VideoSection() {
 
     if (video.paused) {
       hasUserUnmutedRef.current = true;
-      video.muted = false;
+      if (!userMutedRef.current) video.muted = false;
 
       try {
         await video.play();
@@ -199,9 +243,11 @@ export default function VideoSection() {
     if (!video) return;
 
     video.muted = !video.muted;
+    userMutedRef.current = video.muted;
 
     if (!video.muted) {
       hasUserUnmutedRef.current = true;
+      setShowSoundPrompt(false);
     }
   };
 
@@ -223,6 +269,17 @@ export default function VideoSection() {
         />
 
         <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/45 via-black/5 to-black/20" />
+
+        {showSoundPrompt && (
+          <button
+            type="button"
+            onClick={unlockSound}
+            className="absolute z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 rounded-full bg-black/60 backdrop-blur-md border border-white/30 px-3.5 py-2 text-white text-xs md:text-sm font-medium transition-all duration-300 hover:bg-black/75 hover:scale-105 animate-pulse cursor-pointer"
+          >
+            <VolumeX size={14} />
+            Tap for sound
+          </button>
+        )}
 
         <div className="absolute z-50 bottom-5 left-5 md:bottom-8 md:left-8 flex items-center gap-3">
           <button

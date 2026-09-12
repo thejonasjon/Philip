@@ -30,7 +30,7 @@ export default function TestimonialSection() {
       try {
         const data = await FetchTestimonies();
 
-        console.log("Fetched testimonials:", data);
+        // console.log("Fetched testimonials:", data);
 
         setTestimonials(data || []);
       } catch (error) {

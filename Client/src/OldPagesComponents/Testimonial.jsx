@@ -62,7 +62,7 @@ const Testimonial = () => {
     async function loadTestimonials() {
       try {
         const data = await FetchTestimonies();
-        console.log("Fetched Testimonials:", data);
+        // console.log("Fetched Testimonials:", data);
         setTestimonials(data || []);
       } catch (error) {
         console.error("Failed to fetch testimonials:", error.message);
