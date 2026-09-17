@@ -42,7 +42,7 @@ export default function Footer() {
           {/* Tutor Phillips */}
           <div className="order-1 w-full flex flex-col gap-6 md:order-1">
             <h3 className="text-2xl text-[#222222E5] font-semibold leading-4">
-              Tutor Phillps
+              Tutor Philips
             </h3>
 
             <div className="max-w-full md:max-w-3/6 text-lg text-[#22222299] font-light leading-8">

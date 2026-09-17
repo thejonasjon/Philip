@@ -13,6 +13,7 @@ import LoginPage from "./features/Admin/loginPage";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import ScrollToTtop from "./lib/ScrollToTop";
+import Review from "./pages/review";
 
 
 function AppContent() {
@@ -37,6 +38,7 @@ function AppContent() {
         {/* <Route path="/old/testimonials" element={<TestimonialPage />}/> */}
 
         <Route path="/testimonials" element={<NewTestimonials />}/>
+        <Route path="/review" element={<Review />}/>
 
         <Route path="*" element={ <h2 className="py-12 text-center"> Page not found</h2>}/></Routes>
 

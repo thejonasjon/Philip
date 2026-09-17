@@ -10,23 +10,12 @@ export default function VideoSection() {
   const wasPlayingBeforeHiddenRef = useRef(false);
   const isInViewRef = useRef(false);
 
-  // Was sound explicitly unlocked by a real user gesture (click/tap/key)?
-  // MUST start false — the browser has not granted unmuted autoplay yet.
   const hasUserUnmutedRef = useRef(false);
 
-  // Did the user deliberately hit the mute button? If so, don't auto-unmute
-  // them later just because they clicked something else on the page.
   const userMutedRef = useRef(false);
 
-  // Start muted. This removes the non-determinism you were seeing on desktop
-  // (where unmuted-first sometimes succeeded due to Chrome's per-site Media
-  // Engagement Index and sometimes didn't). Muted autoplay is unconditionally
-  // allowed by every browser, so this path is now 100% consistent.
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
-  // Shown while the video is autoplaying muted and no real gesture has
-  // unlocked sound yet. Gives the user an obvious, intentional way to turn
-  // sound on, instead of relying on them to notice the small speaker icon.
   const [showSoundPrompt, setShowSoundPrompt] = useState(false);
 
   // Select the correct video based on screen size
@@ -265,7 +254,7 @@ export default function VideoSection() {
           playsInline
           preload="metadata"
           muted={isMuted}
-          className="absolute inset-0 h-full w-full object-cover object-[0%_0%] md:object-[0%_90%]"
+          className="absolute inset-0 h-full w-full object-cover object-[0%_0%] md:object-[0%_0%]"
         />
 
         <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/45 via-black/5 to-black/20" />
