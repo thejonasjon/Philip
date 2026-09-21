@@ -256,6 +256,12 @@
       "error": "No se pudo enviar el testimonio:",
 
       "error2": "No se pudo enviar la reseña. Por favor, inténtalo de nuevo."
+    },
+    "reviewPage": {
+      "heading": "Comparte tu experiencia",
+      "paragraph": "Tus comentarios nos ayudan a entender qué salió bien y en qué podemos mejorar. Tómate un momento para compartir tu experiencia después de tu sesión de aprendizaje o tutoría.",
+      "formHeading": "Enviar una reseña",
+      "selectPlaceholder": "Buscar país"
     }
   }
 }

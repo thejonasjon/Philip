@@ -7,6 +7,7 @@ import {
   FetchTestimonies,
 } from "../../services/api";
 import { supabase } from "../../supabaseClient";
+import CountrySelect from "../../Components/ui/CountrySelect";
 
 export default function AdminDashboard() {
   const [testimonies, setTestimonies] = useState([]);
@@ -568,13 +569,22 @@ const EditModal = ({ testimony, statuses, onSave, onClose }) => {
               <label className="block text-sm font-medium text-gray-900 mb-2">
                 Country
               </label>
-              <input
+
+              <CountrySelect
+                name="country"
+                value={formData.country}
+                onChange={handleChange}
+                placeholder="Select your country"
+              />
+
+              {/* <input
                 type="text"
                 name="country"
                 value={formData.country}
                 onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#111828] focus:border-transparent outline-none transition"
-              />
+              /> */}
+
             </div>
           </div>
 

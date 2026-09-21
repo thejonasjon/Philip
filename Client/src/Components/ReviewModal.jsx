@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import Button from "./ui/Button";
 import Scheldule from "../assets/scheldule.png";
 import { CreateTestimonial } from "../services/api";
+import CountrySelect from "./ui/CountrySelect";
 
 export default function ReviewModal({ onClose, onSuccess }) {
   const { t } = useTranslation();
@@ -197,7 +198,16 @@ export default function ReviewModal({ onClose, onSuccess }) {
           {t("testimonialPage.reviewModal.form.3.label")}
         </label>
 
-        <input
+        {/* Country Select */}
+        <CountrySelect
+          name="country"
+          value={formData.country}
+          onChange={handleChange}
+          placeholder={t("testimonialPage.reviewModal.form.3.placeholder")}
+          error={errors.country}
+        />
+
+        {/* <input
           type="text"
           name="country"
           value={formData.country}
@@ -212,8 +222,10 @@ export default function ReviewModal({ onClose, onSuccess }) {
 
         {errors.country && (
           <span className="text-xs text-red-500">{errors.country}</span>
-        )}
+        )} */}
       </div>
+
+
 
       {/* Message */}
       <div className="flex flex-col gap-1 md:gap-2">

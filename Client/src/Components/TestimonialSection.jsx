@@ -9,6 +9,8 @@ import { BOOKING_URL } from "../constants/links";
 import ThankYou from "./ThankYou";
 import ReviewModal from "./ReviewModal";
 import testimonialBG from "../assets/testimonial-bg.svg";
+import Flag from "../Components/ui/Flag"
+import { findCountryByName } from "../data/countries";
 
 export default function TestimonialSection() {
   const scrollRef = useRef(null);
@@ -237,6 +239,9 @@ function TestimonialCard({ testimonial }) {
     return `${text.slice(0, maxLength).trim()}...`;
   };
 
+  const countryMatch = findCountryByName(testimonial.country);
+
+
   return (
     <div
       className="
@@ -279,6 +284,14 @@ function TestimonialCard({ testimonial }) {
         <div>
           <div className="text-lg md:text-2xl text-[#222222E5] font-semibold">
             {testimonial.full_name}
+            <span>
+              {testimonial.country && (
+                <span className="ml-2 inline-flex items-center gap-1.5 text-sm md:text-base font-normal text-[#22222299]">
+                  {countryMatch && <Flag code={countryMatch.code} />}
+                  {/* {testimonial.country} */}
+                </span>
+              )}
+            </span>
           </div>
 
           <div className="text-sm md:text-lg text-[#222222E5] font-light">

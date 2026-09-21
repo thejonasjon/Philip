@@ -1,5 +1,8 @@
+// src/Components/ui/CountrySelect.jsx
 import { useEffect, useMemo, useRef, useState } from "react";
-import { countries, codeToFlag } from "../../data/countries";
+import { useTranslation } from "react-i18next";
+import { countries } from "../../data/countries";
+import Flag from "./Flag";
 
 /**
  * Searchable country dropdown with flags.
@@ -20,6 +23,7 @@ export default function CountrySelect({
   placeholder = "Select your country",
   name = "country",
 }) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [highlighted, setHighlighted] = useState(0);
@@ -29,10 +33,24 @@ export default function CountrySelect({
   const filtered = useMemo(() => {
     if (!query.trim()) return countries;
     const q = query.trim().toLowerCase();
-    return countries.filter((c) => c.name.toLowerCase().includes(q));
+    return countries.filter((c) => c.name.trim().toLowerCase().includes(q));
   }, [query]);
 
-  const selected = countries.find((c) => c.name === value);
+  // Resolve the incoming `value` against the list case- and
+  // whitespace-insensitively, and fall back to matching by ISO code —
+  // this is what makes edit forms (where `value` comes from saved data,
+  // not from selectCountry()) reselect correctly, even if countries.js
+  // ever picks up stray whitespace again.
+  const selected = useMemo(() => {
+    if (!value) return undefined;
+    const v = String(value).trim().toLowerCase();
+    if (!v) return undefined;
+
+    return (
+      countries.find((c) => c.name.trim().toLowerCase() === v) ||
+      countries.find((c) => c.code.trim().toLowerCase() === v)
+    );
+  }, [value]);
 
   // Close on outside click
   useEffect(() => {
@@ -55,7 +73,7 @@ export default function CountrySelect({
   }, [open]);
 
   const selectCountry = (country) => {
-    onChange({ target: { name, value: country.name } });
+    onChange({ target: { name, value: country.name.trim() } });
     setOpen(false);
     setQuery("");
   };
@@ -104,12 +122,8 @@ export default function CountrySelect({
             !selected ? "text-[#8a8a8a]" : ""
           }`}
         >
-          {selected && (
-            <span className="text-lg leading-none">
-              {codeToFlag(selected.code)}
-            </span>
-          )}
-          {selected ? selected.name : placeholder}
+          {selected && <Flag code={selected.code} />}
+          {selected ? selected.name.trim() : placeholder}
         </span>
 
         <svg
@@ -139,42 +153,38 @@ export default function CountrySelect({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Search countries..."
+              placeholder={`${t("reviewPage.selectPlaceholder")}...`}
               className="w-full rounded-md bg-[#f6f8fb] px-2.5 py-2 text-sm text-[#222222] outline-none"
             />
           </div>
 
-          <ul
-            role="listbox"
-            className="max-h-56 overflow-y-auto py-1"
-          >
+          <ul role="listbox" className="max-h-56 overflow-y-auto py-1">
             {filtered.length === 0 && (
               <li className="px-3 py-2 text-sm text-[#8a8a8a]">
                 No countries found
               </li>
             )}
 
-            {filtered.map((country, i) => (
-              <li
-                key={country.code}
-                role="option"
-                aria-selected={value === country.name}
-                onMouseEnter={() => setHighlighted(i)}
-                onClick={() => selectCountry(country)}
-                className={`flex cursor-pointer items-center gap-2.5 px-3 py-2 text-sm ${
-                  i === highlighted ? "bg-[#f6f8fb]" : ""
-                } ${
-                  value === country.name
-                    ? "font-medium text-[#0245a8]"
-                    : "text-[#222222]"
-                }`}
-              >
-                <span className="text-lg leading-none">
-                  {codeToFlag(country.code)}
-                </span>
-                {country.name}
-              </li>
-            ))}
+            {filtered.map((country, i) => {
+              const isSelected = selected?.code === country.code;
+              return (
+                <li
+                  key={country.code}
+                  role="option"
+                  aria-selected={isSelected}
+                  onMouseEnter={() => setHighlighted(i)}
+                  onClick={() => selectCountry(country)}
+                  className={`flex cursor-pointer items-center gap-2.5 px-3 py-2 text-sm ${
+                    i === highlighted ? "bg-[#f6f8fb]" : ""
+                  } ${
+                    isSelected ? "font-medium text-[#0245a8]" : "text-[#222222]"
+                  }`}
+                >
+                  <Flag code={country.code} />
+                  {country.name.trim()}
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}

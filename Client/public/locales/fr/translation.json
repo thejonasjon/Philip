@@ -257,5 +257,11 @@
 
       "error2": "Échec de l'envoi de l'avis. Veuillez réessayer."
     }
+  },
+  "reviewPage": {
+    "heading": "Partagez votre expérience",
+    "paragraph": "Vos commentaires nous aident à comprendre ce qui a bien fonctionné et ce que nous pouvons améliorer. Prenez un moment pour partager votre expérience après votre session d'apprentissage ou de tutorat.",
+    "formHeading": "Envoyer un avis",
+    "selectPlaceholder": "Rechercher un pays"
   }
 }

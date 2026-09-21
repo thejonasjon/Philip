@@ -257,5 +257,11 @@
 
       "error2": "Não foi possível enviar a avaliação. Por favor, tente novamente."
     }
+  },
+  "reviewPage": {
+    "heading": "Compartilhe sua experiência",
+    "paragraph": "Seu feedback nos ajuda a entender o que funcionou bem e onde podemos melhorar. Dedique um momento para compartilhar sua experiência após sua sessão de aprendizagem ou tutoria.",
+    "formHeading": "Enviar uma avaliação",
+    "selectPlaceholder": "Pesquisar país"
   }
 }

@@ -257,5 +257,11 @@
 
       "error2": "Het indienen van de beoordeling is mislukt. Probeer het opnieuw."
     }
+  },
+  "reviewPage": {
+    "heading": "Teilen Sie Ihre Erfahrung",
+    "paragraph": "Ihr Feedback hilft uns zu verstehen, was gut gelaufen ist und wo wir uns verbessern können. Nehmen Sie sich einen Moment Zeit, um Ihre Erfahrung nach Ihrer Lern- oder Nachhilfestunde zu teilen.",
+    "formHeading": "Bewertung senden",
+    "selectPlaceholder": "Land suchen"
   }
 }

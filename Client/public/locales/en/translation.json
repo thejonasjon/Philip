@@ -201,5 +201,11 @@
       "error": "Failed to submit testimonial:",
       "error2": "Failed to submit review. Please try again."
     }
+  },
+  "reviewPage": {
+    "heading": "Share Your Experience",
+    "paragraph": "Your feedback helps us understand what went well and where we can improve. Take a moment to share your experience after your learning or tutoring session.",
+    "formHeading": "Send a Review",
+    "selectPlaceholder": "Search country"
   }
 }

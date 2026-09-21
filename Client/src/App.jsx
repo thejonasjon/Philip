@@ -38,7 +38,7 @@ function AppContent() {
         {/* <Route path="/old/testimonials" element={<TestimonialPage />}/> */}
 
         <Route path="/testimonials" element={<NewTestimonials />}/>
-        <Route path="/review" element={<Review />}/>
+        <Route path="/submit-review" element={<Review />}/>
 
         <Route path="*" element={ <h2 className="py-12 text-center"> Page not found</h2>}/></Routes>
 

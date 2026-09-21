@@ -7,6 +7,8 @@ import TestimonialHero from "../Components/TestimonialHero";
 import { FetchTestimonies } from "../services/api";
 import ReviewModal from "../Components/ReviewModal";
 import ThankYou from "../Components/ThankYou";
+import Flag from "../Components/ui/Flag";
+import { findCountryByName } from "../data/countries";
 
 export default function NewTestimonials() {
   const { t } = useTranslation();
@@ -63,52 +65,64 @@ export default function NewTestimonials() {
         {!loading && testimonials.length > 0 && (
           <div className="mx-auto my-10 md:my-20 w-full md:w-10/12 cursor-pointer">
             <div className="flex flex-col">
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={testimonial.id}
-                  className="sticky top-24 md:top-32"
-                  style={{
-                    zIndex: index,
-                    // marginBottom: "40px",
-                  }}
-                >
-                  <div className="min-h-auto md:min-h-80 w-full rounded-2xl md:rounded-3xl bg-[#FFFFFF] bg-[linear-gradient(180deg,#FFFFFF_0%,#ABABAB0F_100%)] px-6 md:px-9.5 py-8 md:py-16 shadow-[0_0_0_0.95px_#EAEAEA80,0_0.97px_2.92px_0_#8F8F8F1A,inset_0_-1.53px_0_0_#3D3D3D0A] transition-all duration-700 ease-out">
-                    {/* Message */}
-                    <div className="text-base md:text-2xl font-normal text-[#22222299]">
-                      {testimonial.message}
-                    </div>
+              {testimonials.map((testimonial, index) => {
+                const countryMatch = findCountryByName(testimonial.country);
 
-                    {/* Student */}
-                    <div className="mt-6 md:mt-10 flex gap-3 md:gap-4">
-                      <div className="h-12 w-12 md:h-16 md:w-16 overflow-hidden rounded-full border-3 md:border-5 border-white">
-                        {testimonial.image ? (
-                          <img
-                            src={testimonial.image}
-                            alt={testimonial.full_name}
-                            className="h-full w-full rounded-full object-cover"
-                          />
-                        ) : (
-                          <div className="flex h-full w-full items-center justify-center rounded-full bg-[#0245a8]">
-                            <span className="text-base md:text-xl font-semibold text-white">
-                              {testimonial.full_name?.charAt(0).toUpperCase()}
-                            </span>
-                          </div>
-                        )}
+                return (
+                  <div
+                    key={testimonial.id}
+                    className="sticky top-24 md:top-32"
+                    style={{
+                      zIndex: index,
+                      // marginBottom: "40px",
+                    }}
+                  >
+                    <div className="min-h-auto md:min-h-80 w-full rounded-2xl md:rounded-3xl bg-[#FFFFFF] bg-[linear-gradient(180deg,#FFFFFF_0%,#ABABAB0F_100%)] px-6 md:px-9.5 py-8 md:py-16 shadow-[0_0_0_0.95px_#EAEAEA80,0_0.97px_2.92px_0_#8F8F8F1A,inset_0_-1.53px_0_0_#3D3D3D0A] transition-all duration-700 ease-out">
+                      {/* Message */}
+                      <div className="text-base md:text-2xl font-normal text-[#22222299]">
+                        {testimonial.message}
                       </div>
 
-                      <div>
-                        <div className="text-lg md:text-2xl font-semibold text-[#222222E5]">
-                          {testimonial.full_name}
+                      {/* Student */}
+                      <div className="mt-6 md:mt-10 flex gap-3 md:gap-4">
+                        <div className="h-12 w-12 md:h-16 md:w-16 overflow-hidden rounded-full border-3 md:border-5 border-white">
+                          {testimonial.image ? (
+                            <img
+                              src={testimonial.image}
+                              alt={testimonial.full_name}
+                              className="h-full w-full rounded-full object-cover"
+                            />
+                          ) : (
+                            <div className="flex h-full w-full items-center justify-center rounded-full bg-[#0245a8]">
+                              <span className="text-base md:text-xl font-semibold text-white">
+                                {testimonial.full_name?.charAt(0).toUpperCase()}
+                              </span>
+                            </div>
+                          )}
                         </div>
 
-                        <div className="text-sm md:text-lg font-light text-[#222222E5]">
-                          {testimonial.profession}
+                        <div>
+                          <div className="text-lg md:text-2xl font-semibold text-[#222222E5]">
+                            {testimonial.full_name}
+                            <span>
+                              {testimonial.country && (
+                                <span className="ml-2 inline-flex items-center gap-1.5 text-sm md:text-base font-normal text-[#22222299]">
+                                    {countryMatch && <Flag code={countryMatch.code} />}
+                                    {/* {testimonial.country} */}
+                                </span>
+                              )}
+                            </span>
+                          </div>
+
+                          <div className="text-sm md:text-lg font-light text-[#222222E5]">
+                            {testimonial.profession}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         )}

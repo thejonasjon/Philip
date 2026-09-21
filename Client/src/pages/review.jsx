@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Button from "../Components/ui/Button";
 import SectionLayout from "../layouts/SectionLayout";
-import ReviewModal from "../Components/ReviewModal";
 import ThankYou from "../Components/ThankYou";
 import CountrySelect from "../Components/ui/CountrySelect";
+import { CreateTestimonial } from "../services/api";
+import { toast } from "react-toastify";
 
 export default function Review() {
   const { t } = useTranslation();
-  const [testimonials, setTestimonials] = useState([]);
-  const [showReviewModal, setShowReviewModal] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -97,7 +96,7 @@ export default function Review() {
       setLoading(true);
 
       await CreateTestimonial(newTestimonial);
-      onSuccess();
+      setShowThankYou(true);
 
       toast.success(t("testimonialPage.reviewModal.successful"));
 
@@ -111,7 +110,6 @@ export default function Review() {
 
       setErrors({});
 
-      onClose();
     } catch (error) {
       console.error(t("testimonialPage.reviewModal.error"), error);
 
@@ -257,29 +255,23 @@ export default function Review() {
 
       <SectionLayout>
         {/* Header */}
-        <div className="w-9/12 mx-auto text-center flex flex-col items-center justify-center gap-4 mt-12 mb-20">
-          {/* <Heading heading={t("testimonialPage.testimonial.heading")} subHeading={t("testimonialPage.testimonial.subHeading")} /> */}
-          {/* <Heading heading="Send Your Review" subHeading="Review" /> */}
-
+        <div className="w-11/12 md:w-9/12 mx-auto text-center flex flex-col items-center justify-center gap-4 mt-12 mb-20">
             <h2 className="font-euclid text-3xl md:text-5xl text-[#222222]">
-                Share Your Experience
+                {t("reviewPage.heading")}
             </h2>
 
             <p className="max-w-2xl font-euclid text-base text-[#605f5f]">
-                Your feedback helps us understand what went well and where we can improve. Take a moment to share your experience after your learning or tutoring session.
+                {t("reviewPage.paragraph")}
             </p>
         </div>
 
-        <div className="flex items-center justify-center"
-          //   onClick={onClose}
-        >
-          {/* Modal */}
+        <div className="flex items-center justify-center"        >
           <div
-            className="w-9/12 bg-white rounded-xl border border-gray-200 md:rounded-xl p-0 md:p-6"
+            className="w-11/12 md:w-9/12 bg-white rounded-xl border border-gray-200 md:rounded-xl p-0 md:p-6"
           >
             <div className="px-2 py-2 md:px-6">
                 <h4 className="text-4xl font-medium text-[#222222] mb-6">
-                    Send a Review
+                    {t("reviewPage.formHeading")}
                 </h4>
 
               {/* Form */}
@@ -292,17 +284,6 @@ export default function Review() {
             </div>
           </div>
         </div>
-
-        {showReviewModal && (
-          <ReviewModal
-            onClose={() => setShowReviewModal(false)}
-            onSuccess={() => {
-              setShowReviewModal(false);
-              setShowThankYou(true);
-            }}
-          />
-        )}
-
         {showThankYou && <ThankYou onClose={() => setShowThankYou(false)} />}
       </SectionLayout>
     </div>
