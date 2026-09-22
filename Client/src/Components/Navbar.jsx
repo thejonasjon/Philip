@@ -8,21 +8,30 @@ import { Menu02Icon } from "@hugeicons/core-free-icons";
 import LanguageSelector from "./ui/LanguageSelector";
 import useSectionNavigation from "../hooks/useSectionNavigation";
 import { BOOKING_URL } from "../constants/links";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigateToSection = useSectionNavigation();
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const navLinks = [
     { id: "home", label: t("nav.home"), to: "/" },
     { id: "about", label: t("nav.about"), to: "/#aboutMe" },
     { id: "tutorials", label: t("nav.tutorial"), to: "/#tutorial" },
     { id: "testimonials", label: t("nav.testimonial"), to: "/testimonials" },
+    { id: "review", label: t("nav.review"), to: "/submit-review" },
   ];
 
   const handleNavigation = (to) => {
     setMenuOpen(false);
+
+    if (to === "/submit-review" || to === "/testimonials") {
+      navigate(to);
+      return;
+    }
+
     navigateToSection(to);
   };
 
