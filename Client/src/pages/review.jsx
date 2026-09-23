@@ -6,6 +6,7 @@ import ThankYou from "../Components/ThankYou";
 import CountrySelect from "../Components/ui/CountrySelect";
 import { CreateTestimonial } from "../services/api";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 export default function Review() {
   const { t } = useTranslation();
@@ -265,7 +266,13 @@ export default function Review() {
             </p>
         </div>
 
-        <div className="flex items-center justify-center"        >
+        <div className="w-11/12 md:w-9/12 mx-auto flex items-center justify-end py-4 md:py-6">
+          <Link to="/testimonials" className="font-euclid text-base text-[#0245a8] underline hover:scale-105 transition-transform duration-300 ease-in-out">
+            {t("reviewPage.linkText")}
+          </Link>
+        </div>
+
+        <div className="flex items-center justify-center">
           <div
             className="w-11/12 md:w-9/12 bg-white rounded-xl border border-gray-200 md:rounded-xl p-0 md:p-6"
           >
